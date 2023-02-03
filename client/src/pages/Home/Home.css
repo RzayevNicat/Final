@@ -1,0 +1,112 @@
+.carousel{
+    width: 100%;
+    padding: 0px;
+}
+.carousel button{
+    display: none !important;
+}
+.carousel h3{
+    color: wheat;
+}
+.header{
+    background-image: url(https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/18/01n.jpg);
+    min-height: 100vh;
+    display: flex !important;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    flex-direction: row;
+    color: white;
+    
+}
+
+.header-info h1{
+    font-size: 42px;
+    font-weight: 200;
+}
+.header-img img{
+   width: 700px;
+    height: 600px;
+
+}
+.spans{
+    display: flex;
+    align-items: center;
+    
+}
+.spans .up{
+    font-size: 46px;
+    font-weight: 700;
+}
+.spans .sale{
+    font-size: 98px;
+    font-weight: 700;
+    margin-left: 20px;
+}
+.starting h1{
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+}
+.starting h1 .payment{
+    font-size: 33.6px;
+    font-weight: 700;
+    margin-top: -7px;
+    color: rgba(210, 110, 75);
+}
+.starting h1 .dollor{
+    color: rgba(210, 110, 75);
+    margin-left: 10px;
+    font-size: 18.144px;
+}
+.starting{
+    display: flex;
+}
+.starting button{
+    background-color: white;
+    display: block !important;
+    color: black;
+    margin-left: 50px;
+    padding: 20px 50px;
+    font-weight: 700;
+    font-size: 16.8px;
+    letter-spacing: 3.36px;
+    transition: 1s;
+}
+.starting button:hover{
+    background-color: #111111;
+    color: white;
+    border: none;
+}
+/**********************************************/
+.shop{
+    display: flex;
+    flex-direction: row;
+    padding: 5% 5%;
+    background-color: #f4f4f4;
+    
+}
+.shop-by{
+    padding-right: 9%;
+}
+.shop-by h5{
+    font-size: 18px;
+    font-weight: 700;
+}
+.shop-by ul{
+    list-style-type: none;
+
+}
+.shop-icon{
+    margin-right: 10px;
+}
+.shop-by ul li{
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
