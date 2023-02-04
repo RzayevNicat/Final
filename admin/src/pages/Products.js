@@ -16,7 +16,7 @@ function Products() {
 		setData(copy);
 	};
 	const handleUpdate = (id) => {
-		navigate(`update/:${id}`);
+		navigate(`update/${id}`);
 	};
 	return (
 		<div className="products">

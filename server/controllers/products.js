@@ -12,7 +12,9 @@ const postProduct = AsyncErrorHandler(async (req, res, next) => {
 		productRatings,
 		productInfo,
 		productSize,
-		productColor
+		productColor,
+		type,
+		gender
 	} = req.body;
 
 	console.log(req.body);
@@ -27,7 +29,9 @@ const postProduct = AsyncErrorHandler(async (req, res, next) => {
 		brand,
 		productInfo,
 		productSize,
-		productColor
+		productColor,
+		type,
+		gender
 	});
 
 	res.status(200).json({
@@ -41,6 +45,35 @@ const getProducts = AsyncErrorHandler(async (req, res, next) => {
 			success: true,
 			data: docs
 		});
+	});
+});
+const getById = AsyncErrorHandler(async (req, res, next) => {
+	const { id } = req.params;
+	Products.findById(id, (err, doc) => {
+		if (!err) {
+			if (doc) {
+				res.status(200).json({
+					success: true,
+					data: doc
+				});
+			} else {
+				res.status(404).json({
+					success: false
+				});
+			}
+		}
+	});
+});
+const updateProducts = AsyncErrorHandler(async (req, res, next) => {
+	const { id } = req.params;
+
+	Products.findByIdAndUpdate(id, req.body, (err, doc) => {
+		if (!err) {
+			res.status(200).json({
+				success: true,
+				data: doc
+			});
+		}
 	});
 });
 const deleteProduct = AsyncErrorHandler(async (req, res, next) => {
@@ -59,5 +92,7 @@ module.exports = {
 	postProduct,
 	errorTest,
 	getProducts,
-	deleteProduct
+	deleteProduct,
+	updateProducts,
+	getById
 };

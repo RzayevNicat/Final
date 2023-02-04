@@ -1,32 +1,35 @@
-.products{
+.products {
     margin-left: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.cards{
-    display: flex;
+
+.cards {
+    display: flex !important;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.card{
+.card {
     margin-right: 25px;
     margin-bottom: 30px;
 }
-.card-img{
+
+.card-img {
     position: relative;
     text-align: center;
 
 }
-.card-img img{
+
+.card-img img {
     width: 230px;
 }
 
-.card-img .img-icon{
+.card-img .img-icon {
     position: absolute;
     padding: 5px;
     font-size: 30px;
@@ -37,11 +40,13 @@
     cursor: pointer;
     transition: 1s;
 }
-.card-img .img-icon:hover{
+
+.card-img .img-icon:hover {
     background-color: #111111;
     color: #f4f4f4;
 }
-.card-img h4{
+
+.card-img h4 {
     position: absolute;
     background-color: #111111;
     bottom: 6px;
@@ -52,37 +57,52 @@
     opacity: 0;
     transition: 1s;
 }
-.card:hover .img-icon{
+
+.card:hover .img-icon {
     opacity: 0.7;
 }
-.card:hover h4{
+
+.card:hover h4 {
     opacity: 0.9;
 }
-.card-info{
+
+.card-info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
 }
-.card-info h6{
+
+.card-info h6 {
     font-weight: 400;
     font-size: 15px;
     cursor: pointer;
 }
-.card-info p{
+
+.card-info p {
     font-size: 18px;
     font-weight: 600;
 }
-.heart-card{
+
+.heart-card {
     font-size: 25px;
     cursor: pointer;
 }
-.load{
+
+.load {
+    background-color: transparent;
+    color: #111111;
+    padding: 15px 50px;
+    font-weight: 500;
+    font-size: 16px;
+
+    cursor: pointer;
+    border: 1px solid #111111;
+    transition: 1s;
+}
+
+.load:hover {
     background-color: #111111;
     color: #f4f4f4;
-    padding: 10px 30px;
-    font-weight: 700;
-    font-size: 16px;
-    letter-spacing: 3.30px;
-    cursor: pointer;
+    border: 1px solid white;
 }

@@ -11,6 +11,8 @@ const productShecma = new Schema({
 	productRatings: { type: Number, required: true },
 	sale: { type: Boolean, required: true },
 	brand: { type: String, required: true },
+	type: { type: String, required: true },
+	gender: { type: String, required: false },
 	productInfo: { type: String, required: true },
 	productSize: { type: Array, required: false },
 	productColor: { type: Array, required: true }
