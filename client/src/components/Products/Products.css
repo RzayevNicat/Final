@@ -1,3 +1,38 @@
+.shop {
+    display: flex;
+    flex-direction: row;
+    padding: 5% 5%;
+    background-color: #f4f4f4;
+
+}
+
+.shop-by {
+    padding-right: 9%;
+}
+
+.shop-by h5 {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.shop-by ul {
+    list-style-type: none;
+
+}
+
+.shop-icon {
+    margin-right: 10px;
+}
+
+.shop-by ul li {
+    margin-top: 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
 .products {
     margin-left: 100px;
     display: flex;

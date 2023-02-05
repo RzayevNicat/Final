@@ -94,40 +94,7 @@
 }
 
 /**********************************************/
-.shop {
-    display: flex;
-    flex-direction: row;
-    padding: 5% 5%;
-    background-color: #f4f4f4;
 
-}
-
-.shop-by {
-    padding-right: 9%;
-}
-
-.shop-by h5 {
-    font-size: 18px;
-    font-weight: 700;
-}
-
-.shop-by ul {
-    list-style-type: none;
-
-}
-
-.shop-icon {
-    margin-right: 10px;
-}
-
-.shop-by ul li {
-    margin-top: 20px;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-}
 
 .ultra {
     position: relative;
@@ -165,85 +132,7 @@
     letter-spacing: 2.4px;
 }
 
-.salest {
-    background-color: #f4f4f4;
-    padding-bottom: 80px;
-}
 
-.salest {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.salest img {
-    width: 700px;
-    height: 20vh;
-}
-
-.sale {
-    margin-left: 20px;
-    position: relative;
-}
-
-.sale-info {
-
-    display: flex;
-
-}
-
-.sale-info div {
-    position: absolute;
-    top: 15%;
-    left: 10%;
-}
-
-.sale-info h1 {
-    font-size: 33px;
-    font-weight: 200;
-    letter-spacing: 2.475;
-    line-height: 33px;
-}
-
-.sale-info .btn-black {
-    position: absolute;
-    right: 10%;
-    top: 30%;
-    padding: 15px 40px;
-    background-color: #111111;
-    color: #f4f4f4;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 2.4px;
-    cursor: pointer;
-}
-
-.sale-info .btn-white {
-    position: absolute;
-    right: 10%;
-    top: 30%;
-    padding: 15px 40px;
-    background-color: #f4f4f4;
-    color: #111111;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 2.4px;
-}
-
-.sale-info p {
-    font-size: 49px;
-    font-weight: 700;
-    letter-spacing: 0px;
-}
-
-.sale-info .flash {
-    color: #f4f4f4;
-}
-
-.sale-info .flashh {
-    color: #f4f4f4;
-}
 
 .explore {
     background-image: url('https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/18/shop18_home_banner3.jpg');

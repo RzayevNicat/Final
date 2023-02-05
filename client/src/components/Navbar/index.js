@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { FiChevronDown } from 'react-icons/fi';
 import { AiOutlineUser, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
 import { BsHandbag } from 'react-icons/bs';
 import './Navi.css';
 function Navbar() {
 	const [ money, setMoney ] = useState(true);
-	const [ navSize, setnavSize ] = useState('10rem');
+	const [ navSize, setnavSize ] = useState('5rem');
 	const [ navColor, setnavColor ] = useState('transparent');
 	const listenScrollEvent = () => {
 		window.scrollY > 10 ? setnavColor('#111111') : setnavColor('transparent');
-		window.scrollY > 10 ? setnavSize('7rem') : setnavSize('10rem');
+		window.scrollY > 10 ? setnavSize('7rem') : setnavSize('5rem');
 	};
 	useEffect(() => {
 		window.addEventListener('scroll', listenScrollEvent);
@@ -33,7 +32,7 @@ function Navbar() {
 					<Link to={'/'}>Home</Link>
 				</li>
 				<li>
-					<Link to={'category'}>Categroies</Link>
+					<Link to={'categories'}>Categroies</Link>
 				</li>
 				<li>
 					<Link to={'/'}>About Us</Link>

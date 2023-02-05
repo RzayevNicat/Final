@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './styles.css';
-import { Autoplay, Keyboard, Pagination, Navigation } from 'swiper';
+import { Autoplay, Navigation } from 'swiper';
 
 export default function CarouselFooter() {
 	const data = useSelector((state) => state.data.items);

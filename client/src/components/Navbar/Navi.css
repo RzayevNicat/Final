@@ -1,4 +1,4 @@
-.nav{
+.nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -10,16 +10,19 @@
     z-index: 888;
     padding: 2% 7%;
 }
-.nav img{
+
+.nav img {
     width: 100px;
     height: 50px;
 }
-.nav ul{
+
+.nav ul {
     list-style-type: none;
     display: flex;
     align-items: center;
 }
-.nav ul li a{
+
+.nav ul li a {
     display: flex;
     align-items: center;
     margin-right: 30px;
@@ -29,25 +32,30 @@
     color: white;
     text-decoration: none;
 }
-.nav-btns{
+
+.nav-btns {
     display: flex;
-    
+
 }
-.nav button{
+
+.nav button {
     background-color: transparent;
     color: white;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
-.chevron{
+
+.chevron {
     font-size: 20px;
 }
-.nav .count{
+
+.nav .count {
     position: relative;
 }
+
 .nav .count span {
     position: absolute;
     top: -6px;
@@ -57,7 +65,8 @@
     padding: 0px 3px;
     border-radius: 50%;
 }
-.icon-nav{
+
+.icon-nav {
     margin-left: 20px;
     font-size: 29px;
 }
