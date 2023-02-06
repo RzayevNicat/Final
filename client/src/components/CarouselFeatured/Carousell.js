@@ -29,7 +29,7 @@ export default function CarouselFeatured() {
 				{data.map((elem, index) => {
 					if (elem.type === 'featured') {
 						return (
-							<SwiperSlide className="swiperr-slide">
+							<SwiperSlide className="swiperr-slide" key={index}>
 								<img src={elem.img_url} />
 								<div>
 									<h4>{elem.productName}</h4>
