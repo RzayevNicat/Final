@@ -5,7 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BsSquare, BsSquareFill } from 'react-icons/bs';
 import { useFilter } from '../../context/FilterContext';
 import { CiHeart } from 'react-icons/ci';
-import { BsHandbag, BsHeadset } from 'react-icons/bs';
+import { BsHandbag } from 'react-icons/bs';
+import { useQuick } from '../../context/QuickView';
+import QuickView from '../quickView';
+import { useNavigate } from 'react-router-dom';
 function Products() {
 	const { all, setAll } = useFilter();
 	const { acsesories, setAcsesories } = useFilter();
@@ -13,15 +16,15 @@ function Products() {
 	const { men, setMen } = useFilter();
 	const { women, setWomen } = useFilter();
 	const { shoes, setShoes } = useFilter();
-	const PAGE_SIZE = 8;
-
 	const [ index, setIndex ] = useState(0);
-
 	const [ visibleData, setVisibleData ] = useState([]);
 	const data = useSelector((state) => state.data.items);
 	const status = useSelector((state) => state.data.status);
+	const { details, setDetails } = useQuick();
+	const PAGE_SIZE = 8;
 	const dispatch = useDispatch();
 	let numberOfItems = PAGE_SIZE * (index + 1);
+	const navigate = useNavigate();
 	useEffect(
 		() => {
 			const newArray = [];
@@ -36,6 +39,7 @@ function Products() {
 		},
 		[ dispatch, status, index ]
 	);
+
 	let dataas = [];
 	all === true ? (dataas = Object.values(visibleData)) : (dataas = Object.values(data));
 
@@ -120,6 +124,10 @@ function Products() {
 		setShoes(true);
 		setIndex(0);
 	};
+	const getProduct = (id) => {
+		navigate(`/product/${id}`);
+		window.location.reload();
+	};
 	return (
 		<div className="shop">
 			<div className="shop-by">
@@ -175,15 +183,19 @@ function Products() {
 							return (
 								<div className="card" key={index}>
 									<div className="card-img">
-										<img src={ele.img_url} />
+										<img
+											src={ele.img_url}
+											onClick={() => getProduct(ele._id)}
+											style={{ cursor: 'pointer' }}
+										/>
 
 										<BsHandbag className="img-icon" />
 
-										<h4>QUIK VIEW</h4>
+										<h4 onClick={() => setDetails(ele)}>QUICK VIEW</h4>
 									</div>
 									<div className="card-info">
 										<div className="infoo">
-											<h6>{ele.productName}</h6>
+											<h6 onClick={() => getProduct(ele._id)}>{ele.productName}</h6>
 
 											<p>${ele.prodcutPrice}.00</p>
 										</div>
@@ -200,6 +212,7 @@ function Products() {
 					</button>
 				)}
 			</div>
+			{details._id === undefined ? null : <QuickView />}
 		</div>
 	);
 }

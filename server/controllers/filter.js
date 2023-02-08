@@ -23,7 +23,16 @@ const getFilter = AsyncErrorHandler(async (req, res, next) => {
 		});
 	});
 });
-
+const deleteFilter = AsyncErrorHandler(async (req, res, next) => {
+	const { id } = req.params;
+	Filter.findByIdAndDelete(id, (err) => {
+		if (!err) {
+			res.status(200).json({
+				success: true
+			});
+		}
+	});
+});
 const errorTest = (req, res, next) => {
 	return next(new CustomError('Custom Error Error'));
 };
@@ -31,5 +40,6 @@ const errorTest = (req, res, next) => {
 module.exports = {
 	postFilter,
 	getFilter,
-	errorTest
+	errorTest,
+	deleteFilter
 };

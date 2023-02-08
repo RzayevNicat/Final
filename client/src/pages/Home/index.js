@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Home.css';
 import '../../components/Products/Products.css';
 import Carousel from '../../components/HomeCarousel/Carousel';
@@ -12,6 +12,9 @@ import Products from '../../components/Products';
 import Salest from '../../components/Salest';
 
 function Home() {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	return (
 		<div className="home">
 			<Carousel />

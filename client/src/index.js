@@ -6,6 +6,7 @@ import Category from './pages/Categories';
 import Home from './pages/Home';
 import { Provider } from 'react-redux';
 import { store } from './redux/config/store';
+import Product from './pages/Product';
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
 			{
 				path: 'categories',
 				element: <Category />
+			},
+			{
+				path: 'product/:id',
+				element: <Product />
 			}
 		]
 	}

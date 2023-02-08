@@ -15,6 +15,7 @@ const productShecma = new Schema({
 	gender: { type: String, required: false },
 	productInfo: { type: String, required: true },
 	productSize: { type: Array, required: false },
-	productColor: { type: Array, required: true }
+	productColor: { type: Array, required: true },
+	productImages: { type: Array, required: false }
 });
 module.exports = mongoose.model('Products', productShecma);

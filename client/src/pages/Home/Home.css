@@ -15,9 +15,10 @@
     background-image: url(https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/18/01n.jpg);
     min-height: 100vh;
     display: flex !important;
-    align-items: center;
+    align-items: center !important;
     position: relative;
-    justify-content: center;
+    padding: 0px 3%;
+    justify-content: center !important;
     flex-direction: row;
     color: white;
 
@@ -29,7 +30,7 @@
 }
 
 .header-img img {
-    width: 700px;
+    width: 600px !important;
     height: 600px;
 
 }

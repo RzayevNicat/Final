@@ -14,7 +14,8 @@ const postProduct = AsyncErrorHandler(async (req, res, next) => {
 		productSize,
 		productColor,
 		type,
-		gender
+		gender,
+		productImages
 	} = req.body;
 
 	console.log(req.body);
@@ -31,7 +32,8 @@ const postProduct = AsyncErrorHandler(async (req, res, next) => {
 		productSize,
 		productColor,
 		type,
-		gender
+		gender,
+		productImages
 	});
 
 	res.status(200).json({

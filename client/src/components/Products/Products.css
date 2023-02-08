@@ -108,10 +108,17 @@
     align-items: flex-start;
 }
 
+.card-info a {
+    text-decoration: none;
+    color: #111111;
+}
+
 .card-info h6 {
     font-weight: 400;
     font-size: 15px;
     cursor: pointer;
+    text-decoration: none;
+
 }
 
 .card-info p {

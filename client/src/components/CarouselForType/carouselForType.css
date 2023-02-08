@@ -1,0 +1,86 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ftr {
+    background-color: #f4f4f4;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
+.ftr h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.featured-card-img {
+    position: relative;
+}
+
+.featured-card-img .img-icon {
+    position: absolute;
+    padding: 5px;
+    font-size: 30px;
+    border: 1px solid gray;
+    top: 5px;
+    opacity: 0;
+    right: 5px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.featured-card-img h4 {
+    position: absolute;
+    background-color: #111111;
+    bottom: 6px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    padding: 9px;
+    cursor: pointer;
+    opacity: 0;
+    transition: 1s;
+}
+
+.featured-card:hover h4 {
+    opacity: 1;
+}
+
+.featured-card:hover .img-icon {
+    opacity: 1;
+}
+
+.featured-card-img .img-icon:hover {
+    background-color: #111111;
+    color: #f4f4f4;
+}
+
+.featured-card-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.featured-card-info h6 {
+    font-weight: 400;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.featured-card-info p {
+    font-size: 18px;
+    font-weight: 600;
+}

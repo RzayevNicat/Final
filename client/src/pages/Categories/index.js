@@ -5,19 +5,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../../redux/slice/dataSlice';
 import { FiChevronRight } from 'react-icons/fi';
 
-import { AiOutlineMinus, AiOutlineArrowUp, AiOutlineArrowDown } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlineArrowUp, AiOutlineArrowDown, AiOutlinePlus } from 'react-icons/ai';
 import { MdViewList, MdViewModule } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CarouselFeatured from '../../components/CarouselFeatured/Carousell';
 import Loading from '../../components/Loading';
 import { CiHeart } from 'react-icons/ci';
 import { BsHandbag } from 'react-icons/bs';
 import { useFilter } from '../../context/FilterContext';
+import { useQuick } from '../../context/QuickView';
+import QuickView from '../../components/quickView';
 function Category() {
 	const data = useSelector((state) => state.data.items);
 	const status = useSelector((state) => state.data.status);
 	const [ filter, setFilter ] = useState([]);
+	const { details, setDetails } = useQuick();
 	const [ black, setBlack ] = useState('black');
 	const [ visibleData, setVisibleData ] = useState([]);
 	const [ index, setIndex ] = useState(0);
@@ -32,6 +35,9 @@ function Category() {
 	const [ sort, setSort ] = useState('');
 	const [ size, setSize ] = useState('');
 	const [ color, setColor ] = useState('');
+	const [ closeSizee, setCloseSize ] = useState(true);
+	const [ closeColorr, setCloseColor ] = useState(true);
+	const [ closePricee, setClosePrice ] = useState(true);
 	const { women, setWomen } = useFilter();
 	const [ price, setPrice ] = useState(0);
 
@@ -44,6 +50,7 @@ function Category() {
 	let numberOfItems = PAGE_SIZE * (index + 1);
 	useEffect(
 		() => {
+			window.scrollTo(0, 0);
 			const newArray = [];
 			for (let i = 0; i < data.length; i++) {
 				if (i <= numberOfItems + 1) newArray.push(data[i]);
@@ -88,6 +95,7 @@ function Category() {
 		}
 	}
 	sorting(dataas);
+
 	/****************FILTER*********************/
 	function filtered(params) {
 		if (all === true) {
@@ -398,9 +406,13 @@ function Category() {
 		setNike(true);
 		setIndex(0);
 	};
-
+	const navigate = useNavigate();
+	const getProduct = (id) => {
+		navigate(`/product/${id}`);
+		window.location.reload();
+	};
 	return (
-		<div className="categoriest">
+		<div className="categoriest" id="category">
 			<div className={black} />
 			<Salest className="category-salest" />
 			<div className="transition">
@@ -435,54 +447,72 @@ function Category() {
 					<div className="filter-price">
 						<div className="filter-title">
 							<h2>Price</h2>
-							<AiOutlineMinus />
+							{closePricee ? (
+								<AiOutlineMinus onClick={() => setClosePrice(false)} />
+							) : (
+								<AiOutlinePlus onClick={() => setClosePrice(true)} />
+							)}
 						</div>
-						<form onSubmit={handleSubmit}>
-							<input
-								className="filtered-price"
-								placeholder="Price"
-								type="number"
-								onChange={(e) => setPrice(e.target.value)}
-							/>
-							<button className="filter-btn">FILTER</button>
-						</form>
+						{closePricee ? (
+							<form onSubmit={handleSubmit}>
+								<input
+									className="filtered-price"
+									placeholder="Price"
+									type="number"
+									onChange={(e) => setPrice(e.target.value)}
+								/>
+								<button className="filter-btn">FILTER</button>
+							</form>
+						) : null}
 					</div>
 					<hr />
 					<div className="filter-color">
 						<div className="filter-title">
 							<h2>Color</h2>
-							<AiOutlineMinus />
+							{closeColorr ? (
+								<AiOutlineMinus onClick={() => setCloseColor(false)} />
+							) : (
+								<AiOutlinePlus onClick={() => setCloseColor(true)} />
+							)}
 						</div>
-						<div className="colors">
-							{colorArr.map((ele, index) => (
-								<div
-									key={index}
-									className="color"
-									style={{ backgroundColor: ele }}
-									onClick={() => setColor(ele)}
-								/>
-							))}
-							<button className="default color-default" onClick={() => setColor('')}>
-								Default
-							</button>
-						</div>
+						{closeColorr ? (
+							<div className="colors">
+								{colorArr.map((ele, index) => (
+									<div
+										key={index}
+										className="color"
+										style={{ backgroundColor: ele }}
+										onClick={() => setColor(ele)}
+									/>
+								))}
+								<button className="default color-default" onClick={() => setColor('')}>
+									Default
+								</button>
+							</div>
+						) : null}
 					</div>
 					<hr />
 					<div className="filter-size">
 						<div className="filter-title">
 							<h2>Size</h2>
-							<AiOutlineMinus />
+							{closeSizee ? (
+								<AiOutlineMinus onClick={() => setCloseSize(false)} />
+							) : (
+								<AiOutlinePlus onClick={() => setCloseSize(true)} />
+							)}
 						</div>
-						<div className="size">
-							{sizeArr.map((ele, index) => (
-								<div key={index} onClick={() => setSize(ele)}>
-									{ele}
-								</div>
-							))}
-							<button className="default" onClick={() => setSize('')}>
-								Default
-							</button>
-						</div>
+						{closeSizee ? (
+							<div className="size">
+								{sizeArr.map((ele, index) => (
+									<div key={index} onClick={() => setSize(ele)}>
+										{ele}
+									</div>
+								))}
+								<button className="default" onClick={() => setSize('')}>
+									Default
+								</button>
+							</div>
+						) : null}
 					</div>
 					<hr />
 					<div className="filter-featured">
@@ -537,15 +567,19 @@ function Category() {
 										return (
 											<div className="card" key={index}>
 												<div className="card-img">
-													<img src={ele.img_url} />
+													<img
+														src={ele.img_url}
+														onClick={() => getProduct(ele._id)}
+														style={{ cursor: 'pointer' }}
+													/>
 
 													<BsHandbag className="img-icon" />
 
-													<h4>QUIK VIEW</h4>
+													<h4 onClick={() => setDetails(ele)}>QUIK VIEW</h4>
 												</div>
 												<div className="card-info">
 													<div className="infoo">
-														<h6>{ele.productName}</h6>
+														<h6 onClick={() => getProduct(ele._id)}>{ele.productName}</h6>
 
 														<p>${ele.prodcutPrice}.00</p>
 													</div>
@@ -587,6 +621,7 @@ function Category() {
 					</div>
 				</div>
 			</div>
+			{details._id === undefined ? null : <QuickView />}
 		</div>
 	);
 }

@@ -1,5 +1,5 @@
 const express = require('express');
-const { postFilter, getFilter } = require('../controllers/filter');
+const { postFilter, getFilter, deleteFilter } = require('../controllers/filter');
 const { errorTest } = require('../controllers/filter');
 
 const router = express.Router();
@@ -7,4 +7,5 @@ const router = express.Router();
 router.post('/filters', postFilter);
 router.get('/filters', getFilter);
 router.get('/error', errorTest);
+router.delete('/filters/:id', deleteFilter);
 module.exports = router;
