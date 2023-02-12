@@ -5,7 +5,6 @@ import Carousel from '../../components/HomeCarousel/Carousel';
 import CarouselFooter from '../../components/Carousel/CarouselFooter';
 import { BsHeadset } from 'react-icons/bs';
 import { MdPayment } from 'react-icons/md';
-
 import { GiReturnArrow } from 'react-icons/gi';
 import { FaShippingFast } from 'react-icons/fa';
 import Products from '../../components/Products';

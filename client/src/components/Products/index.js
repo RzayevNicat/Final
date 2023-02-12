@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Loading from '../../components/Loading/index';
 import { fetchProducts } from '../../redux/slice/dataSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsSquare, BsSquareFill } from 'react-icons/bs';
@@ -8,6 +7,7 @@ import { CiHeart } from 'react-icons/ci';
 import { BsHandbag } from 'react-icons/bs';
 import { useQuick } from '../../context/QuickView';
 import QuickView from '../quickView';
+import { addBasket } from '../../redux/slice/basketSlice';
 import { useNavigate } from 'react-router-dom';
 function Products() {
 	const { all, setAll } = useFilter();
@@ -25,11 +25,16 @@ function Products() {
 	const dispatch = useDispatch();
 	let numberOfItems = PAGE_SIZE * (index + 1);
 	const navigate = useNavigate();
+	const activee = JSON.parse(sessionStorage.getItem('userLogin'));
 	useEffect(
 		() => {
+			if (activee !== true) {
+				sessionStorage.setItem('userLogin', JSON.stringify(false));
+			}
+
 			const newArray = [];
 			for (let i = 0; i < data.length; i++) {
-				if (i <= numberOfItems + 1) newArray.push(data[i]);
+				if (i < numberOfItems + 1) newArray.push(data[i]);
 			}
 
 			setVisibleData(newArray);
@@ -128,6 +133,16 @@ function Products() {
 		navigate(`/product/${id}`);
 		window.location.reload();
 	};
+	const toBasket = (elem) => {
+		if (activee === false) {
+			navigate('/profile');
+		} else if (elem.discontinued === false) {
+			alert('no stock');
+		} else {
+			dispatch(addBasket(elem));
+		}
+	};
+
 	return (
 		<div className="shop">
 			<div className="shop-by">
@@ -177,9 +192,8 @@ function Products() {
 			<hr />
 			<div className="products">
 				<div className="cards">
-					{status === 'loading' && <Loading className="loading" />}
 					{filter(dataas).map((ele, index) => {
-						if (ele.sale !== true) {
+						if (ele.sale !== true && ele.type !== 'featured') {
 							return (
 								<div className="card" key={index}>
 									<div className="card-img">
@@ -189,7 +203,7 @@ function Products() {
 											style={{ cursor: 'pointer' }}
 										/>
 
-										<BsHandbag className="img-icon" />
+										<BsHandbag className="img-icon" onClick={() => toBasket(ele)} />
 
 										<h4 onClick={() => setDetails(ele)}>QUICK VIEW</h4>
 									</div>

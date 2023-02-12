@@ -5,8 +5,10 @@ const mongoose = require('mongoose');
 const customError = require('./middlewares/errors/customErros');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
 const app = express();
 app.use(bodyParser.json());
+
 app.use(cors());
 dotenv.config({
 	path: './config/env/config.env'

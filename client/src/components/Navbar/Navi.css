@@ -62,11 +62,127 @@
 
     background-color: #ff5b5b;
     font-size: 12px;
-    padding: 0px 3px;
+    width: 20px;
+    text-align: center;
+    height: 20px;
+    border-radius: 50%;
     border-radius: 50%;
 }
 
 .icon-nav {
     margin-left: 20px;
     font-size: 29px;
+    cursor: pointer;
+}
+
+.checkOut-card {
+    background-color: #f4f4f4;
+    position: absolute;
+    box-sizing: border-box;
+    right: 2%;
+    padding: 30px 20px;
+    color: #111111;
+    top: 80%;
+}
+
+.item-count {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.item-count a {
+    color: #111111;
+    text-decoration: none;
+}
+
+.check-card {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.check-card p {
+    color: rgba(119, 119, 119);
+    font-size: 13px;
+}
+
+.checkOut-card .btn-check {
+    background-color: #111111;
+
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+}
+
+.btn-check a {
+    text-decoration: none;
+    color: #f4f4f4;
+}
+
+.check-products {
+    display: flex;
+    flex-direction: column;
+    height: 184px;
+    overflow-x: auto;
+
+}
+
+.check-products hr {
+    margin-top: 15px;
+}
+
+.check-product {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.check-product .check-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.check-name h5 {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.check-product .check-cross {
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: 2px 2px 4px gray;
+}
+
+.check-img {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.check-img img {
+    height: 80px;
+}
+
+.check-img input {
+    width: 30px;
+    text-align: center;
+    border: none;
+    box-shadow: 0.2px 0.2px 2px #e7e7e7;
+}
+
+.count-input {
+    margin-right: 70px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 700;
 }

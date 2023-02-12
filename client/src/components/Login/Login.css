@@ -1,0 +1,92 @@
+.logining {
+    background-color: #f4f4f4;
+}
+
+.login {
+    padding-top: 00px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 90px;
+}
+
+.login h1 {
+    padding-bottom: 80px;
+}
+
+.login-section-2 {
+    text-align: start;
+}
+
+.login-section-2 h2 {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.login-section-2 p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: rgba(119, 119, 119);
+}
+
+.form .login-form-group {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.first-input {
+    margin-bottom: 30px;
+}
+
+.login-form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: rgba(119, 119, 119);
+}
+
+.login-form-group label span {
+    color: red;
+}
+
+.login-form-group input {
+    width: 700px;
+    padding: 20px;
+    box-shadow: 0.2px 0.2px 2px #e7e7e7;
+    border: none;
+
+}
+
+.login-form-group input:focus {
+    outline: none;
+}
+
+.signIn {
+    width: 100%;
+}
+
+
+.create-account {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #111111;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 0px;
+}
+
+.login button {
+    cursor: pointer;
+}
+
+.errors {
+    color: red;
+    text-align: center;
+    margin-top: 8px;
+}

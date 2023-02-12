@@ -1,0 +1,121 @@
+.register {
+    background-color: #f4f4f4;
+    padding-bottom: 100px;
+}
+
+.registered {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.registered h1 {
+    padding-bottom: 80px;
+}
+
+.registered-section-2 {
+    text-align: start;
+}
+
+.registered-section-2 h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.registered-section-2 p {
+    font-size: 14px;
+    color: rgba(119, 119, 119);
+}
+
+.form-register {
+    margin-top: 30px;
+}
+
+.register-form-name {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.register-form-name input {
+    width: 300px;
+
+}
+
+.register-name {
+    margin-right: 30px;
+}
+
+.register input {
+    padding: 10px;
+    border: none;
+    box-shadow: 0.2px 0.2px 2px #e7e7e7;
+}
+
+.register input:focus {
+    outline: none;
+}
+
+.register-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.register-form-group input {
+    padding: 10px;
+    width: 100%;
+}
+
+.register label {
+    color: rgba(119, 119, 119);
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.register label span {
+    color: red;
+}
+
+.register-form-name div {
+    display: flex;
+    flex-direction: column;
+}
+
+.register-gender {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.genderr {
+    margin-right: 30px;
+    margin-left: 30px;
+}
+
+.genderr label {
+    margin-right: 10px;
+}
+
+.register-form-check {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.register-form-check input {
+    margin-right: 20px;
+}
+
+
+.register button {
+    width: 100%;
+    background-color: #111111;
+    color: white;
+    font-weight: 700;
+    transition: 1s;
+    font-size: 16px;
+    padding: 10px;
+}

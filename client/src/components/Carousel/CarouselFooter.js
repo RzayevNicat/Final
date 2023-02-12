@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { BsHandbag } from 'react-icons/bs';
 import { AiFillStar } from 'react-icons/ai';
@@ -11,13 +11,26 @@ import './styles.css';
 import { Autoplay, Navigation } from 'swiper';
 import { useQuick } from '../../context/QuickView';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addBasket } from '../../redux/slice/basketSlice';
 export default function CarouselFooter() {
+	const dispatch = useDispatch();
 	const data = useSelector((state) => state.data.items);
-	const { details, setDetails } = useQuick();
+	const { setDetails } = useQuick();
 	const navigate = useNavigate();
+	const activee = JSON.parse(sessionStorage.getItem('userLogin'));
 	const getProduct = (id) => {
 		navigate(`/product/${id}`);
 		window.location.reload();
+	};
+	const toBasket = (elem) => {
+		if (activee === false) {
+			navigate('/profile');
+		} else if (elem.discontinued === false) {
+			alert('no stock');
+		} else {
+			dispatch(addBasket(elem));
+		}
 	};
 	console.log(data);
 	return (
@@ -47,7 +60,7 @@ export default function CarouselFooter() {
 											style={{ cursor: 'pointer' }}
 										/>
 
-										<BsHandbag className="img-icon" />
+										<BsHandbag className="img-icon" onClick={() => toBasket(ele)} />
 
 										<h4 onClick={() => setDetails(ele)}>QUIK VIEW</h4>
 									</div>

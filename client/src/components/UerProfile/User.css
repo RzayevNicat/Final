@@ -1,0 +1,52 @@
+.userProfile {
+    padding-bottom: 90px;
+}
+
+.userProfile button {
+    background-color: #111111;
+    color: white;
+    padding: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    transition: 1s;
+}
+
+.userProfile button:hover {
+    opacity: 0.6;
+}
+
+.user-info img {
+    width: 200px;
+    border-radius: 50%;
+}
+
+.user-info {
+    display: flex;
+
+
+}
+
+.user-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-left: 3%;
+}
+
+.user-img button {
+    width: 100px;
+    margin-top: 30px;
+}
+
+.user-infos {
+    padding-left: 6%;
+    padding-top: 2%;
+}
+
+.logOut {
+    height: 50px;
+    margin-left: 50%;
+    margin-top: 6%;
+    width: 100px;
+}

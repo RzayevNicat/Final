@@ -9,9 +9,11 @@ import * as Yup from 'yup';
 import { CiHeart } from 'react-icons/ci';
 import { BsHandbag, BsFillCheckCircleFill } from 'react-icons/bs';
 import { Gallery } from '../../components/ProductImage/index';
+import { addBasket } from '../../redux/slice/basketSlice';
 import { FaFacebookF, FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
+import { useDispatch } from 'react-redux';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
@@ -67,7 +69,18 @@ function Product() {
 		setReview(false);
 		setCustom(true);
 	};
-
+	const dispatch = useDispatch();
+	const activee = JSON.parse(sessionStorage.getItem('userLogin'));
+	const navigate = useNavigate();
+	const toBasket = (elem) => {
+		if (activee === false) {
+			navigate('/profile');
+		} else if (elem.discontinued === false) {
+			alert('no stock');
+		} else {
+			dispatch(addBasket(elem));
+		}
+	};
 	return (
 		<div className="view-product" id="product">
 			<div className={black} />
@@ -117,7 +130,7 @@ function Product() {
 						<div className="minus-plus">
 							<button>-</button> <input type="number" value="1" /> <button>+</button>
 						</div>
-						<button className="bag-btn">
+						<button className="bag-btn" onClick={() => toBasket(saleProduct)}>
 							<BsHandbag className="bag-icon-2" />ADD TO CART
 						</button>
 						<CiHeart className="heart-view" />

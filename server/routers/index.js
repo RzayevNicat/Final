@@ -2,9 +2,11 @@ const express = require('express');
 const products = require('./products');
 const auth = require('./auth');
 const filter = require('./filter');
+const users = require('./users');
 const router = express.Router();
 
 router.use('/', products);
 router.use('/', auth);
 router.use('/', filter);
+router.use('/', users);
 module.exports = router;

@@ -15,6 +15,7 @@ import { CiHeart } from 'react-icons/ci';
 import { BsHandbag } from 'react-icons/bs';
 import { useFilter } from '../../context/FilterContext';
 import { useQuick } from '../../context/QuickView';
+import { addBasket } from '../../redux/slice/basketSlice';
 import QuickView from '../../components/quickView';
 function Category() {
 	const data = useSelector((state) => state.data.items);
@@ -44,7 +45,7 @@ function Category() {
 	let PAGE_SIZE = view;
 
 	const listenScrollEvent = () => {
-		window.scrollY > 10 ? setBlack('white') : setBlack('black');
+		window.scrollY > 10 ? setBlack('black') : setBlack('black');
 	};
 	const dispatch = useDispatch();
 	let numberOfItems = PAGE_SIZE * (index + 1);
@@ -411,6 +412,17 @@ function Category() {
 		navigate(`/product/${id}`);
 		window.location.reload();
 	};
+	const activee = JSON.parse(sessionStorage.getItem('userLogin'));
+
+	const toBasket = (elem) => {
+		if (activee === false) {
+			navigate('/profile');
+		} else if (elem.discontinued === false) {
+			alert('no stock');
+		} else {
+			dispatch(addBasket(elem));
+		}
+	};
 	return (
 		<div className="categoriest" id="category">
 			<div className={black} />
@@ -573,7 +585,7 @@ function Category() {
 														style={{ cursor: 'pointer' }}
 													/>
 
-													<BsHandbag className="img-icon" />
+													<BsHandbag className="img-icon" onClick={() => toBasket(ele)} />
 
 													<h4 onClick={() => setDetails(ele)}>QUIK VIEW</h4>
 												</div>

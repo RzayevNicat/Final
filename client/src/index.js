@@ -7,6 +7,10 @@ import Home from './pages/Home';
 import { Provider } from 'react-redux';
 import { store } from './redux/config/store';
 import Product from './pages/Product';
+import Login from './components/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import CheckOut from './pages/CheckOut';
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -23,6 +27,18 @@ const router = createBrowserRouter([
 			{
 				path: 'product/:id',
 				element: <Product />
+			},
+			{
+				path: 'profile',
+				element: <Profile />
+			},
+			{
+				path: 'profile/sfjsjfkjfksfjkjkfj',
+				element: <Register />
+			},
+			{
+				path: 'checkout',
+				element: <CheckOut />
 			}
 		]
 	}
