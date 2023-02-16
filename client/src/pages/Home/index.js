@@ -17,6 +17,7 @@ function Home() {
 	return (
 		<div className="home">
 			<Carousel />
+
 			<Products />
 
 			<div className="ultra">

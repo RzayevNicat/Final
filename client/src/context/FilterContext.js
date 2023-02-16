@@ -9,7 +9,8 @@ export const FilterProvider = ({ children }) => {
 	const [ men, setMen ] = useState(false);
 	const [ women, setWomen ] = useState(false);
 	const [ shoes, setShoes ] = useState(false);
-
+	const [ text, setText ] = useState('');
+	const [ side, setSide ] = useState(false);
 	const data = {
 		all,
 		setAll,
@@ -22,7 +23,11 @@ export const FilterProvider = ({ children }) => {
 		women,
 		setWomen,
 		shoes,
-		setShoes
+		setShoes,
+		text,
+		setText,
+		side,
+		setSide
 	};
 	return <Context.Provider value={data}>{children}</Context.Provider>;
 };

@@ -1,0 +1,116 @@
+.about-bg {
+    padding-bottom: 80px;
+}
+
+.about-bg .black {
+    margin-bottom: 0px;
+}
+
+.about-header {
+    background-image: url(https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/18/top-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 40vh;
+    position: relative;
+}
+
+.about-header h1 {
+    position: absolute;
+    top: 40%;
+    left: 5%;
+}
+
+.about-section-2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 3% 4%;
+}
+
+.about-info {
+    width: 100%;
+}
+
+.about-info h2 {
+    font-size: 24px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+}
+
+.about-info p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.about-info span {
+    font-size: 14px;
+}
+
+.about-section-2 img {
+    margin: 0px 60px;
+}
+
+.ourTeam {
+    margin: 3% 4%;
+
+    padding: 5%;
+    background-color: #EFEFEF;
+}
+
+
+.ourTeam h3 {
+    font-size: 24px;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 50px;
+}
+
+.employe-cards {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+
+.employe-cards p {
+    background-color: white;
+    width: 100%;
+    font-family: 'Oswald', sans-serif;
+    margin-top: -10px;
+    padding: 15px;
+}
+
+.employe-card {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.employes-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.employes-button button {
+    background-color: #515151;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-family: 'Oswald', sans-serif;
+}
+
+.testimonials {
+    padding: 3% 4%;
+    text-align: center;
+}
+
+.testimonials h2 {
+    margin-bottom: 60px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+}

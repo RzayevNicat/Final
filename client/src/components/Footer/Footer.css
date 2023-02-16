@@ -3,7 +3,7 @@
 }
 
 .subscribe-line {
-    padding: 3% 5%;
+    padding: 1% 5%;
     color: #f4f4f4;
 }
 
@@ -165,4 +165,116 @@
     padding: 2% 0px;
     font-size: 13px;
     color: rgba(119, 119, 119);
+}
+
+@media only screen and (max-width: 770px) {
+    .subscribe {
+        flex-wrap: wrap;
+    }
+
+    .subscribe input {
+        width: 180px;
+    }
+
+    .subs-info {
+        width: 50%;
+    }
+
+    .footer-icon {
+        font-size: 36px;
+        margin-left: 10px;
+        margin-top: 40px;
+        padding: 6px;
+
+    }
+
+    .porto-footer {
+        color: #f4f4f4;
+        display: flex;
+        padding: 3% 5%;
+        align-items: start;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .footer-list {
+        flex-direction: column;
+        align-items: start;
+        margin-top: 20px;
+    }
+
+    .footer-list .abt {
+        margin-top: 20px;
+    }
+
+    .footer-featured {
+        text-align: start;
+        margin-top: 20px;
+    }
+
+    .footer-featured h1 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+    .subscribe {
+        align-items: start;
+    }
+
+    .subscribe-line .subscribe {
+        flex-direction: column;
+    }
+
+    .subscribe input {
+        width: 190px;
+    }
+
+    .subs-input {
+        margin-top: 20px;
+    }
+
+    .footer-icon {
+        font-size: 30px;
+        margin-left: 10px;
+        margin-top: 60px;
+        color: #222529;
+        padding: 6px;
+        border-radius: 50%;
+        background-color: #b3b0b3;
+        transition: 1s;
+    }
+
+    .porto-footer {
+        color: #f4f4f4;
+        display: flex;
+        padding: 3% 5%;
+        align-items: start;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .footer-list {
+        flex-direction: column;
+        align-items: start;
+        margin-top: 20px;
+    }
+
+    .footer-list .abt {
+        margin-top: 20px;
+    }
+
+    .footer-featured {
+        text-align: start;
+        margin-top: 20px;
+    }
+
+    .footer-featured h1 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
 }

@@ -18,22 +18,29 @@ const basketSlice = createSlice({
 			if (state.value.some((x) => x.elem._id === actions.payload._id)) {
 				state.value.forEach((element) => {
 					if (element.elem._id === actions.payload._id) {
-						element.count = element.count + 1;
-						let user = {
-							_id: dataas._id,
-							name: dataas.name,
-							surname: dataas.surname,
-							email: dataas.email,
-							gender: dataas.gender,
-							src:dataas.src,
-							options: dataas.options,
-							password: dataas.password,
-							userCard: dataas.userCard,
-							userCheckOut: state.value,
-							userWishlist: dataas.userWishlist
-						};
-
-						localStorage.setItem('user', JSON.stringify(user));
+						if (element.count===actions.payload.productStock) {
+							alert('no stock')
+						}
+						else{
+							element.count = element.count + 1;
+							let user = {
+								_id: dataas._id,
+								name: dataas.name,
+								surname: dataas.surname,
+								email: dataas.email,
+								gender: dataas.gender,
+								src:dataas.src,
+								options: dataas.options,
+								password: dataas.password,
+								userCard: dataas.userCard,
+								userCheckOut: state.value,
+								userWishlist: dataas.userWishlist
+							};
+	
+							localStorage.setItem('user', JSON.stringify(user));
+							state.count += 1;
+						}
+						
 					}
 				});
 			} else {
@@ -52,8 +59,9 @@ const basketSlice = createSlice({
 				};
 				state.value.push({ count: 1, elem: actions.payload });
 				localStorage.setItem('user', JSON.stringify(user));
+				state.count += 1;
 			}
-			state.count += 1;
+			
 		},
 		removeBasket: (state,actions)=>{
 			let copy = state.value.filter(x=>x.elem._id !==actions.payload)
@@ -72,13 +80,110 @@ const basketSlice = createSlice({
 			};
 			localStorage.setItem('user',JSON.stringify(userCopy))
 		},
+		productAdd :(state,actions)=>{
+			if (state.value.some((x) => x.elem._id === actions.payload.elem._id)) {
+				state.value.forEach((element)=>{
+					if (element.elem._id===actions.payload.elem._id) {
+						if (actions.payload.elem.productStock<actions.payload.count|| element.count ===actions.payload.elem.productStock ) {
+							alert('no stock')
+						}else{
+							element.count += actions.payload.count
+							let user = {
+								_id: dataas._id,
+								name: dataas.name,
+								surname: dataas.surname,
+								email: dataas.email,
+								gender: dataas.gender,
+								src:dataas.src,
+								options: dataas.options,
+								password: dataas.password,
+								userCard: dataas.userCard,
+								userCheckOut: state.value,
+								userWishlist: dataas.userWishlist
+							};
+							window.location.reload()
+							localStorage.setItem('user', JSON.stringify(user));
+						}
+
+					}
+				})
+			}else{
+				let user = {
+					_id: dataas._id,
+					name: dataas.name,
+					surname: dataas.surname,
+					email: dataas.email,
+					gender: dataas.gender,
+					src:dataas.src,
+					options: dataas.options,
+					password: dataas.password,
+					userCard: dataas.userCard,
+					userCheckOut: state.value,
+					userWishlist: dataas.userWishlist
+				};
+			
+				
+				state.value.push({ count: actions.payload.count, elem: actions.payload.elem });
+				localStorage.setItem('user', JSON.stringify(user));
+			}
+			
+		},
+		viewAdd:(state,actions)=>{
+			
+				state.value.forEach(ele=>{
+					actions.payload.forEach(element=>{
+						if (ele.elem._id === element.elem._id) {
+							if (ele.elem.productStock< element.count) {
+								alert(`${element.count} pieces from the${ele.elem.productName}are out of stock `)
+							}else{
+								state.value= [element]
+									let user = {
+										_id: dataas._id,
+										name: dataas.name,
+										surname: dataas.surname,
+										email: dataas.email,
+										gender: dataas.gender,
+										src:dataas.src,
+										options: dataas.options,
+										password: dataas.password,
+										userCard: dataas.userCard,
+										userCheckOut: state.value,
+										userWishlist: dataas.userWishlist
+									};
+						
+									localStorage.setItem('user', JSON.stringify(user));
+											}
+						}
+					})
+				})
+			
+		
+
+		
+		},
 		deleteBasket: (state, actions) => {
 			state.value.forEach((element) => {
 				if (element.elem._id === actions.payload._id) {
 					element.count = element.count - 1;
 					if (element.count === 0) {
 						state.value = state.value.filter((x) => x.elem._id !== actions.payload._id);
+
 					}
+					let user = {
+						_id: dataas._id,
+						name: dataas.name,
+						surname: dataas.surname,
+						email: dataas.email,
+						gender: dataas.gender,
+						src:dataas.src,
+						options: dataas.options,
+						password: dataas.password,
+						userCard: dataas.userCard,
+						userCheckOut: state.value,
+						userWishlist: dataas.userWishlist
+					};
+
+					localStorage.setItem('user', JSON.stringify(user));
 				}
 			});
 			state.count -= 1;
@@ -86,6 +191,6 @@ const basketSlice = createSlice({
 	}
 });
 
-export const { addBasket, deleteBasket,removeBasket } = basketSlice.actions;
+export const { addBasket, deleteBasket,removeBasket,productAdd,viewAdd } = basketSlice.actions;
 
 export default basketSlice.reducer;

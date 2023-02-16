@@ -77,3 +77,43 @@
 .sale-info .flashh {
     color: #f4f4f4;
 }
+
+@media only screen and (max-width: 770px) {
+    .salest {
+        flex-wrap: wrap;
+    }
+
+    .sale {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .salest {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .salest img {
+        width: 350px;
+        height: 15vh;
+    }
+
+    .sale {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+
+    .sale button {
+        padding: 6px !important;
+    }
+
+    .sale-info h1 {
+        font-size: 20px;
+    }
+
+    .sale-info p {
+        font-size: 20px;
+    }
+}

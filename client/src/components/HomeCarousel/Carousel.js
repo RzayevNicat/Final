@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
-
+import './HeaderCarousel.css';
 function SimpleSlider() {
 	const [ datas, setData ] = useState([]);
 	useEffect(() => {
@@ -15,7 +15,7 @@ function SimpleSlider() {
 		slidesToShow: 1,
 		slidesToScroll: 1,
 		scrollX: true,
-		autoplay: true,
+		autoplay: false,
 		autoplaySpeed: 2000
 	};
 

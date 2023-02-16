@@ -1,0 +1,92 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 351px;
+    height: 100vh;
+    background-color: white;
+    z-index: 78237428472834723;
+    color: black;
+    display: none;
+}
+
+.side-head {
+    display: flex;
+
+}
+
+.side-icon {
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.side-head h1 {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #111111;
+    color: white;
+}
+
+.menu-side {
+    width: 100%;
+}
+
+.sidebar ul {
+    width: 100%;
+}
+
+
+
+.sidebar ul {
+    display: inline-block;
+}
+
+.sidebar ul li a {
+    color: rgba(119, 119, 119);
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.account-side li {
+    color: rgba(119, 119, 119);
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.usd-side .money {
+    display: inline-block !important;
+}
+
+.usd-side li {
+    color: rgba(119, 119, 119);
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 770px) {
+    .sidebar {
+        display: block;
+    }
+}
+
+/* 
+@media only screen and (max-width: 400px) {
+    .sidebar {
+        display: block;
+    }
+} */

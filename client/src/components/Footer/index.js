@@ -6,7 +6,6 @@ function Footer() {
 	return (
 		<div className="footer">
 			<div className="subscribe-line">
-				<hr />
 				<div className="subscribe">
 					<div className="subs-info">
 						<h3>SUBSCRIBE NEWSLETTER</h3>
@@ -55,7 +54,7 @@ function Footer() {
 							</ul>
 						</div>
 					</div>
-					<div>
+					<div className="abt">
 						<h1>About</h1>
 						<div className="about">
 							<ul>

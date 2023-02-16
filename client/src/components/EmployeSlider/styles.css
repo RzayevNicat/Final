@@ -1,0 +1,25 @@
+.slider-employe {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0px 30%;
+}
+
+.slider-employe p {
+    line-height: 32px;
+    font-style: italic;
+    color: rgba(94, 96, 101);
+    margin-bottom: 10px;
+}
+
+.slider-employe img {
+    margin: 20px 0px;
+}
+
+.slider-employe h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-top: 10px;
+}

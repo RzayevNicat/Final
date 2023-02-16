@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BsSquare, BsSquareFill } from 'react-icons/bs';
 import { useFilter } from '../../context/FilterContext';
 import { CiHeart } from 'react-icons/ci';
+import { AiFillHeart } from 'react-icons/ai';
 import { BsHandbag } from 'react-icons/bs';
 import { useQuick } from '../../context/QuickView';
 import QuickView from '../quickView';
 import { addBasket } from '../../redux/slice/basketSlice';
 import { useNavigate } from 'react-router-dom';
+import { addWish } from '../../redux/slice/wishListSlice';
 function Products() {
 	const { all, setAll } = useFilter();
 	const { acsesories, setAcsesories } = useFilter();
@@ -44,7 +46,7 @@ function Products() {
 		},
 		[ dispatch, status, index ]
 	);
-
+	const localUser = JSON.parse(localStorage.getItem('user'));
 	let dataas = [];
 	all === true ? (dataas = Object.values(visibleData)) : (dataas = Object.values(data));
 
@@ -133,6 +135,7 @@ function Products() {
 		navigate(`/product/${id}`);
 		window.location.reload();
 	};
+	let usr = JSON.parse(localStorage.getItem('user'));
 	const toBasket = (elem) => {
 		if (activee === false) {
 			navigate('/profile');
@@ -142,7 +145,9 @@ function Products() {
 			dispatch(addBasket(elem));
 		}
 	};
-
+	const AddWishList = (elem) => {
+		dispatch(addWish(elem));
+	};
 	return (
 		<div className="shop">
 			<div className="shop-by">
@@ -189,7 +194,7 @@ function Products() {
 					</li>
 				</ul>
 			</div>
-			<hr />
+			<hr className="shop-by-line" />
 			<div className="products">
 				<div className="cards">
 					{filter(dataas).map((ele, index) => {
@@ -209,11 +214,13 @@ function Products() {
 									</div>
 									<div className="card-info">
 										<div className="infoo">
-											<h6 onClick={() => getProduct(ele._id)}>{ele.productName}</h6>
+											<h6 onClick={() => getProduct(ele._id)}>
+												{ele.productName.substr(0, 15)}...
+											</h6>
 
 											<p>${ele.prodcutPrice}.00</p>
 										</div>
-										<CiHeart className="heart-card" />
+										<CiHeart className="heart-card" onClick={() => AddWishList(ele)} />
 									</div>
 								</div>
 							);

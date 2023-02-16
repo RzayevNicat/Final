@@ -4,15 +4,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { RxCross1 } from 'react-icons/rx';
 const loginSchema = Yup.object().shape({
 	email: Yup.string()
 		.matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide valid email')
 		.required('fill input'),
 	password: Yup.string().required('fill input').min(6, 'Short password')
 });
+const forgotValidation = Yup.object().shape({
+	forgotEmail: Yup.string()
+		.matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide valid email')
+		.required('Please provide email')
+});
 function Login() {
 	const [ user, setUser ] = useState([]);
-
+	const [ forgot, setForgot ] = useState(false);
 	useEffect(() => {
 		axios.get('http://localhost:3000/users').then((res) => setUser(res.data.data));
 	}, []);
@@ -77,7 +83,9 @@ function Login() {
 										<div className="errors">{errors.password}</div>
 									) : null}
 								</div>
-
+								<p className="forgotPassword" onClick={() => setForgot(true)}>
+									Forgot Your Password?
+								</p>
 								<button className="signIn" type="submit">
 									SIGN IN
 								</button>
@@ -89,6 +97,52 @@ function Login() {
 					</button>
 				</div>
 			</div>
+			{forgot ? (
+				<div className="forgot-card-bg">
+					<div className="forgot-card">
+						<div className="forgot-title">
+							<h2>Provide Email</h2>
+							<RxCross1 onClick={() => setForgot(false)} />
+						</div>
+						<Formik
+							initialValues={{
+								forgotEmail: ''
+							}}
+							validationSchema={forgotValidation}
+							onSubmit={(values) => {
+								axios
+									.post('http://localhost:3000/forgatpassword', {
+										email: values.forgotEmail
+									})
+									.then((res) => {
+										alert(res.data.message);
+									})
+									.catch((error) => {
+										alert(error.response.data.message);
+									});
+								setForgot(false);
+							}}
+						>
+							{({ values, errors, touched }) => (
+								<Form className="form-forgot">
+									<div className="forgot-form-group">
+										<label>
+											Email <span>*</span>
+										</label>
+										<Field name="forgotEmail" />
+										{errors.forgotEmail && touched.forgotEmail ? (
+											<div className="err">{errors.forgotEmail}</div>
+										) : null}
+									</div>
+									<button className="reset-link" type="submit">
+										Send Reset Link
+									</button>
+								</Form>
+							)}
+						</Formik>
+					</div>
+				</div>
+			) : null}
 		</div>
 	);
 }

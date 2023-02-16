@@ -11,6 +11,10 @@ import Login from './components/Login';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
 import CheckOut from './pages/CheckOut';
+import ResetPassword from './pages/ResetPassword';
+import ViewCart from './pages/ViewCart';
+import ContactUs from './pages/ContactUs';
+import About from './pages/AboutUs';
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -39,6 +43,22 @@ const router = createBrowserRouter([
 			{
 				path: 'checkout',
 				element: <CheckOut />
+			},
+			{
+				path: 'resetPassword/:token',
+				element: <ResetPassword />
+			},
+			{
+				path: 'cart',
+				element: <ViewCart />
+			},
+			{
+				path: 'contactus',
+				element: <ContactUs />
+			},
+			{
+				path: 'aboutus',
+				element: <About />
 			}
 		]
 	}

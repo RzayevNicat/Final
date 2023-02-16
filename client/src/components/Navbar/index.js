@@ -1,17 +1,23 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AiOutlineUser, AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineUser, AiOutlineMenu, AiOutlineSearch } from 'react-icons/ai';
 import { BsHandbag } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
 import { useDispatch,useSelector } from 'react-redux';
 import { removeBasket } from '../../redux/slice/basketSlice';
 import './Navi.css';
+import { addBasket,deleteBasket } from '../../redux/slice/basketSlice';
+import Search from '../Search';
+import SideBar from '../SideBar';
+import { useFilter } from '../../context/FilterContext';
 
 function Navbar() {
 	const [ money, setMoney ] = useState(true);
 	const [ navSize, setnavSize ] = useState('5rem');
 	const [ navColor, setnavColor ] = useState('transparent');
 	const [checkCard,setCheckCard] = useState(false)
+	const [search,setSearch] = useState(false)
+	const {side, setSide} = useFilter()
 	const dispatch = useDispatch()
 	const navigate = useNavigate();
 	const listenScrollEvent = () => {
@@ -38,7 +44,20 @@ function Navbar() {
 	const handleUser = () => {
 		navigate('/profile');
 	};
-
+	const toBasket = (elem) => {
+ if (elem.discontinued === false) {
+			alert('no stock');
+		} else {
+			dispatch(addBasket(elem));
+		}
+	};
+	const deletedFromBasket = (elem)=>{
+		dispatch(deleteBasket(elem))
+	}
+	const getProduct = (id) => {
+		navigate(`/product/${id}`);
+		window.location.reload();
+	};
 	return (
 		<div
 			className="nav"
@@ -48,6 +67,10 @@ function Navbar() {
 				transition: 'all 1s'
 			}}
 		>
+			{
+				side?<SideBar/>:null
+			}
+			
 			<img src="https://www.portotheme.com/magento2/porto/pub/media/logo/stores/11/logo_ecomwhite_lg.png" />
 			<ul>
 				<li>
@@ -57,21 +80,22 @@ function Navbar() {
 					<Link to={'categories'}>Categroies</Link>
 				</li>
 				<li>
-					<Link to={'/'}>About Us</Link>
+					<Link to={'/aboutus'}>About Us</Link>
 				</li>
 				<li>
 					<Link to={'/'}>Blog</Link>
 				</li>
 				<li>
-					<Link to={'/'}>Contact Us</Link>
+					<Link to={'contactus'}>Contact Us</Link>
 				</li>
 			</ul>
 			<div className="nav-btns">
-				<button onClick={() => (money ? setMoney(false) : setMoney(true))}>
+				<button className='money' onClick={() => (money ? setMoney(false) : setMoney(true))}>
 					{money === true ? 'USD' : 'EUR'}
 				</button>
+				<AiOutlineMenu className='icon-nav menu-nav' onClick={()=> setSide(true)}/>
 				<AiOutlineUser className="icon-nav" onClick={handleUser} />
-				<AiOutlineSearch className="icon-nav" />
+				<AiOutlineSearch className="icon-nav" onClick={()=> search ===false?setSearch(true):setSearch(false)}/>
 				<div className="count">
 					<BsHandbag className="icon-nav" onClick={()=> checkCard? setCheckCard(false): setCheckCard(true)}/> <span>{count}</span>
 				</div>
@@ -80,7 +104,7 @@ function Navbar() {
 				checkCard?<div className="checkOut-card">
 				<div className="item-count">
 					<p>{count} ITEM</p>
-					<Link to={'cart'}>VIEW CART</Link>
+					<Link to={'cart'} onClick={()=> setCheckCard(false)}>VIEW CART</Link>
 				</div>
 				<hr />
 				<div className="check-card">
@@ -99,10 +123,12 @@ function Navbar() {
 											<p>${element.elem.prodcutPrice * element.count}.00</p>
 											<div className="count-input">
 												<label>Count: </label>
+												<button className='increment-nav' onClick={()=> toBasket(element.elem)}>+</button>
 												<input value={element.count} />
+												<button className='decrement-nav' onClick={()=> deletedFromBasket(element.elem)}>-</button>
 											</div>
 										</div>
-										<img src={element.elem.img_url} />
+										<img src={element.elem.img_url} onClick={() => getProduct(element.elem._id)}/>
 									</div>
 									<hr />
 								</div>
@@ -118,6 +144,9 @@ function Navbar() {
 					<Link to={'/checkout'} onClick={()=> setCheckCard(false)}>GO TO CHECKOUT</Link>
 				</button>
 			</div>:null
+			}
+			{
+				search?<Search/>:null
 			}
 			
 		</div>

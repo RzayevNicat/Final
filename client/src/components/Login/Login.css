@@ -90,3 +90,76 @@
     text-align: center;
     margin-top: 8px;
 }
+
+.forgotPassword {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111111 !important;
+    cursor: pointer;
+}
+
+.forgot-card-bg {
+    position: fixed;
+    top: 80px;
+    z-index: 887;
+    display: flex;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(119, 119, 119, 0.2);
+}
+
+.forgot-card {
+    background-color: white;
+    height: 30vh;
+    width: 700px;
+    margin: 10% 30%;
+    padding: 30px;
+}
+
+.forgot-title {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.forgot-form-group {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.forgot-form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: rgba(119, 119, 119);
+}
+
+.forgot-form-group label span {
+    color: red;
+}
+
+.forgot-form-group input {
+    width: 70%;
+    padding: 7px;
+    border: none;
+    border: 1px solid #e7e7e7;
+}
+
+.forgot-form-group input:focus {
+    outline: none;
+}
+
+.forgot-form-group .err {
+    margin-bottom: -6px;
+}
+
+.reset-link {
+    padding: 4px 8px;
+    background-color: #111111;
+    color: #f4f4f4;
+    font-weight: 500;
+    margin-top: 10px;
+}

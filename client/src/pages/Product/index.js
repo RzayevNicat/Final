@@ -9,18 +9,18 @@ import * as Yup from 'yup';
 import { CiHeart } from 'react-icons/ci';
 import { BsHandbag, BsFillCheckCircleFill } from 'react-icons/bs';
 import { Gallery } from '../../components/ProductImage/index';
-import { addBasket } from '../../redux/slice/basketSlice';
+import { productAdd } from '../../redux/slice/basketSlice';
 import { FaFacebookF, FaLinkedinIn, FaGithub, FaInstagram } from 'react-icons/fa';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import { useDispatch } from 'react-redux';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Star from '../../components/RatingStar';
 import CarouselForType from '../../components/CarouselForType';
+import { addWish } from '../../redux/slice/wishListSlice';
 const validateSchemaa = Yup.object().shape({
 	nickName: Yup.string().min(3, 'very small').max(10, 'very long').required('fill input'),
 	summary: Yup.string().required('fill input'),
@@ -32,19 +32,23 @@ function Product() {
 	const [ details, setDetails ] = useState(true);
 	const [ review, setReview ] = useState(false);
 	const [ custom, setCustom ] = useState(false);
+	const [ count, setCount ] = useState(1);
 	const { id } = useParams();
 	const listenScrollEvent = () => {
 		window.scrollY > 10 ? setBlack('black') : setBlack('black');
 	};
 
-	useEffect(() => {
-		axios.get(`http://localhost:3000/products/${id}`).then((res) => setSaleProduct(res.data.data));
-		window.scrollTo(0, 0);
-		window.addEventListener('scroll', listenScrollEvent);
-		return () => {
-			window.removeEventListener('scroll', listenScrollEvent);
-		};
-	}, []);
+	useEffect(
+		() => {
+			axios.get(`http://localhost:3000/products/${id}`).then((res) => setSaleProduct(res.data.data));
+			window.scrollTo(0, 0);
+			window.addEventListener('scroll', listenScrollEvent);
+			return () => {
+				window.removeEventListener('scroll', listenScrollEvent);
+			};
+		},
+		[ setCount, count, setSaleProduct, id ]
+	);
 	function createData(name, first, second, third, fourth) {
 		return { name, first, second, third, fourth };
 	}
@@ -71,6 +75,7 @@ function Product() {
 	};
 	const dispatch = useDispatch();
 	const activee = JSON.parse(sessionStorage.getItem('userLogin'));
+	const user = JSON.parse(localStorage.getItem('user'));
 	const navigate = useNavigate();
 	const toBasket = (elem) => {
 		if (activee === false) {
@@ -78,8 +83,21 @@ function Product() {
 		} else if (elem.discontinued === false) {
 			alert('no stock');
 		} else {
-			dispatch(addBasket(elem));
+			let productt = { count: count, elem: elem };
+			dispatch(productAdd(productt));
+			// window.location.reload();
 		}
+	};
+	const incrementCounter = () => {
+		setCount(count + 1);
+	};
+	const decrementCounter = () => {
+		if (count !== 1) {
+			setCount(count - 1);
+		}
+	};
+	const AddWishList = (elem) => {
+		dispatch(addWish(elem));
 	};
 	return (
 		<div className="view-product" id="product">
@@ -128,12 +146,14 @@ function Product() {
 					<hr />
 					<div className="view-btn-group">
 						<div className="minus-plus">
-							<button>-</button> <input type="number" value="1" /> <button>+</button>
+							<button onClick={() => decrementCounter(saleProduct)}>-</button>{' '}
+							<input type="number" value={count} onChange={(e) => setCount(e.target.value)} />{' '}
+							<button onClick={() => incrementCounter(saleProduct)}>+</button>
 						</div>
 						<button className="bag-btn" onClick={() => toBasket(saleProduct)}>
 							<BsHandbag className="bag-icon-2" />ADD TO CART
 						</button>
-						<CiHeart className="heart-view" />
+						<CiHeart className="heart-view" onClick={() => AddWishList(saleProduct)} />
 					</div>
 					<div className="view-icons">
 						<FaFacebookF className="icon facebook" />

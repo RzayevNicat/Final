@@ -4,7 +4,7 @@ import './Category.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../../redux/slice/dataSlice';
 import { FiChevronRight } from 'react-icons/fi';
-
+import { addWish } from '../../redux/slice/wishListSlice';
 import { AiOutlineMinus, AiOutlineArrowUp, AiOutlineArrowDown, AiOutlinePlus } from 'react-icons/ai';
 import { MdViewList, MdViewModule } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
@@ -423,6 +423,9 @@ function Category() {
 			dispatch(addBasket(elem));
 		}
 	};
+	const AddWishList = (elem) => {
+		dispatch(addWish(elem));
+	};
 	return (
 		<div className="categoriest" id="category">
 			<div className={black} />
@@ -595,7 +598,7 @@ function Category() {
 
 														<p>${ele.prodcutPrice}.00</p>
 													</div>
-													<CiHeart className="heart-card" />
+													<CiHeart className="heart-card" onClick={() => AddWishList(ele)} />
 												</div>
 											</div>
 										);

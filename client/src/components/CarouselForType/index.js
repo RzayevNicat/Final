@@ -54,7 +54,6 @@ export default function CarouselForType() {
 					<Loading />
 				) : (
 					dataas.map((ele, index) => {
-						console.log(ele);
 						if (ele.sale !== true && ele.type === saleProduct.type && ele._id !== saleProduct._id) {
 							return (
 								<SwiperSlide key={index}>

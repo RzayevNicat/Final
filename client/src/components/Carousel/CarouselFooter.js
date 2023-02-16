@@ -13,6 +13,7 @@ import { useQuick } from '../../context/QuickView';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addBasket } from '../../redux/slice/basketSlice';
+import { addWish } from '../../redux/slice/wishListSlice';
 export default function CarouselFooter() {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.data.items);
@@ -32,24 +33,40 @@ export default function CarouselFooter() {
 			dispatch(addBasket(elem));
 		}
 	};
-	console.log(data);
+	const AddWishList = (elem) => {
+		dispatch(addWish(elem));
+	};
 	return (
 		<div className="ftr">
 			<h3>FEATURED PRODUCTS</h3>
 			<Swiper
-				slidesPerView={6}
+				slidesPerView={1}
 				spaceBetween={30}
 				rewind={true}
 				autoplay={{
 					delay: 2500,
 					disableOnInteraction: false
 				}}
-				navigation={true}
+				navigation={false}
 				modules={[ Autoplay, Navigation ]}
+				breakpoints={{
+					390: {
+						slidesPerView: 2,
+						spaceBetween: 20
+					},
+					768: {
+						slidesPerView: 4,
+						spaceBetween: 40
+					},
+					1024: {
+						slidesPerView: 6,
+						spaceBetween: 50
+					}
+				}}
 				className="mySwiper"
 			>
 				{data.map((ele, index) => {
-					if (ele.sale !== true) {
+					if (ele.sale !== true && ele.type !== 'featured') {
 						return (
 							<SwiperSlide key={index}>
 								<div className="featured-card">
@@ -70,7 +87,7 @@ export default function CarouselFooter() {
 
 											<p>${ele.prodcutPrice}.00</p>
 										</div>
-										<CiHeart className="heart-card" />
+										<CiHeart className="heart-card" onClick={() => AddWishList(ele)} />
 									</div>
 								</div>
 							</SwiperSlide>
