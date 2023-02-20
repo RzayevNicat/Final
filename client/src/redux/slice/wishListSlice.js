@@ -55,7 +55,7 @@ const wishListSlice = createSlice({
 			};
 			localStorage.setItem('user',JSON.stringify(user))
 			axios.put(`http://localhost:3000/users/${dataas._id}`,user)
-			alert('Deleted Wishlist')
+			
 		}
 	}
 });

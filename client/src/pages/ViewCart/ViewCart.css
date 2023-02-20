@@ -167,3 +167,18 @@
     justify-content: center;
     font-size: 18px;
 }
+
+@media only screen and (max-width: 770px) {
+    .view-cart-section {
+        flex-direction: column-reverse;
+    }
+
+    .view-table {
+        width: 100%;
+    }
+
+    .view-summary {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+}

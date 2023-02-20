@@ -35,11 +35,13 @@ function About() {
 						readable English.
 					</span>
 				</div>
-				<div>
-					<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/18/aboutus.jpg" />
-				</div>
-				<div>
-					<CustomizedAccordions />
+				<div className="ipad-resp">
+					<div>
+						<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/18/aboutus.jpg" />
+					</div>
+					<div>
+						<CustomizedAccordions />
+					</div>
 				</div>
 			</div>
 			<div className="ourTeam">

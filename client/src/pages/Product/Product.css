@@ -304,3 +304,34 @@ li {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
 }
+
+@media only screen and (max-width: 440px) {
+    .product-view {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .product-view-img {
+        margin-right: 0px;
+    }
+
+    .product-view img {
+        width: 300px;
+
+    }
+
+    .reviews {
+        width: 100%;
+    }
+
+    .reviews input {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    .product-view img {
+        width: 300px;
+    }
+}

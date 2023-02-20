@@ -5,7 +5,7 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-
+import '../../pages/AboutUs/About.css';
 const Accordion = styled((props) => <MuiAccordion disableGutters elevation={0} square {...props} />)(({ theme }) => ({
 	border: `1px solid ${theme.palette.divider}`,
 	'&:not(:last-child)': {
@@ -42,7 +42,7 @@ export default function CustomizedAccordions() {
 	};
 
 	return (
-		<div>
+		<div className="accordionn">
 			<Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
 				<AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
 					<Typography>Company History</Typography>

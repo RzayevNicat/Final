@@ -1,6 +1,6 @@
 .quick-view {
     position: fixed;
-    top: 120px;
+    top: 0;
     z-index: 9589345;
     display: flex;
     left: 0;
@@ -153,4 +153,21 @@
     cursor: pointer;
     margin-top: 15px;
     padding-bottom: 10px;
+}
+
+@media only screen and (max-width: 440px) {
+    .quick {
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        overflow-x: auto;
+    }
+
+    .quick img {
+        width: 300px;
+    }
 }

@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0px 30%;
+    padding: 0px 20%;
 }
 
 .slider-employe p {
@@ -22,4 +22,11 @@
     font-size: 18px;
     font-weight: 500;
     margin-top: 10px;
+}
+
+@media only screen and (max-width: 770px) {
+    .slider-employe {
+
+        padding: 0px 10%;
+    }
 }

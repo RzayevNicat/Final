@@ -20,7 +20,7 @@ function QuickView() {
 		} else {
 			let productt = { count: count, elem: elem };
 			dispatch(productAdd(productt));
-			window.location.reload();
+			// window.location.reload();
 		}
 	};
 	const goToProduct = (id) => {

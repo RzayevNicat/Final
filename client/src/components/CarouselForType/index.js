@@ -1,8 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { BsHandbag } from 'react-icons/bs';
-import { AiFillStar } from 'react-icons/ai';
-import { CiHeart } from 'react-icons/ci';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -45,8 +42,22 @@ export default function CarouselForType() {
 					delay: 2500,
 					disableOnInteraction: false
 				}}
-				navigation={true}
+				navigation={false}
 				modules={[ Autoplay, Navigation ]}
+				breakpoints={{
+					390: {
+						slidesPerView: 2,
+						spaceBetween: 20
+					},
+					768: {
+						slidesPerView: 4,
+						spaceBetween: 40
+					},
+					1024: {
+						slidesPerView: 6,
+						spaceBetween: 50
+					}
+				}}
 				className="mySwiper"
 			>
 				{' '}

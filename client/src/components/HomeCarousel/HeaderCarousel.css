@@ -33,7 +33,10 @@
     width: 600px !important;
     height: 600px;
 
+
 }
+
+
 
 .spans {
     display: flex;
@@ -94,7 +97,7 @@
     border: none;
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 985px) {
     .header {
         padding: 0px;
         display: flex;

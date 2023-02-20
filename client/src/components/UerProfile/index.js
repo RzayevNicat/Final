@@ -36,6 +36,7 @@ function UserProfile() {
 	const user = JSON.parse(localStorage.getItem('user'));
 	const [ userr, setUser ] = useState({});
 	const [ wishh, setWish ] = useState(false);
+	const [ info, setInfo ] = useState(true);
 	const [ card, setCard ] = useState(false);
 	const [ edit, setEdit ] = useState(false);
 	const dispatch = useDispatch();
@@ -46,18 +47,28 @@ function UserProfile() {
 		navigate('/');
 		window.location.reload();
 	};
-	useEffect(() => {
-		axios.get(`http://localhost:3000/users/${user._id}`).then((res) => {
-			setUser(res.data.data);
-		});
-	}, []);
+	useEffect(
+		() => {
+			axios.get(`http://localhost:3000/users/${user._id}`).then((res) => {
+				setUser(res.data.data);
+			});
+		},
+		[ user ]
+	);
 	const handleWish = () => {
 		setCard(false);
 		setWish(true);
+		setInfo(false);
+	};
+	const handleInfo = () => {
+		setCard(false);
+		setWish(false);
+		setInfo(true);
 	};
 	const handleCard = () => {
 		setWish(false);
 		setCard(true);
+		setInfo(false);
 	};
 	const handleDelete = (row) => {
 		dispatch(removeWish(row));
@@ -69,23 +80,26 @@ function UserProfile() {
 			<div className="user-info">
 				<div className="user-img">
 					<img src={userr.src} />
-					<button onClick={() => setEdit(true)}>Edit</button>
 				</div>
 
 				<div className="user-infos">
 					<h1>
 						{userr.name} {userr.surname}
 					</h1>
-					<p>{userr.email}</p>
 				</div>
-				<button className="logOut" onClick={handleLogOut}>
-					Log Out
-				</button>
 			</div>
 			<div className="userWishAndCard">
 				<div className="wish-card-title">
 					<h2>
-						Your Wishlist{' '}
+						Info{' '}
+						{info === true ? (
+							<FiChevronUp onClick={() => setInfo(false)} />
+						) : (
+							<FiChevronDown onClick={handleInfo} />
+						)}
+					</h2>
+					<h2>
+						Wishlist{' '}
 						{wishh === true ? (
 							<FiChevronUp onClick={() => setWish(false)} />
 						) : (
@@ -93,7 +107,7 @@ function UserProfile() {
 						)}
 					</h2>
 					<h2>
-						The products you buy{' '}
+						CheckOut{' '}
 						{card === true ? (
 							<FiChevronUp onClick={() => setCard(false)} />
 						) : (
@@ -175,6 +189,37 @@ function UserProfile() {
 						</TableContainer>
 					</div>
 				) : null}
+				{info ? (
+					<div className="userr-infoo">
+						<div className="user-info-name">
+							<h5>
+								Name: <span>{userr.name}</span>
+							</h5>
+							<h5>
+								Surname: <span>{userr.surname}</span>
+							</h5>
+						</div>
+						<div className="email-password-info">
+							<h5>
+								Email: <span>{userr.email}</span>
+							</h5>
+							<h5>
+								Password: <span>{userr.password}</span>
+							</h5>
+						</div>
+						<div className="gender-info">
+							<h5>
+								Gender: <span>{userr.gender}</span>
+							</h5>
+						</div>
+						<div className="info-btns">
+							<button onClick={() => setEdit(true)}>Edit</button>
+							<button className="logOut" onClick={handleLogOut}>
+								Log Out
+							</button>
+						</div>
+					</div>
+				) : null}
 			</div>
 			{edit ? (
 				<div className="edit-bg">
@@ -193,8 +238,9 @@ function UserProfile() {
 							}}
 							validationSchema={editSchema}
 							onSubmit={(values) => {
+								console.log(values);
 								axios
-									.put(`http://localhost:3000/users/${user._id}`, {
+									.put(`http://localhost:3000/users/${userr._id}`, {
 										name: values.name,
 										surname: values.surname,
 										email: values.email,
@@ -208,7 +254,6 @@ function UserProfile() {
 										alert(err.response.data.message);
 									});
 								setEdit(false);
-								// window.location.reload();
 							}}
 						>
 							{({ errors, touched, values }) => (

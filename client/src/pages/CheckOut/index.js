@@ -27,10 +27,12 @@ function CheckOut() {
 	const count = useSelector((state) => state.baskett.count);
     const [arrow ,setArrow] = useState(true)
     const [product,setProduct] = useState([])
+	const [usr,setUsr] = useState({})
 	const navigate = useNavigate()
-    let user = JSON.parse(localStorage.getItem('user'));
+    
 	let subTotal = 0;
-	(user?.userCheckOut || []).forEach((element) => {
+	
+	(usr?.userCheckOut || []).forEach((element) => {
 		let cnt = element.count * element.elem.prodcutPrice;
 		subTotal += cnt;
 	});
@@ -39,15 +41,19 @@ function CheckOut() {
 	};
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		
+		let user = JSON.parse(localStorage.getItem('user'));
+		setUsr(user)
         axios.get('http://localhost:3000/products').then(res=> setProduct(res.data.data))
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);
 		};
 	}, []);
+	
     function productStock() {
         product.forEach((element)=>{
-            user.userCheckOut.forEach((ele)=>{
+            usr.userCheckOut.forEach((ele)=>{
                 
                     if (element._id===ele.elem._id) {
                         let stockCounter = element.productStock - ele.count
@@ -121,20 +127,20 @@ function CheckOut() {
                             validationSchema={paymentSchema}
 							onSubmit={(values) => {
                                 const userrr = {
-									_id:user._id,
-                                    name:user.name,
-                                    surname:user.surname,
-                                    email:user.email,
-                                    gender:user.gender,
-                                    password:user.password,
-                                    role:user.role,
-                                    options:user.options,
-                                    src:user.src,
+									_id:usr._id,
+                                    name:usr.name,
+                                    surname:usr.surname,
+                                    email:usr.email,
+                                    gender:usr.gender,
+                                    password:usr.password,
+                                    role:usr.role,
+                                    options:usr.options,
+                                    src:usr.src,
                                     userCheckOut:[],
-                                    userWishlist: user.userWishlist,
-                                    userCard: [...user.userCard, ...user.userCheckOut]
+                                    userWishlist: [...usr.userWishlist],
+                                    userCard: [...usr.userCard, ...usr.userCheckOut]
                                 }
-								axios.put(`http://localhost:3000/users/${user._id}`,userrr)
+								axios.put(`http://localhost:3000/users/${usr._id}`,userrr)
                                 productStock()
                                 localStorage.setItem('user', JSON.stringify(userrr))
 								navigate('/profile')
@@ -497,7 +503,7 @@ function CheckOut() {
 						<hr />
                         {
                             arrow?<div className="payment-products">
-                            {(user?.userCheckOut || []).map((element, index) => (
+                            {(usr?.userCheckOut || []).map((element, index) => (
                                 <div className="payment-product" key={index}>
                                      <img src={element.elem.img_url} />
                                      <div className='product-name-count'>

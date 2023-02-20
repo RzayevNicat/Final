@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchProducts } from '../../redux/slice/dataSlice';
 import { FiChevronRight } from 'react-icons/fi';
 import { addWish } from '../../redux/slice/wishListSlice';
-import { AiOutlineMinus, AiOutlineArrowUp, AiOutlineArrowDown, AiOutlinePlus } from 'react-icons/ai';
+import { AiOutlineMinus, AiOutlineArrowUp, AiOutlineArrowDown, AiOutlinePlus, AiOutlineClose } from 'react-icons/ai';
 import { MdViewList, MdViewModule } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -13,6 +13,7 @@ import CarouselFeatured from '../../components/CarouselFeatured/Carousell';
 import Loading from '../../components/Loading';
 import { CiHeart } from 'react-icons/ci';
 import { BsHandbag } from 'react-icons/bs';
+import { GoSettings } from 'react-icons/go';
 import { useFilter } from '../../context/FilterContext';
 import { useQuick } from '../../context/QuickView';
 import { addBasket } from '../../redux/slice/basketSlice';
@@ -35,6 +36,7 @@ function Category() {
 	const [ arrow, setArrow ] = useState(false);
 	const [ sort, setSort ] = useState('');
 	const [ size, setSize ] = useState('');
+	const [ filterr, setFilterr ] = useState(true);
 	const [ color, setColor ] = useState('');
 	const [ closeSizee, setCloseSize ] = useState(true);
 	const [ closeColorr, setCloseColor ] = useState(true);
@@ -42,31 +44,31 @@ function Category() {
 	const { women, setWomen } = useFilter();
 	const [ price, setPrice ] = useState(0);
 
-	let PAGE_SIZE = view;
-
 	const listenScrollEvent = () => {
 		window.scrollY > 10 ? setBlack('black') : setBlack('black');
 	};
 	const dispatch = useDispatch();
-	let numberOfItems = PAGE_SIZE * (index + 1);
+	let numberOfItems = view * (index + 1);
 	useEffect(
 		() => {
-			window.scrollTo(0, 0);
 			const newArray = [];
 			for (let i = 0; i < data.length; i++) {
-				if (i <= numberOfItems + 1) newArray.push(data[i]);
+				if (i <= numberOfItems) newArray.push(data[i]);
 			}
-			axios.get('http://localhost:3000/filters').then((res) => setFilter(res.data.data));
 			setVisibleData(newArray);
+			axios.get('http://localhost:3000/filters').then((res) => setFilter(res.data.data));
+
 			if (status === 'idle') {
 				dispatch(fetchProducts());
 			}
+			window.scrollTo(0, 0);
+
 			window.addEventListener('scroll', listenScrollEvent);
 			return () => {
 				window.removeEventListener('scroll', listenScrollEvent);
 			};
 		},
-		[ dispatch, status, index, price, view ]
+		[ dispatch, status, price, view, data, index ]
 	);
 	let sizeArr = [];
 	for (let i = 0; i < filter.length; i++) {
@@ -80,7 +82,7 @@ function Category() {
 			colorArr.push(filter[i].color[j]);
 		}
 	}
-	console.log(sort);
+
 	let dataas = [];
 	all === true ? (dataas = Object.values(visibleData)) : (dataas = Object.values(data));
 	/* SORT ***************************************/
@@ -435,11 +437,18 @@ function Category() {
 			</div>
 			<hr />
 			<div className="category">
-				<div className="filters">
+				<div
+					className="filters"
+					style={{
+						display: filterr ? 'flex' : 'none'
+					}}
+				>
 					<div className="filter-brand">
 						<h2 onClick={handleAll} style={{ color: all ? 'black' : 'rgba(119,119,119)' }}>
 							All
+							<AiOutlineClose onClick={() => setFilterr(false)} />
 						</h2>
+
 						<ul>
 							<li onClick={handlePuma} style={{ color: puma ? 'black' : 'rgba(119,119,119)' }}>
 								Puma
@@ -547,7 +556,8 @@ function Category() {
 				<div className="category-products">
 					<div className="title-products">
 						<div className="sort">
-							<span>Sort By: </span>{' '}
+							<GoSettings className="title-icon filter-iconn" onClick={() => setFilterr(true)} />
+							<span>Show: </span> <span>Sort By: </span>{' '}
 							<select onClick={(e) => setSort(e.target.value)}>
 								<option value="position">Position</option>
 								<option value="productName">Product Name</option>
@@ -560,16 +570,15 @@ function Category() {
 							)}
 						</div>
 						<div className="view">
-							<span>Show: </span>{' '}
 							<select onClick={(e) => setView(e.target.value)}>
 								<option value="15">15</option>
 								<option value="30">30</option>
 								<option value="45">45</option>
 							</select>
 							{dataa === true ? (
-								<MdViewModule className="title-icon" onClick={() => setDataa(false)} />
+								<MdViewModule className="title-icon none" onClick={() => setDataa(false)} />
 							) : (
-								<MdViewList className="title-icon" onClick={() => setDataa(true)} />
+								<MdViewList className="title-icon none" onClick={() => setDataa(true)} />
 							)}
 						</div>
 					</div>
@@ -594,7 +603,9 @@ function Category() {
 												</div>
 												<div className="card-info">
 													<div className="infoo">
-														<h6 onClick={() => getProduct(ele._id)}>{ele.productName}</h6>
+														<h6 onClick={() => getProduct(ele._id)}>
+															{ele.productName.substr(0, 13)}...
+														</h6>
 
 														<p>${ele.prodcutPrice}.00</p>
 													</div>
@@ -608,12 +619,12 @@ function Category() {
 								filtered(dataas).map((ele, index) => {
 									if (ele.sale !== true && ele.type !== 'featured') {
 										return (
-											<div className="category-products-2">
+											<div className="category-products-2" key={index}>
 												<img src={ele.img_url} />
 												<div className="category-cards-2">
 													<h1>{ele.productName}</h1>
 													<h4>Product Ratings: {ele.productRatings}</h4>
-													<span>{ele.productInfo}Learn More</span>
+													<span>{ele.productInfo.substr(0, 50)}Learn More</span>
 													<p>${ele.prodcutPrice}.00</p>
 													<div className="btn-group">
 														<button>
@@ -628,11 +639,10 @@ function Category() {
 								})
 							)}
 						</div>
-						{numberOfItems === data.length - 1.5 ? null : (
-							<button className="load" onClick={() => setIndex(index + 0.5)}>
-								{status === 'loading' ? 'Loading...' : 'Load More'}
-							</button>
-						)}
+
+						<button className="load" onClick={() => setIndex(index + 1.5)}>
+							Load More
+						</button>
 					</div>
 				</div>
 			</div>

@@ -207,7 +207,7 @@
     font-weight: 700;
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 985px) {
     .nav .menu-nav {
         display: block;
     }

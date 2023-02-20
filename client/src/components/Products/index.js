@@ -11,6 +11,8 @@ import QuickView from '../quickView';
 import { addBasket } from '../../redux/slice/basketSlice';
 import { useNavigate } from 'react-router-dom';
 import { addWish } from '../../redux/slice/wishListSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import '../../../node_modules/react-toastify/dist/ReactToastify.css';
 function Products() {
 	const { all, setAll } = useFilter();
 	const { acsesories, setAcsesories } = useFilter();
@@ -36,7 +38,7 @@ function Products() {
 
 			const newArray = [];
 			for (let i = 0; i < data.length; i++) {
-				if (i < numberOfItems + 1) newArray.push(data[i]);
+				if (i <= numberOfItems) newArray.push(data[i]);
 			}
 
 			setVisibleData(newArray);
@@ -140,7 +142,16 @@ function Products() {
 		if (activee === false) {
 			navigate('/profile');
 		} else if (elem.discontinued === false) {
-			alert('no stock');
+			toast.error('🦄 No Stock!', {
+				position: 'bottom-right',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark'
+			});
 		} else {
 			dispatch(addBasket(elem));
 		}
@@ -150,6 +161,20 @@ function Products() {
 	};
 	return (
 		<div className="shop">
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
 			<div className="shop-by">
 				<h3>SHOP BY : </h3>
 				<ul>
@@ -227,11 +252,10 @@ function Products() {
 						}
 					})}
 				</div>
-				{numberOfItems === data.length - 8 ? null : (
-					<button className="load" onClick={() => setIndex(index + 0.5)}>
-						Load More
-					</button>
-				)}
+
+				<button className="load" onClick={() => setIndex(index + 0.5)}>
+					Load More
+				</button>
 			</div>
 			{details._id === undefined ? null : <QuickView />}
 		</div>

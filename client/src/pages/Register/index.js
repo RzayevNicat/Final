@@ -49,8 +49,9 @@ function Register() {
 								.post('http://localhost:3000/auth', user)
 								.then((res) => {
 									if (res.status === 200) {
-										sessionStorage.setItem('userLogin', JSON.stringify(true));
-										navigate('/');
+										sessionStorage.setItem('userLogin', JSON.stringify(false));
+
+										navigate('/profile');
 										window.location.reload();
 									}
 								})

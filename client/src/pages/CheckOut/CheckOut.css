@@ -353,3 +353,52 @@
 .payment-product img {
     width: 100px;
 }
+
+@media only screen and (max-width: 770px) {
+    .payment-flex {
+        flex-direction: column-reverse;
+
+    }
+
+    .payment-products-card {
+        width: 100%;
+        margin: 6% 0px 0px 0px;
+    }
+
+
+    .container {
+        left: 20%;
+    }
+
+    .shiping-paymant {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .shiping-paymant {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .container {
+        left: 30%;
+
+    }
+
+    .shiping-paymant input {
+        width: 100%;
+    }
+
+    .payment-form-group .nmbr {
+        width: 64%;
+    }
+
+    .shiping-paymant button {
+        width: 100%;
+    }
+
+    .payment-products-card {
+        margin-top: 60px;
+    }
+}

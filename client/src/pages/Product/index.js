@@ -21,6 +21,8 @@ import Paper from '@mui/material/Paper';
 import Star from '../../components/RatingStar';
 import CarouselForType from '../../components/CarouselForType';
 import { addWish } from '../../redux/slice/wishListSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import '../../../node_modules/react-toastify/dist/ReactToastify.css';
 const validateSchemaa = Yup.object().shape({
 	nickName: Yup.string().min(3, 'very small').max(10, 'very long').required('fill input'),
 	summary: Yup.string().required('fill input'),
@@ -81,11 +83,19 @@ function Product() {
 		if (activee === false) {
 			navigate('/profile');
 		} else if (elem.discontinued === false) {
-			alert('no stock');
+			toast.error('🦄 No Stock!', {
+				position: 'bottom-right',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark'
+			});
 		} else {
 			let productt = { count: count, elem: elem };
 			dispatch(productAdd(productt));
-			// window.location.reload();
 		}
 	};
 	const incrementCounter = () => {
@@ -102,6 +112,20 @@ function Product() {
 	return (
 		<div className="view-product" id="product">
 			<div className={black} />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
 			<div className="transition">
 				<Link to={'/'}>HOME</Link> <FiChevronRight className="icon-chevron" />{' '}
 				<span>{saleProduct.productName}</span>

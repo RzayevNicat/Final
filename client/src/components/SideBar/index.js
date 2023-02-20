@@ -13,6 +13,7 @@ function SideBar() {
 	const { setSide } = useFilter();
 	const handleUser = () => {
 		navigate('/profile');
+		setSide(false);
 	};
 	const forName = () => {
 		setName(true);
@@ -65,19 +66,27 @@ function SideBar() {
 				<div className="menu-side">
 					<ul>
 						<li>
-							<Link to={'/'}>Home</Link>
+							<Link to={'/'} onClick={() => setSide(false)}>
+								Home
+							</Link>
 							<hr />
 						</li>
 						<li>
-							<Link to={'categories'}>Categroies</Link>
+							<Link to={'categories'} onClick={() => setSide(false)}>
+								Categroies
+							</Link>
 							<hr />
 						</li>
 						<li>
-							<Link to={'/aboutus'}>About Us</Link>
+							<Link to={'/aboutus'} onClick={() => setSide(false)}>
+								About Us
+							</Link>
 							<hr />
 						</li>
 						<li>
-							<Link to={'contactus'}>Contact Us</Link>
+							<Link to={'contactus'} onClick={() => setSide(false)}>
+								Contact Us
+							</Link>
 							<hr />
 						</li>
 					</ul>

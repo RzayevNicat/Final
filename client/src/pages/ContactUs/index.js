@@ -100,7 +100,9 @@ function ContactUs() {
 												<div className="err">{errors.phone}</div>
 											) : null}
 										</div>
-										<button type="submit">Submit</button>
+										<button type="submit" className="resp-btn">
+											Submit
+										</button>
 									</div>
 									<div className="textarea-contact">
 										<label>
@@ -109,6 +111,9 @@ function ContactUs() {
 										<Field as="textarea" name="mind" type="textarea" />
 										{errors.mind && touched.mind ? <div className="err">{errors.mind}</div> : null}
 									</div>
+									<button type="submit" className="none">
+										SUBMIT
+									</button>
 								</Form>
 							)}
 						</Formik>
