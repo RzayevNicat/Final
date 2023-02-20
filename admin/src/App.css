@@ -1,48 +1,12 @@
-*{
-  margin: 0;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+* {
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
-  
-}
-.body{
-  display: flex;
+  font-family: 'Poppins', sans-serif;
 }
 
-.products{
+/* .body {
   display: flex;
-  flex-direction: column;
-  padding-left: 5%;
-  margin-top: 10px;
-  width: 70%;
-}
-.tablee{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 40px;
-}
-.link1{
-  background: linear-gradient(72deg, rgb(44, 222, 242) 0.00%, rgb(156, 43, 171) 35.00%, rgb(39, 43, 44) 100.00%);
-}
-.add{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-right: 56px;
-  align-items: center;
-  width: 100%;
-  position: sticky;
-  top: 0;
-  z-index: 33;
-  padding-top: 10px;
-  padding-bottom: 20px;
-  background-color: white;
-}
-.card{
-  margin-right: 20px;
-  margin-bottom: 20px;
-}
-.card a{
-  text-decoration: none;
-  color: black;
-}
+} */

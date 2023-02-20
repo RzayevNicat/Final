@@ -18,7 +18,6 @@ const postUser = AsyncErrorHandler(async (req, res, next) => {
 		userWishlist,
 		userCard
 	} = req.body;
-	console.log(req.body);
 	const user = await User.create({
 		name,
 		surname,
@@ -40,11 +39,9 @@ const login = AsyncErrorHandler(async (req, res, next) => {
 		return next(new CustomError('Please check your input', 400));
 	}
 	const user = await User.findOne({ email }).select('+password');
-	console.log(user.password);
 	if (password !== user.password) {
 		return next(new CustomError('Plesae check your Password'));
 	}
-	console.log(user);
 	sendJwtToClient(user, res);
 });
 const logout = AsyncErrorHandler(async (req, res, next) => {
@@ -72,7 +69,7 @@ const forgatPassword = AsyncErrorHandler(async (req, res, next) => {
 	const resetPasswordToken = user.getResetPasswordTokenFromUser();
 	await user.save();
 
-	const resetPassvordURL = `http://localhost:3002/resetPassword/${resetPasswordToken}`;
+	const resetPassvordURL = `http://localhost:3001/resetPassword/${resetPasswordToken}`;
 
 	const emailTemplate = `
 		<h3>Reset Your Password</h3>

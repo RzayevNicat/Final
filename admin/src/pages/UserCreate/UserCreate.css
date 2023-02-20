@@ -1,0 +1,53 @@
+.user-create {
+    padding: 5%;
+}
+
+.user-create-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.create-form-group {
+    display: flex;
+}
+
+.create-form-group div {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.user-create-form input {
+    width: 300px;
+    padding: 8px;
+    border: 1px solid #e7e7e7;
+}
+
+.user-create-form input:focus {
+    outline: none;
+}
+
+.register-gender {
+    display: flex;
+}
+
+.register-gender div {
+    margin-right: 10px;
+}
+
+.register-gender input {
+    width: 20px;
+}
+
+.register-form-check {
+    margin-top: 20px;
+}
+
+.register-form-check input {
+    width: 20px;
+}
