@@ -1,10 +1,7 @@
 import ReactStars from 'react-rating-stars-component';
 import React from 'react';
-import { render } from 'react-dom';
 
-const ratingChanged = (newRating) => {
-	console.log(newRating);
-};
+const ratingChanged = (newRating) => {};
 export default function StarRating(params) {
 	return (
 		<ReactStars

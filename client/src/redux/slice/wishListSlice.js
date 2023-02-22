@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 const dataas = JSON.parse(localStorage.getItem('user'));
 
 const initialState = {
@@ -14,7 +15,16 @@ const wishListSlice = createSlice({
 			if (state.wishList.some((x) => x._id === actions.payload._id)) {
 				state.wishList.forEach((element) => {
 					if (element._id === actions.payload._id) {
-						alert('This product is on the Wishlist')
+						toast.error('This product already wishlist!', {
+							position: 'bottom-right',
+							autoClose: 3000,
+							hideProgressBar: false,
+							closeOnClick: true,
+							pauseOnHover: true,
+							draggable: true,
+							progress: undefined,
+							theme: 'dark'
+						});
 					}
 				})
 			}else{
@@ -30,11 +40,26 @@ const wishListSlice = createSlice({
 					password: dataas.password,
 					userCard: dataas.userCard,
 					userCheckOut: dataas.userCheckOut,
-					userWishlist: state.wishList
+					userWishlist: state.wishList,
+					country:dataas.country,
+								mmyy:dataas.mmyy,
+								cvv:dataas.cvv,
+								postalCode:dataas.postalCode,
+								cardNumber:dataas.cardNumber,
+								phoneNumber:dataas.phoneNumber
 				};
 				localStorage.setItem('user',JSON.stringify(user))
 				axios.put(`http://localhost:3000/users/${dataas._id}`,user)
-				alert('Added Wishlist')
+				toast.success('Added Wishlist!', {
+					position: 'bottom-right',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'dark'
+				});
 			}
 
 		},
@@ -51,7 +76,13 @@ const wishListSlice = createSlice({
 				password: dataas.password,
 				userCard: dataas.userCard,
 				userCheckOut: dataas.userCheckOut,
-				userWishlist: state.wishList
+				userWishlist: state.wishList,
+				country:dataas.country,
+								mmyy:dataas.mmyy,
+								cvv:dataas.cvv,
+								postalCode:dataas.postalCode,
+								cardNumber:dataas.cardNumber,
+								phoneNumber:dataas.phoneNumber
 			};
 			localStorage.setItem('user',JSON.stringify(user))
 			axios.put(`http://localhost:3000/users/${dataas._id}`,user)

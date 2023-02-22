@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addBasket } from '../../redux/slice/basketSlice';
 import { addWish } from '../../redux/slice/wishListSlice';
+import { toast } from 'react-toastify';
 export default function CarouselFooter() {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.data.items);
@@ -28,7 +29,16 @@ export default function CarouselFooter() {
 		if (activee === false) {
 			navigate('/profile');
 		} else if (elem.discontinued === false) {
-			alert('no stock');
+			toast.error('No Stock', {
+				position: 'bottom-right',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark'
+			});
 		} else {
 			dispatch(addBasket(elem));
 		}

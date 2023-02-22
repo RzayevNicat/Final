@@ -4,7 +4,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { FiPhoneCall, FiSmartphone, FiMail } from 'react-icons/fi';
 import { FaSkype } from 'react-icons/fa';
-import Alert from '../../components/Alert/index';
+import { ToastContainer, toast } from 'react-toastify';
 const validationcontact = Yup.object().shape({
 	name: Yup.string()
 		.min(3, 'Short Name')
@@ -19,7 +19,6 @@ const validationcontact = Yup.object().shape({
 });
 function ContactUs() {
 	const [ black, setBlack ] = useState('black');
-	const [ alert, setAlert ] = useState(false);
 	const listenScrollEvent = () => {
 		window.scrollY > 10 ? setBlack('black') : setBlack('black');
 	};
@@ -33,6 +32,18 @@ function ContactUs() {
 	return (
 		<div className="contactus">
 			<div className="black" />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
 			<div className="contact-container">
 				<div style={{ width: '100%' }}>
 					<iframe
@@ -47,7 +58,6 @@ function ContactUs() {
 						<a href="https://www.maps.ie/distance-area-calculator.html">measure acres/hectares on map</a>
 					</iframe>
 				</div>
-				{alert ? <Alert /> : null}
 
 				<div className="contact-input-icons">
 					<div className="contact-input">
@@ -62,10 +72,16 @@ function ContactUs() {
 								mind: ''
 							}}
 							onSubmit={(values, { resetForm }) => {
-								setAlert(true);
-								setTimeout(function() {
-									setAlert(false);
-								}, 4000);
+								toast.success('Send Message!', {
+									position: 'bottom-right',
+									autoClose: 3000,
+									hideProgressBar: false,
+									closeOnClick: true,
+									pauseOnHover: true,
+									draggable: true,
+									progress: undefined,
+									theme: 'dark'
+								});
 								resetForm({ values: '' });
 							}}
 							validationSchema={validationcontact}

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Formik, Form, Field } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
 import './Register.css';
 function Register() {
 	const [ black, setBlack ] = useState('black');
@@ -19,6 +19,20 @@ function Register() {
 	return (
 		<div className="register">
 			<div className={black} />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
 			<div className="registered">
 				<h1>Customer Register</h1>
 				<div className="registered-section-2">
@@ -57,7 +71,16 @@ function Register() {
 								})
 								.catch((error) => {
 									if (error.response.status === 500) {
-										alert(error.response.data.message);
+										toast.error(`${error.response.data.message}`, {
+											position: 'bottom-right',
+											autoClose: 3000,
+											hideProgressBar: false,
+											closeOnClick: true,
+											pauseOnHover: true,
+											draggable: true,
+											progress: undefined,
+											theme: 'dark'
+										});
 									}
 								});
 							axios.get('http://localhost:3000/users').then((res) => {

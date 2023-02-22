@@ -5,6 +5,7 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { RxCross1 } from 'react-icons/rx';
+import { ToastContainer, toast } from 'react-toastify';
 const loginSchema = Yup.object().shape({
 	email: Yup.string()
 		.matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide valid email')
@@ -58,7 +59,16 @@ function Login() {
 									}
 								})
 								.catch((error) => {
-									alert(error.response.data.message);
+									toast.error(`${error.response.data.message}`, {
+										position: 'bottom-right',
+										autoClose: 3000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: 'dark'
+									});
 								});
 						}}
 					>

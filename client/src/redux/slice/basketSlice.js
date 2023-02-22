@@ -19,7 +19,7 @@ const basketSlice = createSlice({
 				state.value.forEach((element) => {
 					if (element.elem._id === actions.payload._id) {
 						if (element.count===actions.payload.productStock) {
-							toast.error('🦄 No Stock!', {
+							toast.error(' No Stock!', {
 								position: 'bottom-right',
 								autoClose: 3000,
 								hideProgressBar: false,
@@ -43,9 +43,15 @@ const basketSlice = createSlice({
 								password: dataas.password,
 								userCard: dataas.userCard,
 								userCheckOut: state.value,
-								userWishlist: dataas.userWishlist
+								userWishlist: dataas.userWishlist,
+								country:dataas.country,
+								mmyy:dataas.mmyy,
+								cvv:dataas.cvv,
+								postalCode:dataas.postalCode,
+								cardNumber:dataas.cardNumber,
+								phoneNumber:dataas.phoneNumber
 							};
-							toast.success('🦄 Added Basket!', {
+							toast.success(' Added Basket!', {
 								position: 'bottom-right',
 								autoClose: 3000,
 								hideProgressBar: false,
@@ -73,12 +79,18 @@ const basketSlice = createSlice({
 					password: dataas.password,
 					userCard: dataas.userCard,
 					userCheckOut: state.value,
-					userWishlist: dataas.userWishlist
+					userWishlist: dataas.userWishlist,
+					country:dataas.country,
+					mmyy:dataas.mmyy,
+					cvv:dataas.cvv,
+					postalCode:dataas.postalCode,
+					cardNumber:dataas.cardNumber,
+					phoneNumber:dataas.phoneNumber
 				};
 				state.value.push({ count: 1, elem: actions.payload });
 				localStorage.setItem('user', JSON.stringify(user));
 				state.count += 1;
-				toast.success('🦄 Added Basket!', {
+				toast.success(' Added Basket!', {
 					position: 'bottom-right',
 					autoClose: 3000,
 					hideProgressBar: false,
@@ -92,7 +104,8 @@ const basketSlice = createSlice({
 			
 		},
 		removeBasket: (state,actions)=>{
-			let copy = state.value.filter(x=>x.elem._id !==actions.payload)
+			state.value = state.value.filter(x=>x.elem._id !==actions.payload.elem._id)
+			state.count -= actions.payload.count
 			let userCopy = {
 				_id: dataas._id,
 				name: dataas.name,
@@ -103,18 +116,34 @@ const basketSlice = createSlice({
 				options: dataas.options,
 				password: dataas.password,
 				userCard: dataas.userCard,
-				userCheckOut: copy,
-				userWishlist: dataas.userWishlist
+				userCheckOut: state.value,
+				userWishlist: dataas.userWishlist,
+				country:dataas.country,
+				mmyy:dataas.mmyy,
+				cvv:dataas.cvv,
+				postalCode:dataas.postalCode,
+				cardNumber:dataas.cardNumber,
+				phoneNumber:dataas.phoneNumber
 			};
+			toast.info(' Removed Basket!', {
+				position: 'bottom-right',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark'
+			});
 			localStorage.setItem('user',JSON.stringify(userCopy))
 			
 		},
 		productAdd :(state,actions)=>{
 			if (state.value.some((x) => x.elem._id === actions.payload.elem._id)) {
 				state.value.forEach((element)=>{
-					if (element.elem._id===actions.payload.elem._id) {
+					if (element.elem._id===actions.payload.elem._id) {			
 						if (actions.payload.elem.productStock<actions.payload.count|| element.count ===actions.payload.elem.productStock ) {
-							toast.error('🦄 No Stock!', {
+							toast.error(' No Stock!', {
 								position: 'bottom-right',
 								autoClose: 3000,
 								hideProgressBar: false,
@@ -123,10 +152,10 @@ const basketSlice = createSlice({
 								draggable: true,
 								progress: undefined,
 								theme: 'dark'
-							});
-							
+							});			
 						}else{
 							element.count += actions.payload.count
+						
 							let user = {
 								_id: dataas._id,
 								name: dataas.name,
@@ -138,9 +167,15 @@ const basketSlice = createSlice({
 								password: dataas.password,
 								userCard: dataas.userCard,
 								userCheckOut: state.value,
-								userWishlist: dataas.userWishlist
+								userWishlist: dataas.userWishlist,
+								country:dataas.country,
+								mmyy:dataas.mmyy,
+								cvv:dataas.cvv,
+								postalCode:dataas.postalCode,
+								cardNumber:dataas.cardNumber,
+								phoneNumber:dataas.phoneNumber
 							};
-							// window.location.reload();
+							window.location.reload();
 							localStorage.setItem('user', JSON.stringify(user));
 						}
 						
@@ -158,10 +193,16 @@ const basketSlice = createSlice({
 					password: dataas.password,
 					userCard: dataas.userCard,
 					userCheckOut: state.value,
-					userWishlist: dataas.userWishlist
+					userWishlist: dataas.userWishlist,
+					country:dataas.country,
+								mmyy:dataas.mmyy,
+								cvv:dataas.cvv,
+								postalCode:dataas.postalCode,
+								cardNumber:dataas.cardNumber,
+								phoneNumber:dataas.phoneNumber
 				};
-				
-				// window.location.reload();
+				console.log(actions.payload.count);
+				window.location.reload();
 				state.value.push({ count: actions.payload.count, elem: actions.payload.elem });
 				localStorage.setItem('user', JSON.stringify(user));
 			}
@@ -187,7 +228,13 @@ const basketSlice = createSlice({
 										password: dataas.password,
 										userCard: dataas.userCard,
 										userCheckOut: state.value,
-										userWishlist: dataas.userWishlist
+										userWishlist: dataas.userWishlist,
+										country:dataas.country,
+								mmyy:dataas.mmyy,
+								cvv:dataas.cvv,
+								postalCode:dataas.postalCode,
+								cardNumber:dataas.cardNumber,
+								phoneNumber:dataas.phoneNumber
 									};
 						
 									localStorage.setItem('user', JSON.stringify(user));
@@ -219,7 +266,13 @@ const basketSlice = createSlice({
 						password: dataas.password,
 						userCard: dataas.userCard,
 						userCheckOut: state.value,
-						userWishlist: dataas.userWishlist
+						userWishlist: dataas.userWishlist,
+						country:dataas.country,
+								mmyy:dataas.mmyy,
+								cvv:dataas.cvv,
+								postalCode:dataas.postalCode,
+								cardNumber:dataas.cardNumber,
+								phoneNumber:dataas.phoneNumber
 					};
 					toast.info('🦄 Remove Basket!', {
 						position: 'bottom-right',

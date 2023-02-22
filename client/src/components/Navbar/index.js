@@ -20,22 +20,28 @@ function Navbar() {
 	const {side, setSide} = useFilter()
 	const dispatch = useDispatch()
 	const navigate = useNavigate();
+	const [userCheck,setUserCheck] = useState([])
 	const listenScrollEvent = () => {
 		window.scrollY > 10 ? setnavColor('#111111') : setnavColor('transparent');
 		window.scrollY > 10 ? setnavSize('7rem') : setnavSize('5rem');
 	};
 	const count = useSelector((state) => state.baskett.count);
-	let user = JSON.parse(localStorage.getItem('user'));
+	
+
 	let subTotal = 0;
-	(user?.userCheckOut || []).forEach((element) => {
+	(userCheck||[]).forEach((element) => {
 		let cnt = element.count * element.elem.prodcutPrice;
 		subTotal += cnt;
 	});
-	const handleDelete = (id)=>{
-		 dispatch(removeBasket(id))
-		 window.location.reload()
+	const handleDelete = (element)=>{
+		let usr = userCheck.filter(x=> x.elem._id !== element.elem._id)
+		setUserCheck([...usr])
+		 dispatch(removeBasket(element))
+		 
    }
 	useEffect(() => {
+		let user = JSON.parse(localStorage.getItem('user'));
+		setUserCheck(user?.userCheckOut)
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);
@@ -112,11 +118,11 @@ function Navbar() {
 						<p>You have no items in your shopping cart.</p>
 					) : (
 						<div className="check-products">
-							{(user?.userCheckOut || []).map((element, index) => (
+							{(userCheck||[]).map((element, index) => (
 								<div className="check-product" key={index}>
 									<div className="check-name">
 										<h5>{element.elem.productName}</h5>
-										<ImCross className="check-cross" onClick={()=> handleDelete(element.elem._id)}/>
+										<ImCross className="check-cross" onClick={()=> handleDelete(element)}/>
 									</div>
 									<div className="check-img">
 										<div className="check-info">

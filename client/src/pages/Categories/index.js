@@ -18,6 +18,7 @@ import { useFilter } from '../../context/FilterContext';
 import { useQuick } from '../../context/QuickView';
 import { addBasket } from '../../redux/slice/basketSlice';
 import QuickView from '../../components/quickView';
+import { ToastContainer, toast } from 'react-toastify';
 function Category() {
 	const data = useSelector((state) => state.data.items);
 	const status = useSelector((state) => state.data.status);
@@ -420,7 +421,16 @@ function Category() {
 		if (activee === false) {
 			navigate('/profile');
 		} else if (elem.discontinued === false) {
-			alert('no stock');
+			toast.error('No Stock!', {
+				position: 'bottom-right',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark'
+			});
 		} else {
 			dispatch(addBasket(elem));
 		}
@@ -431,6 +441,20 @@ function Category() {
 	return (
 		<div className="categoriest" id="category">
 			<div className={black} />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
 			<Salest className="category-salest" />
 			<div className="transition">
 				<Link to={'/'}>HOME</Link> <FiChevronRight className="icon-chevron" /> <span>ALL</span>

@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import './CheckOut.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
 const paymentSchema = Yup.object().shape({
     name : Yup.string().min(2,'Short Name').max(12,'Long Name').required('Please provide Name'),
     surname: Yup.string().min(2,'Short Surname').max(20,'Long Surname').required('Please provide Surname'),
@@ -28,6 +28,15 @@ function CheckOut() {
     const [arrow ,setArrow] = useState(true)
     const [product,setProduct] = useState([])
 	const [usr,setUsr] = useState({})
+	const [ namee, setName ] = useState('');
+	const [ surnamee, setSurname ] = useState('');
+	const [ emaill, setEmail ] = useState('');
+	const [ cardNumber, setCardNumber ] = useState('');
+	const [ postalCode, setPostalCode ] = useState('');
+	const [ phoneNumber, setPhoneNumber ] = useState('');
+	const [ mmyy, setMMYY ] = useState('');
+	const [ cvv, setCvv ] = useState('');
+	const [ countryy, setCountry ] = useState('');
 	const navigate = useNavigate()
     
 	let subTotal = 0;
@@ -44,6 +53,15 @@ function CheckOut() {
 		
 		let user = JSON.parse(localStorage.getItem('user'));
 		setUsr(user)
+		setName(user.name)
+		setSurname(user.surname)
+		setEmail(user.email)
+		setCardNumber(user?.cardNumber || '')
+		setPhoneNumber(user?.phoneNumber || '')
+		setMMYY(user?.mmyy || '')
+		setCvv(user?.cvv || '')
+		setPostalCode(user?.postalCode || '')
+		setCountry(user?.country || '')
         axios.get('http://localhost:3000/products').then(res=> setProduct(res.data.data))
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
@@ -79,10 +97,28 @@ function CheckOut() {
     
         })
     }
-
+	const handleSubmit =(e)=>{
+		e.preventDefault()
+		
+		
+	}
 	return (
 		<div className="shop-check">
 			<div className={black} />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
             {
                 count===0?			<div className="shoping-empty">
 				<h3>Shopping Cart</h3>
@@ -126,25 +162,45 @@ function CheckOut() {
 							}}
                             validationSchema={paymentSchema}
 							onSubmit={(values) => {
-                                const userrr = {
+								const userrr = {
 									_id:usr._id,
-                                    name:usr.name,
-                                    surname:usr.surname,
-                                    email:usr.email,
-                                    gender:usr.gender,
-                                    password:usr.password,
-                                    role:usr.role,
-                                    options:usr.options,
-                                    src:usr.src,
-                                    userCheckOut:[],
-                                    userWishlist: [...usr.userWishlist],
-                                    userCard: [...usr.userCard, ...usr.userCheckOut]
-                                }
-								axios.put(`http://localhost:3000/users/${usr._id}`,userrr)
-                                productStock()
-                                localStorage.setItem('user', JSON.stringify(userrr))
+									name:usr.name,
+									surname:usr.surname,
+									email:usr.email,
+									gender:usr.gender,
+									password:usr.password,
+									role:usr.role,
+									options:usr.options,
+									src:usr.src,
+									userCheckOut:[],
+									userWishlist: [...usr.userWishlist],
+									userCard: [...usr.userCard, ...usr.userCheckOut],
+									country:countryy,
+									mmyy:mmyy,
+									cvv:cvv,
+									postalCode:postalCode,
+									cardNumber:cardNumber,
+									phoneNumber:phoneNumber
+								}
+								axios.put(`http://localhost:3000/users/${usr._id}`,userrr).then(res=> {
+									if (res.status===200) {
+										productStock()
+								localStorage.setItem('user', JSON.stringify(userrr))
 								navigate('/profile')
 								window.location.reload()
+									}
+								}).catch(error=>{
+									toast.error(`${error.response.data.message}`, {
+										position: 'bottom-right',
+										autoClose: 3000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: 'dark'
+									});
+								})
 							}}
 						>
 							{({ errors, touched, values }) => (
@@ -154,34 +210,30 @@ function CheckOut() {
 											<label>
 												NAME <span>*</span>
 											</label>
-											<Field name="name" type="text" />
-                                            {errors.name && touched.name ? <div className='err'>{errors.name}</div>:null}
+											<Field placeholder={errors.name && touched.name ? errors.name : ''} name="name" type="text" value={namee} onChange={(e)=> setName(e.target.value)}/>
+                                           
 										</div>
 										<div>
 											<label>
 												LASTNAME<span>*</span>
 											</label>
-											<Field name="surname" type="text" />
-                                            {errors.surname && touched.surname ? <div className='err'>{errors.surname}</div>:null}
+											<Field placeholder={errors.surname && touched.surname ? errors.surname : ''} name="surname" type="text" value={surnamee} onChange={(e)=> setSurname(e.target.value)}/>
 										</div>
 									</div>
 									<div className="payment-form-group">
 										<label>
 											CARD NUMBER<span>*</span>
 										</label>
-										<Field name="cardNumber" type="number" className="nmbr" />
-                                        {errors.cardNumber && touched.cardNumber? <div className='err'>{errors.cardNumber}</div>:null}
+										<Field placeholder={errors.cardNumber && touched.cardNumber ? errors.cardNumber : ''} name="cardNumber" type="number" className="nmbr" value={cardNumber} onChange={(e)=> setCardNumber(e.target.value)}/>
 									</div>
                                     <div className='payment-form-email'>
                                         <div className='email-pym'>
                                             <label>EMAIL <span>*</span></label>
-                                            <Field name='email' type='email'/>
-                                            {errors.email && touched.email ? <div className='err'>{errors.email}</div>:null}
+                                            <Field placeholder={errors.email && touched.email ? errors.email : ''} name='email' type='email' value={emaill} onChange={(e)=> setEmail(e.target.value)}/>
                                         </div>
                                         <div>
                                             <label>PHONE NUMBER<span>*</span></label>
-                                            <Field name='phone' type='number' className='nmbr'/>
-                                            {errors.phone && touched.phone? <div className='err'>{errors.phone}</div>:null}
+                                            <Field placeholder={errors.phoneNumber && touched.phoneNumber ? errors.phoneNumber : ''} name='phone' type='number' className='nmbr' value={phoneNumber} onChange={(e)=> setPhoneNumber(e.target.value)}/>
                                         </div>
                                     </div>
 									<div className="payment-info">
@@ -189,18 +241,15 @@ function CheckOut() {
 											<label>
 												POSTAL CODE<span>*</span>
 											</label>
-											<Field name="postalCode" />
-                                            {errors.postalCode && touched.postalCode? <div className='err'>{errors.postalCode}</div>:null}
+											<Field placeholder={errors.postalCode && touched.postalCode ? errors.postalCode : ''} name="postalCode" value={postalCode} onChange={(e)=> setPostalCode(e.target.value)}/>
 										</div>
 										<div className="monthYear">
                                             <div>
-                                            <Field className="my" placeholder="MM/YY" name="my" />
-                                            {errors.my && touched.my? <div className='err'>{errors.my}</div>:null}
+                                            <Field placeholder={errors.my && touched.my ? errors.my : 'MM/YY'} className="my"  name="my" value={mmyy} onChange={(e)=> setMMYY(e.target.value)}/>
                                             </div>
 										
                                             <div>
-                                            <Field className="cvv nmbr" placeholder="CVV" name="cvv" type="number" />
-                                            {errors.cvv && touched.cvv? <div className='err'>{errors.cvv}</div>:null}
+                                            <Field placeholder={errors.cvv && touched.cvv ? errors.cvv : 'CVV'} className="cvv nmbr"  name="cvv" type="number" value={cvv} onChange={(e)=> setCvv(e.target.value)}/>
                                             </div>
 										
 										</div>
@@ -210,7 +259,7 @@ function CheckOut() {
 											<label>
 												COUNTRY<span>*</span>
 											</label>
-											<Field as="select" name='country'>
+											<Field placeholder={errors.country && touched.country ? errors.country : ''} as="select" name='country' value={countryy} onChange={(e)=> setCountry(e.target.value)}>
 												<option value="Afghanistan">Afghanistan</option>
 												<option value="Albania">Albania</option>
 												<option value="Algeria">Algeria</option>
@@ -475,7 +524,6 @@ function CheckOut() {
 												<option value="Zambia">Zambia</option>
 												<option value="Zimbabwe">Zimbabwe</option>
 											</Field>
-                                            {errors.country && touched.country? <div className='err'>{errors.country}</div>:null}
 										</div>
 
 										<div className="promoCode">

@@ -142,7 +142,7 @@ function Products() {
 		if (activee === false) {
 			navigate('/profile');
 		} else if (elem.discontinued === false) {
-			toast.error('🦄 No Stock!', {
+			toast.error('No Stock!', {
 				position: 'bottom-right',
 				autoClose: 3000,
 				hideProgressBar: false,

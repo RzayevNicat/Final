@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useNavigation, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FiChevronRight } from 'react-icons/fi';
 import { useQuick } from '../../context/QuickView';
 import './Product.css';
@@ -77,7 +77,7 @@ function Product() {
 	};
 	const dispatch = useDispatch();
 	const activee = JSON.parse(sessionStorage.getItem('userLogin'));
-	const user = JSON.parse(localStorage.getItem('user'));
+
 	const navigate = useNavigate();
 	const toBasket = (elem) => {
 		if (activee === false) {
@@ -136,7 +136,7 @@ function Product() {
 					{(saleProduct.productImages || []).length !== 0 ? (
 						<Gallery className="gallery" />
 					) : (
-						<img src={saleProduct.img_url} className="imggg" />
+						<img src={saleProduct.img_url} className="imggg" alt="prodcutImg" />
 					)}
 				</div>
 				<div className="product-view-info">

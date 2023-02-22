@@ -14,6 +14,7 @@ import { removeWish } from '../../redux/slice/wishListSlice';
 import { RxCross2 } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 const editSchema = Yup.object().shape({
 	name: Yup.string()
@@ -35,10 +36,16 @@ function UserProfile() {
 	const navigate = useNavigate();
 	const user = JSON.parse(localStorage.getItem('user'));
 	const [ userr, setUser ] = useState({});
+	const [ namee, setName ] = useState('');
+	const [ surnamee, setSurname ] = useState('');
+	const [ emaill, setEmail ] = useState('');
+	const [ passwordd, setPassword ] = useState('');
+	const [ srcc, setSrc ] = useState('');
 	const [ wishh, setWish ] = useState(false);
 	const [ info, setInfo ] = useState(true);
 	const [ card, setCard ] = useState(false);
 	const [ edit, setEdit ] = useState(false);
+	const [ local, setLocalStorage ] = useState({});
 	const dispatch = useDispatch();
 	const handleLogOut = () => {
 		axios.get('http://localhost:3000/logout');
@@ -47,13 +54,19 @@ function UserProfile() {
 		navigate('/');
 		window.location.reload();
 	};
+	console.log(userr);
 	useEffect(
 		() => {
 			axios.get(`http://localhost:3000/users/${user._id}`).then((res) => {
 				setUser(res.data.data);
+				setName(res.data.data.name);
+				setSurname(res.data.data.surname);
+				setEmail(res.data.data.email);
+				setPassword(res.data.data.password);
+				setSrc(res.data.data.src);
 			});
 		},
-		[ user ]
+		[ user._id ]
 	);
 	const handleWish = () => {
 		setCard(false);
@@ -74,6 +87,52 @@ function UserProfile() {
 		dispatch(removeWish(row));
 		let copy = userr.userWishlist.filter((x) => x._id !== row._id);
 		setUser(copy);
+	};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		axios
+			.put(`http://localhost:3000/users/${userr._id}`, {
+				name: namee,
+				surname: surnamee,
+				email: emaill,
+				password: passwordd,
+				src: srcc
+			})
+			.then((res) => {})
+			.catch((err) => {
+				toast.error(`${err.response.data.message}`, {
+					position: 'bottom-right',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'dark'
+				});
+			});
+		let localusr = {
+			_id: user._id,
+			name: namee,
+			surname: surnamee,
+			email: emaill,
+			password: passwordd,
+			src: srcc,
+			options: user.options,
+			gender: user.gender,
+			userWishlist: user.userWishlist,
+			userCard: user.userCard,
+			userCheckOut: user.userCheckOut,
+			country: user.country,
+			mmyy: user.mmyy,
+			cvv: user.cvv,
+			postalCode: user.postalCode,
+			cardNumber: user.cardNumber,
+			phoneNumber: user.phoneNumber
+		};
+		localStorage.setItem('user', JSON.stringify(localusr));
+		window.location.reload();
+		setEdit(false);
 	};
 	return (
 		<div className="userProfile">
@@ -167,9 +226,9 @@ function UserProfile() {
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									{(userr.userCard || []).map((row) => (
+									{(userr.userCard || []).map((row, index) => (
 										<TableRow
-											key={row.elem._id}
+											key={index}
 											sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 										>
 											<TableCell component="th" scope="row">
@@ -237,27 +296,10 @@ function UserProfile() {
 								src: ''
 							}}
 							validationSchema={editSchema}
-							onSubmit={(values) => {
-								console.log(values);
-								axios
-									.put(`http://localhost:3000/users/${userr._id}`, {
-										name: values.name,
-										surname: values.surname,
-										email: values.email,
-										password: values.password,
-										src: values.src
-									})
-									.then((res) => {
-										console.log(res);
-									})
-									.catch((err) => {
-										alert(err.response.data.message);
-									});
-								setEdit(false);
-							}}
+							onSubmit={(values) => {}}
 						>
-							{({ errors, touched, values }) => (
-								<Form className="edit-form">
+							{({ errors, touched, isSubmitting }) => (
+								<form className="edit-form" onSubmit={handleSubmit}>
 									<div>
 										<label>
 											NAME <span>*</span>
@@ -265,6 +307,8 @@ function UserProfile() {
 										<Field
 											name="name"
 											placeholder={errors.name && touched.name ? errors.name : ''}
+											value={namee}
+											onChange={(e) => setName(e.target.value)}
 										/>
 									</div>
 									<div>
@@ -274,6 +318,8 @@ function UserProfile() {
 										<Field
 											name="surname"
 											placeholder={errors.surname && touched.surname ? errors.surname : ''}
+											value={surnamee}
+											onChange={(e) => setSurname(e.target.value)}
 										/>
 									</div>
 									<div>
@@ -284,6 +330,8 @@ function UserProfile() {
 											name="email"
 											type="email"
 											placeholder={errors.email && touched.email ? errors.email : ''}
+											value={emaill}
+											onChange={(e) => setEmail(e.target.value)}
 										/>
 									</div>
 									<div>
@@ -294,14 +342,21 @@ function UserProfile() {
 											name="password"
 											type="password"
 											placeholder={errors.password && touched.password ? errors.password : ''}
+											value={passwordd}
+											onChange={(e) => setPassword(e.target.value)}
 										/>
 									</div>
 									<div>
 										<label>IMAGE UPLOAD</label>
-										<Field type="text" name="src" />
+										<Field
+											type="text"
+											name="src"
+											value={srcc}
+											onChange={(e) => setSrc(e.target.value)}
+										/>
 									</div>
 									<button type="submit">Submit</button>
-								</Form>
+								</form>
 							)}
 						</Formik>
 					</div>

@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import './ResetPassword.css';
 import { BsCheck } from 'react-icons/bs';
+import { ToastContainer, toast } from 'react-toastify';
 const newPasswordValid = Yup.object().shape({
 	password: Yup.string().min(6, 'Short Password').required('Please provide New Password'),
 	newPassword: Yup.string().min(6, 'Short Password').required('Please provide New Password')
@@ -28,6 +29,20 @@ function ResetPassword() {
 	return (
 		<div className="reset-pass-page">
 			<div className={black} />
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
 			{check ? (
 				<div className="success">
 					<BsCheck className="icon-success" />
@@ -49,11 +64,30 @@ function ResetPassword() {
 									password: values.password
 								})
 								.then((res) => {
-									alert(res.data.message);
+									toast.success(`${res.data.message}`, {
+										position: 'bottom-right',
+										autoClose: 3000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: 'dark'
+									});
 									setCheck(true);
 								})
 								.catch((error) => {
 									alert(error.response.data.message);
+									toast.error(`${error.response.data.message}`, {
+										position: 'bottom-right',
+										autoClose: 3000,
+										hideProgressBar: false,
+										closeOnClick: true,
+										pauseOnHover: true,
+										draggable: true,
+										progress: undefined,
+										theme: 'dark'
+									});
 								});
 						}
 					}}

@@ -6,6 +6,7 @@ import { RxCross1 } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { productAdd } from '../../redux/slice/basketSlice';
+import { toast } from 'react-toastify';
 function QuickView() {
 	const { details, setDetails } = useQuick();
 	const dispatch = useDispatch();
@@ -16,7 +17,16 @@ function QuickView() {
 		if (activee === false) {
 			navigate('/profile');
 		} else if (elem.discontinued === false) {
-			alert('no stock');
+			toast.error('No Stock', {
+				position: 'bottom-right',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark'
+			});
 		} else {
 			let productt = { count: count, elem: elem };
 			dispatch(productAdd(productt));
