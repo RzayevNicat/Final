@@ -16,7 +16,13 @@ const postUser = AsyncErrorHandler(async (req, res, next) => {
 		role,
 		userCheckOut,
 		userWishlist,
-		userCard
+		userCard,
+		country,
+		mmyy,
+		cvv,
+		postalCode,
+		cardNumber,
+		phoneNumber
 	} = req.body;
 	const user = await User.create({
 		name,
@@ -29,7 +35,13 @@ const postUser = AsyncErrorHandler(async (req, res, next) => {
 		options,
 		userCheckOut,
 		userWishlist,
-		userCard
+		userCard,
+		country,
+		mmyy,
+		cvv,
+		postalCode,
+		cardNumber,
+		phoneNumber
 	});
 	sendJwtToClient(user, res);
 });
@@ -69,7 +81,7 @@ const forgatPassword = AsyncErrorHandler(async (req, res, next) => {
 	const resetPasswordToken = user.getResetPasswordTokenFromUser();
 	await user.save();
 
-	const resetPassvordURL = `http://localhost:3001/resetPassword/${resetPasswordToken}`;
+	const resetPassvordURL = `http://localhost:3002/resetPassword/${resetPasswordToken}`;
 
 	const emailTemplate = `
 		<h3>Reset Your Password</h3>
