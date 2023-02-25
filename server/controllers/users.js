@@ -46,6 +46,8 @@ const updateUser = AsyncErrorHandler(async (req, res, next) => {
 				success: true,
 				data: doc
 			});
+		} else {
+			return next(new CustomError('Plesae check your Password'));
 		}
 	});
 });
