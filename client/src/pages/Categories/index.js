@@ -651,10 +651,13 @@ function Category() {
 													<span>{ele.productInfo.substr(0, 50)}Learn More</span>
 													<p>${ele.prodcutPrice}.00</p>
 													<div className="btn-group">
-														<button>
+														<button onClick={() => toBasket(ele)}>
 															<BsHandbag className="bag-icon" />ADD TO CART
 														</button>{' '}
-														<CiHeart className="category-heart-2" />
+														<CiHeart
+															className="category-heart-2"
+															onClick={() => AddWishList(ele)}
+														/>
 													</div>
 												</div>
 											</div>

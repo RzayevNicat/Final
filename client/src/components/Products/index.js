@@ -48,7 +48,6 @@ function Products() {
 		},
 		[ dispatch, status, index ]
 	);
-	const localUser = JSON.parse(localStorage.getItem('user'));
 	let dataas = [];
 	all === true ? (dataas = Object.values(visibleData)) : (dataas = Object.values(data));
 
@@ -137,7 +136,6 @@ function Products() {
 		navigate(`/product/${id}`);
 		window.location.reload();
 	};
-	let usr = JSON.parse(localStorage.getItem('user'));
 	const toBasket = (elem) => {
 		if (activee === false) {
 			navigate('/profile');
@@ -231,6 +229,7 @@ function Products() {
 											src={ele.img_url}
 											onClick={() => getProduct(ele._id)}
 											style={{ cursor: 'pointer' }}
+											alt="img"
 										/>
 
 										<BsHandbag className="img-icon" onClick={() => toBasket(ele)} />

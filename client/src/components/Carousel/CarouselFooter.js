@@ -78,7 +78,7 @@ export default function CarouselFooter() {
 				{data.map((ele, index) => {
 					if (ele.sale !== true && ele.type !== 'featured') {
 						return (
-							<SwiperSlide key={index}>
+							<SwiperSlide key={index} className="ftr-img">
 								<div className="featured-card">
 									<div className="featured-card-img ">
 										<img

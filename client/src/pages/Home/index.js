@@ -13,6 +13,7 @@ import Salest from '../../components/Salest';
 function Home() {
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		sessionStorage.setItem('adminLogin', JSON.stringify(false));
 	}, []);
 	return (
 		<div className="home">

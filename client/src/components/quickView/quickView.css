@@ -155,7 +155,25 @@
     padding-bottom: 10px;
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 1260px) {
+    .quick {
+        flex-direction: column;
+        width: 80%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0px;
+        overflow-x: auto;
+        margin: 0px 20%;
+    }
+
+    .quick img {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 570px) {
     .quick {
         flex-direction: column;
         width: 100%;

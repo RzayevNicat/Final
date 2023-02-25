@@ -168,7 +168,7 @@
     font-size: 18px;
 }
 
-@media only screen and (max-width: 770px) {
+@media only screen and (max-width: 875px) {
     .view-cart-section {
         flex-direction: column-reverse;
     }

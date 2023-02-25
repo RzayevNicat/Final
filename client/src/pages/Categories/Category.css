@@ -357,14 +357,32 @@
     }
 
     .filters {
-        width: 190px;
-        height: 1400px;
-        box-shadow: 0.5px 0.5px 2px gray;
+        position: fixed;
+        top: 0;
+        background-color: white;
+        z-index: 4589345893458945;
+        height: 100vh;
+        left: 0;
+        display: none;
+        overflow-x: auto;
+        transition: 1s;
     }
 
     .category-products {
         width: 100%;
         padding: 0px 0px 0px 2%;
+    }
+
+    .sort span {
+        display: none;
+    }
+
+    .none {
+        display: none;
+    }
+
+    .filter-iconn {
+        display: block;
     }
 
 

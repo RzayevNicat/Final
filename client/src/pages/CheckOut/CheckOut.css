@@ -301,7 +301,8 @@
 .payment-products-card {
     margin: 3% 5% 3% 2%;
     padding: 20px;
-    background-color: white;
+    background-color: #111111;
+    color: white;
     width: 30%;
     height: 400px;
 }
@@ -354,6 +355,53 @@
     width: 100px;
 }
 
+.subTotal-checkout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.subTotal-checkout h5 {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 1250px) {
+    .container {
+        left: 10%;
+    }
+
+    .payment-products-card {
+        margin: 3% 20px 3% 20px;
+        padding: 20px;
+        background-color: #111111;
+        color: white;
+        width: 40%;
+        height: 400px;
+    }
+}
+
+@media only screen and (max-width: 1070px) {
+    .payment-flex {
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .container {
+        left: 20%;
+    }
+
+    .payment-products-card {
+        margin: 10% 20px 3% 20px;
+        padding: 20px;
+        background-color: #111111;
+        color: white;
+        width: 80%;
+        height: 400px;
+    }
+}
+
 @media only screen and (max-width: 770px) {
     .payment-flex {
         flex-direction: column-reverse;
@@ -375,7 +423,7 @@
     }
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 600px) {
     .shiping-paymant {
         width: 100%;
         margin-top: 30px;
@@ -400,5 +448,12 @@
 
     .payment-products-card {
         margin-top: 60px;
+    }
+
+    .payment-form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
     }
 }

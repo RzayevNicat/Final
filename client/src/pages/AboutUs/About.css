@@ -120,6 +120,49 @@
     display: flex;
 }
 
+@media only screen and (max-width: 1200px) {
+    .employe-cards img {
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 1016px) {
+    .about-section-2 {
+        display: flex;
+        flex-direction: column;
+        padding: 3% 4%;
+    }
+
+    .about-section-2 img {
+        margin: 0px 30px 0px 0px;
+    }
+
+    .employe-cards img {
+        width: 150px;
+    }
+
+    .about-header {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .ipad-resp {
+        margin-top: 30px;
+    }
+
+    .testimonials {
+        width: 100%;
+        margin-top: 50px;
+        padding: 0px !important;
+    }
+
+    .ourTeam {
+        margin: 0px;
+        width: 100%;
+    }
+
+}
+
 @media only screen and (max-width: 770px) {
     .about-section-2 {
         display: flex;
@@ -156,7 +199,7 @@
     }
 }
 
-@media only screen and (max-width: 440px) {
+@media only screen and (max-width: 675px) {
     .about-section-2 img {
         width: 100%;
     }
@@ -177,5 +220,6 @@
     .employe-cards img {
         width: 300px;
     }
-
 }
+
+@media only screen and (max-width: 440px) {}

@@ -120,6 +120,33 @@
     padding: 10px;
 }
 
+@media only screen and (max-width: 770px) {
+    .registered-section-2 {
+        width: 100%;
+        padding: 5%;
+    }
+
+    .form-register {
+        width: 100%;
+    }
+
+    .register-form-name {
+        width: 100%;
+    }
+
+    .register-name {
+        width: 100%;
+    }
+
+    .register-surname {
+        width: 100%;
+    }
+
+    .register-form-name input {
+        width: 100%;
+    }
+}
+
 @media only screen and (max-width: 440px) {
     .registered-section-2 {
         width: 100%;

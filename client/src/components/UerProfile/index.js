@@ -180,11 +180,19 @@ function UserProfile() {
 							<Table aria-label="simple table" className="table-wish">
 								<TableHead className="table-head">
 									<TableRow>
-										<TableCell>Product Image</TableCell>
-										<TableCell align="center">Product Name</TableCell>
-										<TableCell align="center">Product Price</TableCell>
-										<TableCell align="center">Product Brand</TableCell>
-										<TableCell align="center">Product Ratings</TableCell>
+										<TableCell className="user-wish-title">Product Image</TableCell>
+										<TableCell align="center" className="user-wish-title">
+											Product Name
+										</TableCell>
+										<TableCell align="center" className="user-wish-title">
+											Product Price
+										</TableCell>
+										<TableCell align="center" className="user-wish-title">
+											Product Brand
+										</TableCell>
+										<TableCell align="center" className="user-wish-title">
+											Product Ratings
+										</TableCell>
 									</TableRow>
 								</TableHead>
 								<TableBody>
@@ -194,13 +202,19 @@ function UserProfile() {
 											sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 											className="row-wish"
 										>
-											<TableCell component="th" scope="row">
+											<TableCell component="th" scope="row" className="user-wish-row">
 												<img src={row.img_url} />
 											</TableCell>
-											<TableCell align="center">{row.productName}</TableCell>
-											<TableCell align="center">${row.prodcutPrice}.00</TableCell>
-											<TableCell align="center">{row.brand}</TableCell>
-											<TableCell align="center" className="deleteWish">
+											<TableCell align="center" className="user-wish-row">
+												{row.productName}
+											</TableCell>
+											<TableCell align="center" className="user-wish-row">
+												${row.prodcutPrice}.00
+											</TableCell>
+											<TableCell align="center" className="user-wish-row">
+												{row.brand}
+											</TableCell>
+											<TableCell align="center" className="deleteWish user-wish-row">
 												{row.productRatings}{' '}
 												<RxCross2 className="wish-cross" onClick={() => handleDelete(row)} />
 											</TableCell>
@@ -217,12 +231,20 @@ function UserProfile() {
 							<Table aria-label="simple table" className="table-wish">
 								<TableHead className="table-head">
 									<TableRow>
-										<TableCell>Product Image</TableCell>
-										<TableCell align="center">Product Name</TableCell>
-										<TableCell align="center">Product Price</TableCell>
-										<TableCell align="center">Product Brand</TableCell>
-										<TableCell align="center">Product Count</TableCell>
-										<TableCell align="center">Total</TableCell>
+										<TableCell className="user-wish-title">Product Image</TableCell>
+										<TableCell align="center" className="user-wish-title">
+											Product Name
+										</TableCell>
+										<TableCell align="center" className="user-wish-title">
+											Product Price
+										</TableCell>
+
+										<TableCell align="center" className="user-wish-title">
+											Product Count
+										</TableCell>
+										<TableCell align="center" className="user-wish-title">
+											Total
+										</TableCell>
 									</TableRow>
 								</TableHead>
 								<TableBody>
@@ -231,14 +253,20 @@ function UserProfile() {
 											key={index}
 											sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 										>
-											<TableCell component="th" scope="row">
+											<TableCell component="th" scope="row" className="user-wish-row">
 												<img src={row.elem.img_url} />
 											</TableCell>
-											<TableCell align="center">{row.elem.productName}</TableCell>
-											<TableCell align="center">${row.elem.prodcutPrice}.00</TableCell>
-											<TableCell align="center">{row.elem.brand}</TableCell>
-											<TableCell align="center">{row.count}</TableCell>
-											<TableCell align="center">
+											<TableCell align="center" className="user-wish-row">
+												{row.elem.productName}
+											</TableCell>
+											<TableCell align="center" className="user-wish-row">
+												${row.elem.prodcutPrice}.00
+											</TableCell>
+
+											<TableCell align="center" className="user-wish-row">
+												{row.count}
+											</TableCell>
+											<TableCell align="center" className="user-wish-row">
 												-${row.count * row.elem.prodcutPrice}.00
 											</TableCell>
 										</TableRow>

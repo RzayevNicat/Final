@@ -11,8 +11,9 @@ import Search from '../Search';
 import SideBar from '../SideBar';
 import { useFilter } from '../../context/FilterContext';
 
+
 function Navbar() {
-	const [ money, setMoney ] = useState(true);
+	const { money, setMoney } = useFilter();
 	const [ navSize, setnavSize ] = useState('5rem');
 	const [ navColor, setnavColor ] = useState('transparent');
 	const [checkCard,setCheckCard] = useState(false)
@@ -88,9 +89,7 @@ function Navbar() {
 				<li>
 					<Link to={'/aboutus'}>About Us</Link>
 				</li>
-				<li>
-					<Link to={'/'}>Blog</Link>
-				</li>
+		
 				<li>
 					<Link to={'contactus'}>Contact Us</Link>
 				</li>

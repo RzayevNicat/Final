@@ -15,6 +15,14 @@ import ResetPassword from './pages/ResetPassword';
 import ViewCart from './pages/ViewCart';
 import ContactUs from './pages/ContactUs';
 import About from './pages/AboutUs';
+import Admin from './pages/Admin/Admin';
+import AdminHome from './pages/Admin/pages/AdminHome';
+import Products from './pages/Admin/pages/Products/Products';
+import Update from './pages/Admin/pages/ProductUpdate/Update';
+import Added from './pages/Admin/pages/CreateProduct/Added';
+import Users from './pages/Admin/pages/Users/index';
+import UserProfile from './pages/Admin/pages/UserProfile/index';
+import UserCreate from './pages/Admin/pages/UserCreate/index';
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -59,6 +67,40 @@ const router = createBrowserRouter([
 			{
 				path: 'aboutus',
 				element: <About />
+			}
+		]
+	},
+	{
+		path: 'admin',
+		element: <Admin />,
+		children: [
+			{
+				path: '/admin',
+				element: <AdminHome />
+			},
+			{
+				path: '/admin/products',
+				element: <Products />
+			},
+			{
+				path: '/admin/products/update/:id',
+				element: <Update />
+			},
+			{
+				path: '/admin/products/added',
+				element: <Added />
+			},
+			{
+				path: '/admin/users',
+				element: <Users />
+			},
+			{
+				path: '/admin/users/userProfile/:id',
+				element: <UserProfile />
+			},
+			{
+				path: '/admin/userCreate',
+				element: <UserCreate />
 			}
 		]
 	}

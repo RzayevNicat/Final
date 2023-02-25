@@ -89,9 +89,20 @@
     .ftr {
         padding: 2% !important;
         margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
     }
 
     .ftr h3 {
         text-align: center !important;
     }
+
+    .ftr-img .featured-card {
+        width: 100% !important;
+    }
+
+
 }

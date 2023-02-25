@@ -8,20 +8,20 @@ import './CheckOut.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
-const paymentSchema = Yup.object().shape({
-    name : Yup.string().min(2,'Short Name').max(12,'Long Name').required('Please provide Name'),
-    surname: Yup.string().min(2,'Short Surname').max(20,'Long Surname').required('Please provide Surname'),
-    cardNumber: Yup.string().max(16,'Warning').matches(/^([0-9]{4}[- ]?){3}[0-9]{4}$/,'Please provide valid debit card number').required('Please provide Card Number'),
-    phone : Yup.string().matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,'Invalid phone Number').required('Please provide Phone Number'),
-    email: Yup.string()
-    .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide valid email')
-    .required('Please provide Email'),
-    postalCode:Yup.string().matches(/(^\d{5}$)|(^\d{5}-\d{4}$)/,'Invalid Postal Code').required('Please provide postal code'),
-    my:Yup.string().matches(/^(1[0-2]|0[1-9]|\d)\/(20\d{2}|19\d{2}|0(?!0)\d|[1-9]\d)$/,"Invalid Date").required('Please provide date'),
-    cvv:Yup.string().matches(/^[0-9]{3,4}$/,'Invalid CVV').required('Please provide CVV'),
-    country:Yup.string().required('Please choose country')
+// const paymentSchema = Yup.object().shape({
+//     name : Yup.string().min(2,'Short Name').max(12,'Long Name').required('Please provide Name'),
+//     surname: Yup.string().min(2,'Short Surname').max(20,'Long Surname').required('Please provide Surname'),
+//     cardNumber: Yup.string().max(16,'Warning').matches(/^([0-9]{4}[- ]?){3}[0-9]{4}$/,'Please provide valid debit card number').required('Please provide Card Number'),
+//     phone : Yup.string().matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,'Invalid phone Number').required('Please provide Phone Number'),
+//     email: Yup.string()
+//     .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide valid email')
+//     .required('Please provide Email'),
+//     postalCode:Yup.string().matches(/(^\d{5}$)|(^\d{5}-\d{4}$)/,'Invalid Postal Code').required('Please provide postal code'),
+//     my:Yup.string().matches(/^(1[0-2]|0[1-9]|\d)\/(20\d{2}|19\d{2}|0(?!0)\d|[1-9]\d)$/,"Invalid Date").required('Please provide date'),
+//     cvv:Yup.string().matches(/^[0-9]{3,4}$/,'Invalid CVV').required('Please provide CVV'),
+//     country:Yup.string().required('Please choose country')
 
-})
+// })
 function CheckOut() {
 	const [ black, setBlack ] = useState('black');
 	const count = useSelector((state) => state.baskett.count);
@@ -97,11 +97,7 @@ function CheckOut() {
     
         })
     }
-	const handleSubmit =(e)=>{
-		e.preventDefault()
-		
-		
-	}
+
 	return (
 		<div className="shop-check">
 			<div className={black} />
@@ -117,8 +113,7 @@ function CheckOut() {
 				pauseOnHover
 				theme="light"
 			/>
-			{/* Same as */}
-			<ToastContainer />
+		
             {
                 count===0?			<div className="shoping-empty">
 				<h3>Shopping Cart</h3>
@@ -149,19 +144,20 @@ function CheckOut() {
 						<hr />
 						<Formik
 							initialValues={{
-								name: '',
-								surname: '',
-								cardNumber: '',
-                                email:'',
-                                phone:'',
-								my: '',
-								cvv: '',
-								country: '',
-                                postalCode:'',
+								name: namee,
+								surname: surnamee,
+								cardNumber: cardNumber,
+                                email:emaill,
+                                phone:phoneNumber,
+								my: mmyy,
+								cvv: cvv,
+								country: countryy,
+                                postalCode:postalCode,
 								promoCode: ''
 							}}
-                            validationSchema={paymentSchema}
+                            // validationSchema={paymentSchema}
 							onSubmit={(values) => {
+								
 								const userrr = {
 									_id:usr._id,
 									name:usr.name,
@@ -173,8 +169,8 @@ function CheckOut() {
 									options:usr.options,
 									src:usr.src,
 									userCheckOut:[],
-									userWishlist: [...usr.userWishlist],
-									userCard: [...usr.userCard, ...usr.userCheckOut],
+									userWishlist: [...usr.userWishlist ],
+									userCard: [...usr.userCard , ...usr.userCheckOut ],
 									country:countryy,
 									mmyy:mmyy,
 									cvv:cvv,
@@ -184,12 +180,14 @@ function CheckOut() {
 								}
 								axios.put(`http://localhost:3000/users/${usr._id}`,userrr).then(res=> {
 									if (res.status===200) {
+										console.log(res);
 										productStock()
 								localStorage.setItem('user', JSON.stringify(userrr))
 								navigate('/profile')
 								window.location.reload()
 									}
 								}).catch(error=>{
+									console.log(error);
 									toast.error(`${error.response.data.message}`, {
 										position: 'bottom-right',
 										autoClose: 3000,
@@ -203,37 +201,37 @@ function CheckOut() {
 								})
 							}}
 						>
-							{({ errors, touched, values }) => (
+							{({ errors, touched }) => (
 								<Form className="payment-form">
 									<div className="payment-name">
 										<div className="name-pym">
 											<label>
 												NAME <span>*</span>
 											</label>
-											<Field placeholder={errors.name && touched.name ? errors.name : ''} name="name" type="text" value={namee} onChange={(e)=> setName(e.target.value)}/>
-                                           
+											<Field  name="name" required type="text" value={namee} onChange={(e)=> setName(e.target.value)}/>
+                                          
 										</div>
 										<div>
 											<label>
 												LASTNAME<span>*</span>
 											</label>
-											<Field placeholder={errors.surname && touched.surname ? errors.surname : ''} name="surname" type="text" value={surnamee} onChange={(e)=> setSurname(e.target.value)}/>
+											<Field required name="surname" type="text" value={surnamee} onChange={(e)=> setSurname(e.target.value)}/>
 										</div>
 									</div>
 									<div className="payment-form-group">
 										<label>
 											CARD NUMBER<span>*</span>
 										</label>
-										<Field placeholder={errors.cardNumber && touched.cardNumber ? errors.cardNumber : ''} name="cardNumber" type="number" className="nmbr" value={cardNumber} onChange={(e)=> setCardNumber(e.target.value)}/>
+										<Field required name="cardNumber" type="number" className="nmbr" value={cardNumber} onChange={(e)=> setCardNumber(e.target.value)}/>
 									</div>
                                     <div className='payment-form-email'>
                                         <div className='email-pym'>
                                             <label>EMAIL <span>*</span></label>
-                                            <Field placeholder={errors.email && touched.email ? errors.email : ''} name='email' type='email' value={emaill} onChange={(e)=> setEmail(e.target.value)}/>
+                                            <Field required placeholder={errors.email && touched.email ? errors.email : ''} name='email' type='email' value={emaill} onChange={(e)=> setEmail(e.target.value)}/>
                                         </div>
                                         <div>
                                             <label>PHONE NUMBER<span>*</span></label>
-                                            <Field placeholder={errors.phoneNumber && touched.phoneNumber ? errors.phoneNumber : ''} name='phone' type='number' className='nmbr' value={phoneNumber} onChange={(e)=> setPhoneNumber(e.target.value)}/>
+                                            <Field required  name='phone' type='number' className='nmbr' value={phoneNumber} onChange={(e)=> setPhoneNumber(e.target.value)}/>
                                         </div>
                                     </div>
 									<div className="payment-info">
@@ -241,15 +239,15 @@ function CheckOut() {
 											<label>
 												POSTAL CODE<span>*</span>
 											</label>
-											<Field placeholder={errors.postalCode && touched.postalCode ? errors.postalCode : ''} name="postalCode" value={postalCode} onChange={(e)=> setPostalCode(e.target.value)}/>
+											<Field required name="postalCode" value={postalCode} onChange={(e)=> setPostalCode(e.target.value)}/>
 										</div>
 										<div className="monthYear">
                                             <div>
-                                            <Field placeholder={errors.my && touched.my ? errors.my : 'MM/YY'} className="my"  name="my" value={mmyy} onChange={(e)=> setMMYY(e.target.value)}/>
+                                            <Field required className="my"  name="my" value={mmyy} onChange={(e)=> setMMYY(e.target.value)}/>
                                             </div>
 										
                                             <div>
-                                            <Field placeholder={errors.cvv && touched.cvv ? errors.cvv : 'CVV'} className="cvv nmbr"  name="cvv" type="number" value={cvv} onChange={(e)=> setCvv(e.target.value)}/>
+                                            <Field required  className="cvv nmbr"  name="cvv" type="number" value={cvv} onChange={(e)=> setCvv(e.target.value)}/>
                                             </div>
 										
 										</div>
@@ -259,7 +257,7 @@ function CheckOut() {
 											<label>
 												COUNTRY<span>*</span>
 											</label>
-											<Field placeholder={errors.country && touched.country ? errors.country : ''} as="select" name='country' value={countryy} onChange={(e)=> setCountry(e.target.value)}>
+											<Field required  as="select" name='country' value={countryy} onChange={(e)=> setCountry(e.target.value)}>
 												<option value="Afghanistan">Afghanistan</option>
 												<option value="Albania">Albania</option>
 												<option value="Algeria">Algeria</option>
@@ -547,7 +545,7 @@ function CheckOut() {
                             }
 							
 						</div>
-
+						
 						<hr />
                         {
                             arrow?<div className="payment-products">
@@ -561,7 +559,11 @@ function CheckOut() {
                                      <p className='payment-product-price'>${element.elem.prodcutPrice}.00</p>
                                 </div>
                             ))}
-                        
+						<div className='subTotal-checkout'>
+								<h5>SubTotal</h5>
+							<p>${subTotal}.00</p>
+							</div>
+							
                             </div>:null
                         }
 						

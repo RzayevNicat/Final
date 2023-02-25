@@ -135,16 +135,6 @@
 }
 
 @media only screen and (max-width: 770px) {
-    .textarea-contact textarea {
-
-        height: 50%;
-
-    }
-
-
-}
-
-@media only screen and (max-width: 440px) {
     .contact-input-icons {
         flex-direction: column;
     }
@@ -152,6 +142,54 @@
     .form-contact {
         flex-direction: column;
     }
+
+    .resp-btn {
+        display: none;
+    }
+
+    .form-contact .none {
+        display: block;
+    }
+
+    .textarea-contact textarea {
+        width: 80% !important;
+        padding: 8px;
+        height: 30vh;
+        border: none;
+        border: 1px solid #e7e7e7;
+    }
+
+    .textarea-contact {
+        margin-left: 0px;
+    }
+
+    .contact-input {
+        width: 100%;
+
+    }
+
+    .contact-input input {
+        width: 80%;
+    }
+
+    .contact-icons {
+        margin-left: 0px;
+        margin-top: 30px;
+    }
+
+    .form-contact button {
+        width: 80%;
+        margin-top: 20px;
+    }
+
+}
+
+@media only screen and (max-width: 570px) {
+    .contact-input-icons {
+        flex-direction: column;
+    }
+
+
 
     .resp-btn {
         display: none;
@@ -170,7 +208,7 @@
     }
 
     .textarea-contact textarea {
-        width: 100% !important;
+        width: 80% !important;
         padding: 8px;
         height: 30vh;
         border: none;

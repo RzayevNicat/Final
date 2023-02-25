@@ -5,6 +5,7 @@ export const fetchProducts = createAsyncThunk('products/getProducts', async () =
 	const res = await axios.get('http://localhost:3000/products');
 	return res.data.data;
 });
+
 export const productsSlice = createSlice({
 	name: 'data',
 	initialState: {

@@ -1,0 +1,91 @@
+.admin-sidebar {
+    width: 100%;
+    background: linear-gradient(72deg, rgb(44, 222, 242) 0.00%, rgb(156, 43, 171) 35.00%, rgb(39, 43, 44) 100.00%);
+    color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    height: 15vh;
+    align-items: center;
+    padding: 30px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+    z-index: 22;
+}
+
+.admin-bar-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-bar-header h1 {
+    font-size: 28px !important;
+}
+
+.admin-bar-header .admin-icon {
+    font-size: 28px;
+    margin-right: 20px;
+}
+
+
+
+.admin-close {
+    cursor: pointer;
+}
+
+.admin-bar-body {
+    display: flex;
+
+}
+
+.admin-bar-body a {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.admin-me {
+    display: flex;
+    flex-direction: row;
+    color: aliceblue !important;
+    align-items: center;
+}
+
+.admin-me h1 {
+    font-size: 18px;
+
+}
+
+.admin-icon {
+    font-size: 18px;
+
+}
+
+
+.admin-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+    transition: 1s;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.admin-section h5 {
+    font-size: 18px;
+}
+
+.admin-icon-body {
+    font-size: 25px;
+    margin-right: 30px;
+}
+
+.admin-bar-footer {
+    display: flex;
+    align-items: center;
+}
