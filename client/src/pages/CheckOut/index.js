@@ -8,6 +8,7 @@ import './CheckOut.css';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import {Helmet} from 'react-helmet'
 // const paymentSchema = Yup.object().shape({
 //     name : Yup.string().min(2,'Short Name').max(12,'Long Name').required('Please provide Name'),
 //     surname: Yup.string().min(2,'Short Surname').max(20,'Long Surname').required('Please provide Surname'),
@@ -37,10 +38,10 @@ function CheckOut() {
 	const [ mmyy, setMMYY ] = useState('');
 	const [ cvv, setCvv ] = useState('');
 	const [ countryy, setCountry ] = useState('');
+	const [promo,setPromo] = useState('')
 	const navigate = useNavigate()
     
 	let subTotal = 0;
-	
 	(usr?.userCheckOut || []).forEach((element) => {
 		let cnt = element.count * element.elem.prodcutPrice;
 		subTotal += cnt;
@@ -67,8 +68,10 @@ function CheckOut() {
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);
 		};
-	}, []);
-	
+	}, [promo]);
+	if (promo ==='darkBlack') {
+		subTotal=subTotal-((subTotal*20)/100)
+	}
     function productStock() {
         product.forEach((element)=>{
             usr.userCheckOut.forEach((ele)=>{
@@ -100,6 +103,10 @@ function CheckOut() {
 
 	return (
 		<div className="shop-check">
+			<Helmet>
+<meta charSet="utf-8" />
+<title>CheckOut</title>
+</Helmet>
 			<div className={black} />
 			<ToastContainer
 				position="top-right"
@@ -528,7 +535,7 @@ function CheckOut() {
 											<label>
 												PROMO CODE
 											</label>
-											<Field name="promoCode" />
+											<Field name="promoCode" value={promo} onChange={(e)=> setPromo(e.target.value)}/>
 										</div>
 									</div>
 									<button className="buy" type='submit'>BUY PRODUCT</button>

@@ -266,6 +266,12 @@ li {
 
 }
 
+.view-icons a {
+    text-decoration: none;
+    color: #212122;
+    margin-right: 10px;
+}
+
 .form-group input {
     width: 500px;
     padding: 16px;

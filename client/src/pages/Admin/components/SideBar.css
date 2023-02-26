@@ -1,10 +1,10 @@
 .admin-sidebar {
     width: 100%;
-    background: linear-gradient(72deg, rgb(44, 222, 242) 0.00%, rgb(156, 43, 171) 35.00%, rgb(39, 43, 44) 100.00%);
+    background: #212122;
     color: aliceblue;
     display: flex;
     flex-direction: row;
-    height: 15vh;
+    height: 10vh;
     align-items: center;
     padding: 30px;
     justify-content: space-between;
@@ -26,7 +26,7 @@
 
 .admin-bar-header .admin-icon {
     font-size: 28px;
-    margin-right: 20px;
+
 }
 
 
@@ -58,10 +58,7 @@
 
 }
 
-.admin-icon {
-    font-size: 18px;
 
-}
 
 
 .admin-section {
@@ -76,13 +73,10 @@
     color: aliceblue;
 }
 
-.admin-section h5 {
-    font-size: 18px;
-}
 
 .admin-icon-body {
-    font-size: 25px;
-    margin-right: 30px;
+
+    margin-right: 10px;
 }
 
 .admin-bar-footer {

@@ -84,7 +84,7 @@ function Navbar() {
 					<Link to={'/'}>Home</Link>
 				</li>
 				<li>
-					<Link to={'categories'}>Categroies</Link>
+					<Link to={'categories'} onClick={()=> window.scrollTo(0, 0)}>Categroies</Link>
 				</li>
 				<li>
 					<Link to={'/aboutus'}>About Us</Link>

@@ -20,10 +20,6 @@ function NavBar() {
 
 			<div className="admin-bar-body">
 				<Link className="admin-section " to={'/admin'}>
-					<AiOutlineHome className="admin-icon-body" />
-					<h5>Home</h5>
-				</Link>
-				<Link className="admin-section " to={'admin/dashboard'}>
 					<ImStatsBars className="admin-icon-body" />
 					<h5>Dashboard</h5>
 				</Link>

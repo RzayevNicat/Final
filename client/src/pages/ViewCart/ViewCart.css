@@ -151,6 +151,17 @@
 
 }
 
+.view-summary a {
+    background-color: #212122;
+    color: white;
+    font-weight: 600;
+    padding: 8px 16px;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 10px;
+
+}
+
 .summary-order p {
     font-size: 20px;
     color: #111111;

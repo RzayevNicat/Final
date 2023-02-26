@@ -6,6 +6,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import './Products.css';
 function Products() {
@@ -24,6 +25,10 @@ function Products() {
 	};
 	return (
 		<div className="admin-products">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Products</title>
+			</Helmet>
 			<div className="admin-add">
 				<h1>Products</h1>
 				<Link className="btn text-light admin-link1" to={'added'}>

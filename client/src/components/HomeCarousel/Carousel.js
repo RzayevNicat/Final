@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import './HeaderCarousel.css';
 function SimpleSlider() {
@@ -7,7 +8,7 @@ function SimpleSlider() {
 	useEffect(() => {
 		axios.get('http://localhost:3000/products').then((res) => setData(res.data.data));
 	}, []);
-
+	const navigate = useNavigate();
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -18,7 +19,9 @@ function SimpleSlider() {
 		autoplay: false,
 		autoplaySpeed: 2000
 	};
-
+	const handleSale = (id) => {
+		navigate(`/product/${id}`);
+	};
 	return (
 		<div className="carousel">
 			<Slider {...settings}>
@@ -39,7 +42,7 @@ function SimpleSlider() {
 											STARTING AT <span className="dollor">$</span>{' '}
 											<span className="payment">{ele.prodcutPrice}</span>
 										</h1>
-										<button>SHOP NOW</button>
+										<button onClick={() => handleSale(ele._id)}>SHOP NOW</button>
 									</div>
 								</div>
 								<div className="header-img">

@@ -5,9 +5,14 @@ import './UserCreate.css';
 import { Button } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import '../../../../../node_modules/react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet';
 function UserCreate() {
 	return (
 		<div className="user-create">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>User Create</title>
+			</Helmet>
 			<ToastContainer
 				position="bottom-right"
 				autoClose={5000}

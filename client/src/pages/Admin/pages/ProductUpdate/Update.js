@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 import { Formik, Form, Field } from 'formik';
 import './ProductUpdate.css';
 import { RxCross2 } from 'react-icons/rx';
+import { Helmet } from 'react-helmet';
 function Update() {
 	const [ products, setProducts ] = useState({});
 	const [ productNamee, setProductName ] = useState('');
@@ -85,6 +86,10 @@ function Update() {
 	};
 	return (
 		<div className="admin-update">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Product Update</title>
+			</Helmet>
 			<Formik
 				initialValues={{
 					productName: '',
@@ -117,7 +122,7 @@ function Update() {
 						type: type,
 						gender: gender
 					});
-					navigate('/');
+					navigate('/admin');
 				}}
 			>
 				{({ isSubmitting }) => (

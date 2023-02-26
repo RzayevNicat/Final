@@ -23,6 +23,7 @@ import CarouselForType from '../../components/CarouselForType';
 import { addWish } from '../../redux/slice/wishListSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import '../../../node_modules/react-toastify/dist/ReactToastify.css';
+import { Helmet } from 'react-helmet';
 const validateSchemaa = Yup.object().shape({
 	nickName: Yup.string().min(3, 'very small').max(10, 'very long').required('fill input'),
 	summary: Yup.string().required('fill input'),
@@ -111,6 +112,10 @@ function Product() {
 	};
 	return (
 		<div className="view-product" id="product">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Product</title>
+			</Helmet>
 			<div className={black} />
 			<ToastContainer
 				position="top-right"
@@ -180,10 +185,19 @@ function Product() {
 						<CiHeart className="heart-view" onClick={() => AddWishList(saleProduct)} />
 					</div>
 					<div className="view-icons">
-						<FaFacebookF className="icon facebook" />
-						<FaLinkedinIn className="icon linkedin" />
-						<FaGithub className="icon github" />
-						<FaInstagram className="icon instagram" />
+						<a href="https://www.facebook.com/rzayev.018/" target="_blank">
+							<FaFacebookF className="icon facebook" />
+						</a>
+						<a href="https://www.linkedin.com/in/nicat-rzayev-374463219/" target="_blank">
+							<FaLinkedinIn className="icon linkedin" />
+						</a>
+
+						<a href="https://github.com/RzayevNicat" target="_blank">
+							<FaGithub className="icon github" />
+						</a>
+						<a href="https://instagram.com/rzzaef?igshid=YmMyMTA2M2Y=" target="_blank">
+							<FaInstagram className="icon instagram" />
+						</a>
 					</div>
 				</div>
 			</div>

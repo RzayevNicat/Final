@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { FiPhoneCall, FiSmartphone, FiMail } from 'react-icons/fi';
 import { FaSkype } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 const validationcontact = Yup.object().shape({
 	name: Yup.string()
 		.min(3, 'Short Name')
@@ -31,6 +32,10 @@ function ContactUs() {
 	}, []);
 	return (
 		<div className="contactus">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Contact Us</title>
+			</Helmet>
 			<div className="black" />
 			<ToastContainer
 				position="top-right"

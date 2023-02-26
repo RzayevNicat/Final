@@ -101,7 +101,7 @@
 
 .forgot-card-bg {
     position: fixed;
-    top: 80px;
+    top: 0px;
     z-index: 887;
     display: flex;
     left: 0;

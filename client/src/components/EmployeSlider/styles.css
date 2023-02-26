@@ -16,6 +16,8 @@
 
 .slider-employe img {
     margin: 20px 0px;
+    width: 50px;
+    border-radius: 50%;
 }
 
 .slider-employe h3 {

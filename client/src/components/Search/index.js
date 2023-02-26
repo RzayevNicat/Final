@@ -36,14 +36,7 @@ function Search() {
 		<div className="search">
 			<form className="search-input">
 				<input placeholder="Search" onChange={handleChange} />
-				<select>
-					<option>All</option>
-					<option>Men</option>
-					<option>Women</option>
-					<option>Accesories</option>
-					<option>Electronics</option>
-					<option>Shoes</option>
-				</select>
+
 				<BiSearchAlt className="search-icon" />
 			</form>
 			{visible ? (

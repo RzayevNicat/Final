@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 import './Register.css';
 function Register() {
 	const [ black, setBlack ] = useState('black');
@@ -18,6 +19,10 @@ function Register() {
 	}, []);
 	return (
 		<div className="register">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Register</title>
+			</Helmet>
 			<div className={black} />
 			<ToastContainer
 				position="top-right"

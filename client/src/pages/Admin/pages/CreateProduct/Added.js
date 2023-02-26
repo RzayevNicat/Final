@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import { RxCross2 } from 'react-icons/rx';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 function Added() {
 	const [ productColor, setProductColor ] = useState([]);
 	const [ filter, setFilter ] = useState([]);
@@ -53,6 +54,10 @@ function Added() {
 	};
 	return (
 		<div className="admin-update">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Create Product</title>
+			</Helmet>
 			<h1>Create Product</h1>
 			<Formik
 				initialValues={{

@@ -10,14 +10,13 @@
 }
 
 .search-input input {
-    padding: 7px;
+    width: 200px;
+    padding: 7px 14px;
     border-bottom-left-radius: 40px;
     border-top-left-radius: 40px;
 }
 
-.search-input select {
-    padding: 7px;
-}
+
 
 .search-icon {
     padding: 7px;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,10 +10,10 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import './Users.css';
+import './Customers.css';
+import { ImCheckmark2, ImCancelCircle } from 'react-icons/im';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 const columns = [
 	{ id: 'id', label: 'ID', minWidth: 170 },
 	{ id: 'name', label: 'Name', minWidth: 100 },
@@ -24,8 +25,8 @@ const columns = [
 		format: (value) => value.toLocaleString('en-US')
 	},
 	{
-		id: 'role',
-		label: 'Role',
+		id: 'position',
+		label: 'Position',
 		minWidth: 170,
 		align: 'right',
 		format: (value) => value.toLocaleString('en-US')
@@ -61,8 +62,7 @@ const rows = [
 	createData('Nigeria', 'NG', 200962417, 923768),
 	createData('Brazil', 'BR', 210147125, 8515767)
 ];
-
-export default function StickyHeadTable() {
+function Customers() {
 	const [ page, setPage ] = React.useState(0);
 	const [ rowsPerPage, setRowsPerPage ] = React.useState(10);
 	const [ data, setData ] = useState([]);
@@ -75,28 +75,35 @@ export default function StickyHeadTable() {
 		setRowsPerPage(+event.target.value);
 		setPage(0);
 	};
-	useEffect(() => {
-		axios.get('http://localhost:3000/users').then((res) => setData(res.data.data));
-	}, []);
+	useEffect(
+		() => {
+			axios.get('http://localhost:3000/customers').then((res) => setData(res.data.data));
+		},
+		[ data ]
+	);
 	const handleDelete = (id) => {
-		axios.delete(`http://localhost:3000/users/${id}`);
+		axios.delete(`http://localhost:3000/customers/${id}`);
 		let copy = data.filter((x) => x._id !== id);
 		setData(copy);
 	};
 	const handleDetails = (id) => {
-		navigate(`userProfile/${id}`);
+		navigate(`/admin/detailsCustomer/${id}`);
+	};
+	const handleCheck = (id) => {
+		axios.put(`http://localhost:3000/customers/${id}`, {
+			isActive: true
+		});
 	};
 	return (
 		<div className="users-tables">
 			<Helmet>
 				<meta charSet="utf-8" />
-				<title>Users</title>
+				<title>Customers</title>
 			</Helmet>
 			<div className="titlee">
-				<h3>Users</h3>
-				<Link to={'/admin/userCreate'}>Create User</Link>
+				<h3>Customers</h3>
+				<Link to={'/admin/customerCreate'}>Create Customer</Link>
 			</div>
-
 			<Paper sx={{ width: '100%', overflow: 'hidden', marginTop: '3%' }}>
 				<TableContainer sx={{ maxHeight: 440 }}>
 					<Table stickyHeader aria-label="sticky table" className="table-users">
@@ -114,19 +121,21 @@ export default function StickyHeadTable() {
 								return (
 									<TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
 										<TableCell align="center">{row._id.substr(0, 6)}</TableCell>
-										<TableCell align="center">{row.name}</TableCell>
-										<TableCell align="center">{row.email}</TableCell>
-										<TableCell align="center">{row.role}</TableCell>
-										<TableCell align="center">
-											<Button
-												size="small"
-												variant="outlined"
-												color="error"
-												className="btn-user"
-												onClick={() => handleDelete(row._id)}
-											>
-												Delete
-											</Button>
+										<TableCell align="center">{row.customerName}</TableCell>
+										<TableCell align="center">{row.customerEmail}</TableCell>
+										<TableCell align="center">{row.workingPosition}</TableCell>
+										<TableCell align="center" className="operations">
+											{row.isActive === true ? (
+												<Button
+													size="small"
+													variant="outlined"
+													color="error"
+													className="btn-user"
+													onClick={() => handleDelete(row._id)}
+												>
+													Delete
+												</Button>
+											) : null}
 											<Button
 												onClick={() => handleDetails(row._id)}
 												variant="outlined"
@@ -136,9 +145,18 @@ export default function StickyHeadTable() {
 											>
 												Details
 											</Button>
-											{/* <Button variant="outlined" size="small" color="info" className="btn-user">
-												Edit
-											</Button> */}
+											{row.isActive === false ? (
+												<div>
+													<ImCheckmark2
+														className="check-customer"
+														onClick={() => handleCheck(row._id)}
+													/>
+													<ImCancelCircle
+														className="cancel-customer"
+														onClick={() => handleDelete(row._id)}
+													/>
+												</div>
+											) : null}
 										</TableCell>
 									</TableRow>
 								);
@@ -159,3 +177,5 @@ export default function StickyHeadTable() {
 		</div>
 	);
 }
+
+export default Customers;

@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import '../../../node_modules/slick-carousel/slick/slick.css';
 import '../../../node_modules/slick-carousel/slick/slick-theme.css';
 import './styles.css';
+import axios from 'axios';
 export default function EmpoleSlider() {
+	const [ employers, setEmployers ] = useState([]);
 	const settings = {
 		dots: false,
 		infinite: true,
@@ -14,29 +16,26 @@ export default function EmpoleSlider() {
 		autoplaySpeed: 5000,
 		cssEase: 'linear'
 	};
+	useEffect(() => {
+		axios.get('http://localhost:3000/customers').then((res) => setEmployers(res.data.data));
+	}, []);
 	return (
 		<div>
 			<Slider {...settings}>
-				<div className="slider-employe">
-					<p>
-						" Long established fact that a reader will be distracted by the readable content of a page when
-						looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-						distribution of letters, as opposed to using 'Content here, content here "
-					</p>
-					<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/4/client2.png" />
-					<h3>Brenda DOE</h3>
-					<span>Porto Founder</span>
-				</div>
-				<div className="slider-employe">
-					<p>
-						" Long established fact that a reader will be distracted by the readable content of a page when
-						looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-						distribution of letters, as opposed to using 'Content here, content here "
-					</p>
-					<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/4/client1.png" />
-					<h3>John Doe</h3>
-					<span>Porto SEO</span>
-				</div>
+				{employers.map((elem, index) => {
+					if (elem.isActive === true) {
+						return (
+							<div className="slider-employe" key={index}>
+								<p>" {elem.customerInfo} "</p>
+								<img src={elem.customerSRC} alt={elem.customerName} />
+								<h3>
+									{elem.customerName} {elem.customerSurname}
+								</h3>
+								<span>{elem.workingPosition}</span>
+							</div>
+						);
+					}
+				})}
 			</Slider>
 		</div>
 	);

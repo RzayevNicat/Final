@@ -4,39 +4,165 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-color: #111111;
 }
 
 .admin-login-form {
     display: flex;
     width: 100%;
-    align-items: center;
+
+    text-align: start;
     justify-content: center;
     flex-direction: column;
 }
 
 .admin-login-form input {
-    width: 30%;
+    width: 100%;
     padding: 10px;
-    border: 1px solid #e7e7e7;
+    border: none;
+    border-bottom: 1px solid #e7e7e7;
+    color: white;
+    background-color: transparent;
     margin-bottom: 20px;
+    transition: 1s;
 }
 
 .admin-login-form input:focus {
     outline: none;
+    border: 1px solid cyan;
 }
 
+
 .admin-login-form button {
-    padding: 8px;
-    width: 10%;
-    border-radius: 10px;
-    border: 1px solid #e7e7e7;
-    background-color: #111111;
-    color: white;
-    font-weight: 700;
-    transition: 1s;
+    position: relative;
+    background: #444;
+    color: #fff;
+    width: 100%;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: none;
+    letter-spacing: 0.1rem;
+    font-size: 1rem;
+    margin-top: 30px;
+    padding: 10px;
+    transition: 0.2s;
 }
 
 .admin-login-form button:hover {
+    letter-spacing: 0.2rem;
+    padding: 12px;
+    background: cyan;
+    color: cyan;
+    box-shadow: 0 0 35px cyan;
+    animation: box 3s infinite;
+}
+
+.admin-login-form button::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: #272822;
+}
+
+.admin-login-form button span {
+    position: relative;
+    z-index: 1;
+}
+
+.admin-login-form button i {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.admin-login-form button i::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 80%;
+    top: -2px;
+    border: 2px solid cyan;
+    background: #272822;
+    transition: 0.2s;
+}
+
+.admin-login-form button:hover i::before {
+    width: 15px;
+    left: 20%;
+    animation: move 3s infinite;
+}
+
+.admin-login-form button i::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 2px;
+    left: 20%;
+    bottom: -2px;
+    border: 2px solid cyan;
+    background: #272822;
+    transition: 0.2s;
+}
+
+.admin-login-form button:hover i::after {
+    width: 15px;
+    left: 80%;
+    animation: move 3s infinite;
+}
+
+@keyframes move {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes box {
+    0% {
+        box-shadow: #27272c;
+    }
+
+    50% {
+        box-shadow: 0 0 25px cyan;
+    }
+
+    100% {
+        box-shadow: #27272c;
+    }
+}
+
+.login-bg {
+    width: 30%;
+    padding: 100px 40px;
+    display: flex;
+    border-radius: 10px;
+
+    flex-direction: column;
+    background-color: #000232;
+    box-shadow: 0.5px 0.5px 30px cyan;
+    color: white;
+}
+
+.login-bg p {
+    text-align: start;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.login-bg p:hover {
+    text-shadow: 1px 1px 2px cyan;
+}
+
+
+/* .admin-login-form button:hover {
     background-color: #e7e7e7;
     color: #111111;
-}
+} */

@@ -237,13 +237,28 @@ const basketSlice = createSlice({
 			}
 		},
 		viewAdd: (state, actions) => {
+			let newArr = []
 			state.value.forEach((ele) => {
 				actions.payload.forEach((element) => {
 					if (ele.elem._id === element.elem._id) {
 						if (ele.elem.productStock < element.count) {
-							alert(`${element.count} pieces from the${ele.elem.productName}are out of stock `);
+							
+							toast.error(`${element.count} pieces from the${ele.elem.productName}are out of stock `, {
+								position: 'bottom-right',
+								autoClose: 3000,
+								hideProgressBar: false,
+								closeOnClick: true,
+								pauseOnHover: true,
+								draggable: true,
+								progress: undefined,
+								theme: 'dark'
+							});
+							newArr.push(ele)
 						} else {
-							state.value = [ element ];
+							
+							newArr.push(element)
+							state.value = [ ...newArr ];
+							console.log(state.value);
 							let user = {
 								_id: dataas._id,
 								name: dataas.name,
@@ -265,6 +280,7 @@ const basketSlice = createSlice({
 							};
 
 							localStorage.setItem('user', JSON.stringify(user));
+							window.location.reload()
 						}
 					}
 				});

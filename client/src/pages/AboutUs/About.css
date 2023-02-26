@@ -43,6 +43,11 @@
     font-size: 18px;
 }
 
+.ourTeam img {
+    width: 250px;
+    height: 300px;
+}
+
 .about-info span {
     font-size: 14px;
 }
@@ -69,8 +74,10 @@
 .employe-cards {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     text-align: center;
     align-items: center;
+
 }
 
 
@@ -85,6 +92,7 @@
 .employe-card {
     margin-right: 20px;
     margin-left: 20px;
+    margin-bottom: 30px;
 }
 
 .employes-button {

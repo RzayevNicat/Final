@@ -12,6 +12,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { removeBasket } from '../../redux/slice/basketSlice';
+import { Helmet } from 'react-helmet';
+import { ToastContainer } from 'react-toastify';
 import './ViewCart.css';
 function ViewCart() {
 	const [ black, setBlack ] = useState('black');
@@ -41,7 +43,7 @@ function ViewCart() {
 	});
 	const toBasket = () => {
 		dispatch(viewAdd(data))
-		window.location.reload()
+		
 	};
 	const incrementCounter = (id) => {
 		data.forEach(element=>{
@@ -74,6 +76,24 @@ function ViewCart() {
 	};
 	return (
 		<div className="view-cart">
+				<Helmet>
+				<meta charSet="utf-8" />
+				<title>Cart</title>
+			</Helmet>
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				pauseOnHover
+				theme="light"
+			/>
+			{/* Same as */}
+			<ToastContainer />
 			<div className={black} />
 			{count === 0 ? (
 				<div className="shoping-empty">

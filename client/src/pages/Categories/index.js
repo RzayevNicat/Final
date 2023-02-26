@@ -19,6 +19,7 @@ import { useQuick } from '../../context/QuickView';
 import { addBasket } from '../../redux/slice/basketSlice';
 import QuickView from '../../components/quickView';
 import { ToastContainer, toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 function Category() {
 	const data = useSelector((state) => state.data.items);
 	const status = useSelector((state) => state.data.status);
@@ -62,7 +63,6 @@ function Category() {
 			if (status === 'idle') {
 				dispatch(fetchProducts());
 			}
-			window.scrollTo(0, 0);
 
 			window.addEventListener('scroll', listenScrollEvent);
 			return () => {
@@ -440,6 +440,10 @@ function Category() {
 	};
 	return (
 		<div className="categoriest" id="category">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Categories</title>
+			</Helmet>
 			<div className={black} />
 			<ToastContainer
 				position="top-right"

@@ -36,8 +36,6 @@
 
 }
 
-
-
 .spans {
     display: flex;
     align-items: center;
@@ -45,12 +43,12 @@
 }
 
 .spans .up {
-    font-size: 46px;
+    font-size: 45px;
     font-weight: 700;
 }
 
 .spans .sale {
-    font-size: 98px;
+    font-size: 50px;
     font-weight: 700;
     margin-left: 20px;
 }

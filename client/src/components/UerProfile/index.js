@@ -15,7 +15,7 @@ import { RxCross2 } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-
+import { Helmet } from 'react-helmet';
 const editSchema = Yup.object().shape({
 	name: Yup.string()
 		.matches(/^[A-Za-z]+/, 'Please provide valid name')
@@ -54,10 +54,10 @@ function UserProfile() {
 		navigate('/');
 		window.location.reload();
 	};
-	console.log(userr);
+
 	useEffect(
 		() => {
-			axios.get(`http://localhost:3000/users/${user._id}`).then((res) => {
+			axios.get(`http://localhost:3000/users/${user?._id}`).then((res) => {
 				setUser(res.data.data);
 				setName(res.data.data.name);
 				setSurname(res.data.data.surname);
@@ -66,7 +66,7 @@ function UserProfile() {
 				setSrc(res.data.data.src);
 			});
 		},
-		[ user._id ]
+		[ user?._id ]
 	);
 	const handleWish = () => {
 		setCard(false);
@@ -136,6 +136,10 @@ function UserProfile() {
 	};
 	return (
 		<div className="userProfile">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Profile</title>
+			</Helmet>
 			<div className="user-info">
 				<div className="user-img">
 					<img src={userr.src} />

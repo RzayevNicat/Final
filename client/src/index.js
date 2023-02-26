@@ -23,6 +23,11 @@ import Added from './pages/Admin/pages/CreateProduct/Added';
 import Users from './pages/Admin/pages/Users/index';
 import UserProfile from './pages/Admin/pages/UserProfile/index';
 import UserCreate from './pages/Admin/pages/UserCreate/index';
+import Customers from './pages/Admin/pages/Customers';
+import CustomerCreate from './pages/Admin/pages/CustomerCreate';
+import DetailsCustomers from './pages/Admin/pages/DetailsCustomers';
+import CustomerCv from './pages/CutomerCv';
+
 const router = createBrowserRouter([
 	{
 		path: '/',
@@ -52,10 +57,7 @@ const router = createBrowserRouter([
 				path: 'checkout',
 				element: <CheckOut />
 			},
-			{
-				path: 'resetPassword/:token',
-				element: <ResetPassword />
-			},
+
 			{
 				path: 'cart',
 				element: <ViewCart />
@@ -67,8 +69,16 @@ const router = createBrowserRouter([
 			{
 				path: 'aboutus',
 				element: <About />
+			},
+			{
+				path: 'aboutus/joinTeam',
+				element: <CustomerCv />
 			}
 		]
+	},
+	{
+		path: 'resetPassword/:token',
+		element: <ResetPassword />
 	},
 	{
 		path: 'admin',
@@ -101,6 +111,18 @@ const router = createBrowserRouter([
 			{
 				path: '/admin/userCreate',
 				element: <UserCreate />
+			},
+			{
+				path: '/admin/customer',
+				element: <Customers />
+			},
+			{
+				path: '/admin/customerCreate',
+				element: <CustomerCreate />
+			},
+			{
+				path: '/admin/detailsCustomer/:id',
+				element: <DetailsCustomers />
 			}
 		]
 	}

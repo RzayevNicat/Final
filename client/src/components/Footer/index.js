@@ -1,8 +1,80 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Footer.css';
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa';
-
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 function Footer() {
+	const [ email, setEmail ] = useState('');
+	const [ user, setUser ] = useState({});
+	const [ dataUser, setDataUser ] = useState({});
+	const [ active, setActive ] = useState(false);
+	const navigate = useNavigate();
+	useEffect(
+		() => {
+			let userId = JSON.parse(localStorage.getItem('user'));
+			setUser(userId);
+			axios.get(`http://localhost:3000/users/${user?._id}`).then((res) => setDataUser(res.data.data));
+			const userlogin = JSON.parse(sessionStorage.getItem('userLogin'));
+			setActive(userlogin);
+		},
+		[ user?._id, dataUser ]
+	);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		if (active === false) {
+			toast.info('Please, login', {
+				position: 'bottom-right',
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: 'dark'
+			});
+		} else {
+			if (dataUser.subscribe !== false) {
+				toast.info('You are already subscribed', {
+					position: 'bottom-right',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'dark'
+				});
+			} else if (dataUser.email !== email) {
+				toast.error('The email is incorrect', {
+					position: 'bottom-right',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'dark'
+				});
+			} else {
+				axios.put(`http://localhost:3000/users/${user?._id}`, {
+					subscribe: true
+				});
+				toast.success('You are subscribed', {
+					position: 'bottom-right',
+					autoClose: 3000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'dark'
+				});
+			}
+		}
+		setEmail('');
+	};
 	return (
 		<div className="footer">
 			<div className="subscribe-line">
@@ -12,8 +84,14 @@ function Footer() {
 						<p>Get all the latest information on Events, Sales and Offers.</p>
 					</div>
 					<div className="subs-input">
-						<form>
-							<input type="email" placeholder="Email Address" /> <button>SUBSCRIBE</button>
+						<form onSubmit={handleSubmit}>
+							<input
+								value={email}
+								type="email"
+								placeholder="Email Address"
+								onChange={(e) => setEmail(e.target.value)}
+							/>{' '}
+							<button>SUBSCRIBE</button>
 						</form>
 					</div>
 					<div className="subs-icon">

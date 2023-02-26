@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './Login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { RxCross1 } from 'react-icons/rx';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 const loginSchema = Yup.object().shape({
 	email: Yup.string()
 		.matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide valid email')
@@ -29,6 +30,10 @@ function Login() {
 	};
 	return (
 		<div className="logining">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>Login</title>
+			</Helmet>
 			<div className="login">
 				<h1>Customer Login</h1>
 				<div className="login-section-2">

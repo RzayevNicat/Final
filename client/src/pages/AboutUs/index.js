@@ -1,15 +1,20 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CustomizedAccordions from '../../components/Accorion';
 import EmployeSlider from '../../components/EmployeSlider';
 import './About.css';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function About() {
 	const [ black, setBlack ] = useState('black');
+	const [ customers, setCustomers ] = useState([]);
 	const listenScrollEvent = () => {
 		window.scrollY > 10 ? setBlack('black') : setBlack('black');
 	};
 	useEffect(() => {
 		window.scrollTo(0, 0);
+		axios.get('http://localhost:3000/customers').then((res) => setCustomers(res.data.data));
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);
@@ -17,6 +22,10 @@ function About() {
 	}, []);
 	return (
 		<div className="about-bg">
+			<Helmet>
+				<meta charSet="utf-8" />
+				<title>About</title>
+			</Helmet>
 			<div className="black" />
 			<div className="about-header">
 				<h1>WHO WE ARE</h1>
@@ -48,25 +57,21 @@ function About() {
 				<h3>OUR TEAM</h3>
 
 				<div className="employe-cards">
-					<div className="employe-card">
-						<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/3/member-1.jpg" />
-						<p>JANE DOE</p>
-					</div>
-					<div className="employe-card">
-						<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/3/member-2.jpg" />
-						<p>JOHN DOE</p>
-					</div>
-					<div className="employe-card">
-						<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/3/member-3.jpg" />
-						<p>GEORGE DOE</p>
-					</div>
-					<div className="employe-card">
-						<img src="https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/aboutus/3/member-4.jpg" />
-						<p>ALICE DOE</p>
-					</div>
+					{customers.map((elem, index) => {
+						if (elem.isActive === true) {
+							return (
+								<div className="employe-card" key={index}>
+									<img src={elem.customerSRC} alt={elem.customerName} />
+									<p>
+										{elem.customerName} {elem.customerSurname}
+									</p>
+								</div>
+							);
+						}
+					})}
 				</div>
 				<div className="employes-button">
-					<button>JOIN OUR TEAM</button>
+					<Link to={'joinTeam'}>JOIN OUR TEAM</Link>
 				</div>
 			</div>
 			<div className="testimonials">
