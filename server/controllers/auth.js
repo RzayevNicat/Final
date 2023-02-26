@@ -22,7 +22,8 @@ const postUser = AsyncErrorHandler(async (req, res, next) => {
 		cvv,
 		postalCode,
 		cardNumber,
-		phoneNumber
+		phoneNumber,
+		subscribe
 	} = req.body;
 	const user = await User.create({
 		name,
@@ -41,7 +42,8 @@ const postUser = AsyncErrorHandler(async (req, res, next) => {
 		cvv,
 		postalCode,
 		cardNumber,
-		phoneNumber
+		phoneNumber,
+		subscribe
 	});
 	sendJwtToClient(user, res);
 });

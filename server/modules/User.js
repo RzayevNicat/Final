@@ -57,6 +57,11 @@ const userSchema = new Schema({
 	},
 	resetPasswordExpire: {
 		type: Date
+	},
+	subscribe: {
+		type: Boolean,
+		require: true,
+		default: false
 	}
 });
 userSchema.methods.getResetPasswordTokenFromUser = function() {

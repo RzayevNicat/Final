@@ -25,7 +25,7 @@ CONNECT_URL = process.env.CONNECT_URL;
 mongoose.set('strictQuery', false);
 mongoose.connect(CONNECT_URL, (err) => {
 	if (!err) {
-		app.listen(PORT, () => {
+		app.listen(PORT || 3000, () => {
 			console.log('Data Listening');
 		});
 	} else {
