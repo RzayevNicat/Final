@@ -1,0 +1,141 @@
+.admin-update {
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.admin-update-form {
+    width: 100%;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.admin-update-form input {
+    width: 400px;
+    padding: 10px;
+    border: none;
+    border: 1px solid #e7e7e7;
+}
+
+.admin-update-form input:focus {
+    outline: none;
+}
+
+.admin-update-form select {
+    width: 50%;
+}
+
+.admin-update-form-group {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+}
+
+.admin-product-name-price {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.admin-sale-update {
+    display: flex;
+    align-items: center;
+}
+
+.admin-sale-update input {
+    width: 50%;
+    margin-right: 50px;
+    margin-left: 10px;
+}
+
+.admin-product-filter-update {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.admin-product-filter-update h6 {
+    font-size: 18px;
+}
+
+.admin-filter-updatee {
+    background-color: #e7e7e7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.admin-update-gender {
+    display: flex;
+}
+
+.admin-update-gender input {
+    width: 20px;
+
+}
+
+.admin-update-gender label {
+    margin-right: 20px;
+}
+
+.admin-update-form button {
+    background-color: #111111;
+    margin-top: 20px;
+    padding: 8px;
+    width: 40%;
+    color: #f4f4f4;
+    transition: 1s;
+}
+
+.admin-update-form button:hover {
+    background-color: #f4f4f4;
+    border: none;
+    color: #111111;
+}
+
+.admin-update-colors {
+    position: absolute;
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 70%;
+}
+
+.admin-update-sizes {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 60%;
+
+    left: 10%;
+}
+
+.admin-update-sizes div {
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    overflow-x: auto;
+}
+
+.admin-update-size {
+    background-color: #e7e7e7;
+    padding: 5px;
+    width: 50px;
+    text-align: center;
+}
+
+.admin-product-color-update {
+    height: 200px;
+    overflow-x: auto;
+}
+
+.admin-product-size-update {
+    height: 200px;
+    overflow-x: auto;
+}

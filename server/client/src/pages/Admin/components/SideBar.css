@@ -1,0 +1,85 @@
+.admin-sidebar {
+    width: 100%;
+    background: #212122;
+    color: aliceblue;
+    display: flex;
+    flex-direction: row;
+    height: 10vh;
+    align-items: center;
+    padding: 30px;
+    justify-content: space-between;
+    position: sticky;
+    top: 0px;
+    z-index: 22;
+}
+
+.admin-bar-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-bar-header h1 {
+    font-size: 28px !important;
+}
+
+.admin-bar-header .admin-icon {
+    font-size: 28px;
+
+}
+
+
+
+.admin-close {
+    cursor: pointer;
+}
+
+.admin-bar-body {
+    display: flex;
+
+}
+
+.admin-bar-body a {
+    display: flex;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.admin-me {
+    display: flex;
+    flex-direction: row;
+    color: aliceblue !important;
+    align-items: center;
+}
+
+.admin-me h1 {
+    font-size: 18px;
+
+}
+
+
+
+
+.admin-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+    transition: 1s;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+
+.admin-icon-body {
+
+    margin-right: 10px;
+}
+
+.admin-bar-footer {
+    display: flex;
+    align-items: center;
+}
