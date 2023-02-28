@@ -13,15 +13,18 @@ function Products() {
 	const navigate = useNavigate();
 	const [ data, setData ] = useState([]);
 	useEffect(() => {
-		axios.get('http://localhost:3000/products').then((res) => setData(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/products').then((res) => setData(res.data.data));
 	}, []);
 	const handleDelete = (id) => {
-		axios.delete(`http://localhost:3000/products/${id}`);
+		axios.delete(`https://finalldaaqaqa.herokuapp.com/products/${id}`);
 		const copy = data.filter((x) => x._id !== id);
 		setData(copy);
 	};
 	const handleUpdate = (id) => {
 		navigate(`update/${id}`);
+	};
+	const handleDetails = (id) => {
+		navigate(`/admin/productDetails/${id}`);
 	};
 	return (
 		<div className="admin-products">
@@ -54,7 +57,9 @@ function Products() {
 							<Button size="small" onClick={() => handleUpdate(ele._id)}>
 								Edit
 							</Button>
-							<Button size="small">Learn More</Button>
+							<Button size="small" onClick={() => handleDetails(ele._id)}>
+								Learn More
+							</Button>
 						</CardActions>
 					</Card>
 				))}

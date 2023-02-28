@@ -63,7 +63,7 @@ function CheckOut() {
 		setCvv(user?.cvv || '')
 		setPostalCode(user?.postalCode || '')
 		setCountry(user?.country || '')
-        axios.get('http://localhost:3000/products').then(res=> setProduct(res.data.data))
+        axios.get('https://finalldaaqaqa.herokuapp.com/products').then(res=> setProduct(res.data.data))
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);
@@ -75,16 +75,18 @@ function CheckOut() {
     function productStock() {
         product.forEach((element)=>{
             usr.userCheckOut.forEach((ele)=>{
-                
+			
                     if (element._id===ele.elem._id) {
-                        let stockCounter = element.productStock - ele.count
-                        axios.put(`http://localhost:3000/products/${element._id}`,{
+                       element.productStock  = element.productStock - ele.count
+						
+					
+                        axios.put(`https://finalldaaqaqa.herokuapp.com/products/${element._id}`,{
                             productImages:element.productImages,
                             productName: element.productName,
                             prodcutPrice: element.prodcutPrice,
-                            productStock: stockCounter,
+                            productStock: element.productStock,
                             img_url : element.img_url,
-                            discontinued: stockCounter===0? false:true,
+                            discontinued: element.productStock===0? false:true,
                             productRatings:element.productRatings,
                             sale: element.sale,
                             brand: element.brand,
@@ -164,7 +166,7 @@ function CheckOut() {
 							}}
                             // validationSchema={paymentSchema}
 							onSubmit={(values) => {
-								
+								productStock()
 								const userrr = {
 									_id:usr._id,
 									name:usr.name,
@@ -185,14 +187,12 @@ function CheckOut() {
 									cardNumber:cardNumber,
 									phoneNumber:phoneNumber
 								}
-								axios.put(`http://localhost:3000/users/${usr._id}`,userrr).then(res=> {
-									if (res.status===200) {
-										console.log(res);
-										productStock()
-								localStorage.setItem('user', JSON.stringify(userrr))
+								axios.put(`https://finalldaaqaqa.herokuapp.com/users/${usr._id}`,userrr).then(res=> {
+									
+									localStorage.setItem('user', JSON.stringify(userrr))
 								navigate('/profile')
 								window.location.reload()
-									}
+									
 								}).catch(error=>{
 									console.log(error);
 									toast.error(`${error.response.data.message}`, {

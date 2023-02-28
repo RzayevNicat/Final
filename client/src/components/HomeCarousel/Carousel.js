@@ -6,7 +6,7 @@ import './HeaderCarousel.css';
 function SimpleSlider() {
 	const [ datas, setData ] = useState([]);
 	useEffect(() => {
-		axios.get('http://localhost:3000/products').then((res) => setData(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/products').then((res) => setData(res.data.data));
 	}, []);
 	const navigate = useNavigate();
 	const settings = {

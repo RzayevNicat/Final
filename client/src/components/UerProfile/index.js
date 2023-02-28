@@ -16,6 +16,8 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
+import { useSelector } from 'react-redux';
+import Loading from '../../components/Loading/index';
 const editSchema = Yup.object().shape({
 	name: Yup.string()
 		.matches(/^[A-Za-z]+/, 'Please provide valid name')
@@ -45,10 +47,11 @@ function UserProfile() {
 	const [ info, setInfo ] = useState(true);
 	const [ card, setCard ] = useState(false);
 	const [ edit, setEdit ] = useState(false);
-	const [ local, setLocalStorage ] = useState({});
+	const [local,setLocal] = useState(0)
 	const dispatch = useDispatch();
+	const status = useSelector((state) => state.data.status);
 	const handleLogOut = () => {
-		axios.get('http://localhost:3000/logout');
+		axios.get('https://finalldaaqaqa.herokuapp.com/logout');
 		sessionStorage.setItem('userLogin', JSON.stringify(false));
 		localStorage.removeItem('user');
 		navigate('/');
@@ -57,16 +60,20 @@ function UserProfile() {
 
 	useEffect(
 		() => {
-			axios.get(`http://localhost:3000/users/${user?._id}`).then((res) => {
-				setUser(res.data.data);
-				setName(res.data.data.name);
-				setSurname(res.data.data.surname);
-				setEmail(res.data.data.email);
-				setPassword(res.data.data.password);
-				setSrc(res.data.data.src);
-			});
+			
+			if (edit!==true) {
+				axios.get(`https://finalldaaqaqa.herokuapp.com/users/${user?._id}`).then((res) => {
+					setUser(res.data.data);
+					setName(res.data.data.name);
+					setSurname(res.data.data.surname);
+					setEmail(res.data.data.email);
+					setPassword(res.data.data.password);
+					setSrc(res.data.data.src);
+				});
+			}
+	
 		},
-		[ user?._id ]
+		[ user?._id ,edit,user ]
 	);
 	const handleWish = () => {
 		setCard(false);
@@ -87,18 +94,55 @@ function UserProfile() {
 		dispatch(removeWish(row));
 		let copy = userr.userWishlist.filter((x) => x._id !== row._id);
 		setUser(copy);
+		window.scrollTo(0, 0);
+		
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.put(`http://localhost:3000/users/${userr._id}`, {
+			.put(`https://finalldaaqaqa.herokuapp.com/users/${userr._id}`, {
 				name: namee,
 				surname: surnamee,
 				email: emaill,
 				password: passwordd,
 				src: srcc
 			})
-			.then((res) => {})
+			.then((res) => {
+				if (res.status===200) {
+					let localusr = {
+						_id: user._id,
+						name: namee,
+						surname: surnamee,
+						email: emaill,
+						password: passwordd,
+						src: srcc,
+						options: user.options,
+						gender: user.gender,
+						userWishlist: user.userWishlist,
+						userCard: user.userCard,
+						userCheckOut: user.userCheckOut,
+						country: user.country,
+						mmyy: user.mmyy,
+						cvv: user.cvv,
+						postalCode: user.postalCode,
+						cardNumber: user.cardNumber,
+						phoneNumber: user.phoneNumber
+					};
+					localStorage.setItem('user', JSON.stringify(localusr));
+					setEdit(false);
+					toast.success(`Updated`, {
+						position: 'bottom-right',
+						autoClose: 3000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: 'dark'
+					});
+				}
+			
+			})
 			.catch((err) => {
 				toast.error(`${err.response.data.message}`, {
 					position: 'bottom-right',
@@ -111,28 +155,7 @@ function UserProfile() {
 					theme: 'dark'
 				});
 			});
-		let localusr = {
-			_id: user._id,
-			name: namee,
-			surname: surnamee,
-			email: emaill,
-			password: passwordd,
-			src: srcc,
-			options: user.options,
-			gender: user.gender,
-			userWishlist: user.userWishlist,
-			userCard: user.userCard,
-			userCheckOut: user.userCheckOut,
-			country: user.country,
-			mmyy: user.mmyy,
-			cvv: user.cvv,
-			postalCode: user.postalCode,
-			cardNumber: user.cardNumber,
-			phoneNumber: user.phoneNumber
-		};
-		localStorage.setItem('user', JSON.stringify(localusr));
-		window.location.reload();
-		setEdit(false);
+
 	};
 	return (
 		<div className="userProfile">
@@ -178,54 +201,61 @@ function UserProfile() {
 						)}
 					</h2>
 				</div>
+
 				{wishh ? (
+					
+						
+					
 					<div className="user-wish">
 						<TableContainer>
-							<Table aria-label="simple table" className="table-wish">
-								<TableHead className="table-head">
-									<TableRow>
-										<TableCell className="user-wish-title">Product Image</TableCell>
-										<TableCell align="center" className="user-wish-title">
-											Product Name
-										</TableCell>
-										<TableCell align="center" className="user-wish-title">
-											Product Price
-										</TableCell>
-										<TableCell align="center" className="user-wish-title">
-											Product Brand
-										</TableCell>
-										<TableCell align="center" className="user-wish-title">
-											Product Ratings
-										</TableCell>
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{(userr.userWishlist || []).map((row) => (
-										<TableRow
-											key={row._id}
-											sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-											className="row-wish"
-										>
-											<TableCell component="th" scope="row" className="user-wish-row">
-												<img src={row.img_url} />
-											</TableCell>
-											<TableCell align="center" className="user-wish-row">
-												{row.productName}
-											</TableCell>
-											<TableCell align="center" className="user-wish-row">
-												${row.prodcutPrice}.00
-											</TableCell>
-											<TableCell align="center" className="user-wish-row">
-												{row.brand}
-											</TableCell>
-											<TableCell align="center" className="deleteWish user-wish-row">
-												{row.productRatings}{' '}
-												<RxCross2 className="wish-cross" onClick={() => handleDelete(row)} />
-											</TableCell>
-										</TableRow>
-									))}
-								</TableBody>
-							</Table>
+						{status === 'loading' ? (
+				<Loading className="loading" />
+			) : (<Table aria-label="simple table" className="table-wish">
+			<TableHead className="table-head">
+				<TableRow>
+					<TableCell className="user-wish-title">Product Image</TableCell>
+					<TableCell align="center" className="user-wish-title">
+						Product Name
+					</TableCell>
+					<TableCell align="center" className="user-wish-title">
+						Product Price
+					</TableCell>
+					<TableCell align="center" className="user-wish-title">
+						Product Brand
+					</TableCell>
+					<TableCell align="center" className="user-wish-title">
+						Product Ratings
+					</TableCell>
+				</TableRow>
+			</TableHead>
+			<TableBody>
+				{(userr.userWishlist || []).map((row) => (
+					<TableRow
+						key={row._id}
+						sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+						className="row-wish"
+					>
+						<TableCell component="th" scope="row" className="user-wish-row">
+							<img src={row.img_url} />
+						</TableCell>
+						<TableCell align="center" className="user-wish-row">
+							{row.productName}
+						</TableCell>
+						<TableCell align="center" className="user-wish-row">
+							${row.prodcutPrice}.00
+						</TableCell>
+						<TableCell align="center" className="user-wish-row">
+							{row.brand}
+						</TableCell>
+						<TableCell align="center" className="deleteWish user-wish-row">
+							{row.productRatings}{' '}
+							<RxCross2 className="wish-cross" onClick={() => handleDelete(row)} />
+						</TableCell>
+					</TableRow>
+				))}
+			</TableBody>
+		</Table>)}
+							
 						</TableContainer>
 					</div>
 				) : null}

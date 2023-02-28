@@ -27,6 +27,7 @@ import Customers from './pages/Admin/pages/Customers';
 import CustomerCreate from './pages/Admin/pages/CustomerCreate';
 import DetailsCustomers from './pages/Admin/pages/DetailsCustomers';
 import CustomerCv from './pages/CutomerCv';
+import ProductDetails from './pages/Admin/pages/ProductDetails';
 
 const router = createBrowserRouter([
 	{
@@ -123,6 +124,10 @@ const router = createBrowserRouter([
 			{
 				path: '/admin/detailsCustomer/:id',
 				element: <DetailsCustomers />
+			},
+			{
+				path: '/admin/ProductDetails/:id',
+				element: <ProductDetails />
 			}
 		]
 	}

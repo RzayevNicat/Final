@@ -13,17 +13,17 @@ function DetailsCustomers() {
 	const navigate = useNavigate();
 	useEffect(
 		() => {
-			axios.get(`http://localhost:3000/customers/${id}`).then((res) => setDetails(res.data.data));
+			axios.get(`https://finalldaaqaqa.herokuapp.com/customers/${id}`).then((res) => setDetails(res.data.data));
 		},
 		[ id, details ]
 	);
 	const handleDelete = (id) => {
-		axios.delete(`http://localhost:3000/customers/${id}`);
+		axios.delete(`https://finalldaaqaqa.herokuapp.com/customers/${id}`);
 
 		navigate('/admin/customer');
 	};
 	const handleCheck = (id) => {
-		axios.put(`http://localhost:3000/customers/${id}`, {
+		axios.put(`https://finalldaaqaqa.herokuapp.com/customers/${id}`, {
 			isActive: true,
 			workStarted: y
 		});

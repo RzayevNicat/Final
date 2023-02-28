@@ -9,7 +9,7 @@ function Search() {
 	const [ visible, setVisible ] = useState(false);
 	const navigate = useNavigate();
 	useEffect(() => {
-		axios.get('http://localhost:3000/products').then((res) => setProduct(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/products').then((res) => setProduct(res.data.data));
 	}, []);
 	const datas = Object.values(product);
 	function search(params) {

@@ -77,12 +77,12 @@ function Customers() {
 	};
 	useEffect(
 		() => {
-			axios.get('http://localhost:3000/customers').then((res) => setData(res.data.data));
+			axios.get('https://finalldaaqaqa.herokuapp.com/customers').then((res) => setData(res.data.data));
 		},
 		[ data ]
 	);
 	const handleDelete = (id) => {
-		axios.delete(`http://localhost:3000/customers/${id}`);
+		axios.delete(`https://finalldaaqaqa.herokuapp.com/customers/${id}`);
 		let copy = data.filter((x) => x._id !== id);
 		setData(copy);
 	};
@@ -90,7 +90,7 @@ function Customers() {
 		navigate(`/admin/detailsCustomer/${id}`);
 	};
 	const handleCheck = (id) => {
-		axios.put(`http://localhost:3000/customers/${id}`, {
+		axios.put(`https://finalldaaqaqa.herokuapp.com/customers/${id}`, {
 			isActive: true
 		});
 	};

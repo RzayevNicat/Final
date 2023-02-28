@@ -55,9 +55,12 @@ function ResetPassword() {
 								alert('Fail, Please provide same password');
 							} else {
 								axios
-									.put(`http://localhost:3000/resetpassword?resetPasswordToken=${token}`, {
-										password: values.password
-									})
+									.put(
+										`https://finalldaaqaqa.herokuapp.com/resetpassword?resetPasswordToken=${token}`,
+										{
+											password: values.password
+										}
+									)
 									.then((res) => {
 										toast.success(`${res.data.message}`, {
 											position: 'bottom-right',

@@ -76,10 +76,10 @@ export default function StickyHeadTable() {
 		setPage(0);
 	};
 	useEffect(() => {
-		axios.get('http://localhost:3000/users').then((res) => setData(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/users').then((res) => setData(res.data.data));
 	}, []);
 	const handleDelete = (id) => {
-		axios.delete(`http://localhost:3000/users/${id}`);
+		axios.delete(`https://finalldaaqaqa.herokuapp.com/users/${id}`);
 		let copy = data.filter((x) => x._id !== id);
 		setData(copy);
 	};

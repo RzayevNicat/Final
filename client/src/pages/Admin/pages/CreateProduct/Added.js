@@ -8,7 +8,7 @@ function Added() {
 	const [ filter, setFilter ] = useState([]);
 	const [ productSize, setProductSize ] = useState([]);
 	useEffect(() => {
-		axios.get('http://localhost:3000/filters').then((res) => setFilter(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
 	}, []);
 	let colorArr = [];
 	filter.forEach((element) => {
@@ -75,7 +75,7 @@ function Added() {
 					productColor: productColor
 				}}
 				onSubmit={(values, { resetForm }) => {
-					axios.post('http://localhost:3000/products', {
+					axios.post('https://finalldaaqaqa.herokuapp.com/products', {
 						productName: values.productName,
 						type: values.type,
 						gender: values.gender,

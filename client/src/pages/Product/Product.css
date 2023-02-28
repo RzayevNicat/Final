@@ -278,6 +278,10 @@ li {
     border: 1px solid #e7e7e7;
 }
 
+.form-group input:focus {
+    outline: none;
+}
+
 .form button {
     padding: 15px 30px;
     background-color: #111111;
@@ -309,6 +313,19 @@ li {
 .imggg:hover {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
+}
+
+.user-reviews {
+    margin-top: 30px;
+}
+
+.user-reviews h2 {
+    margin-top: 20px;
+}
+
+.user-reviews h5 {
+    font-size: 20px;
+    opacity: 0.5;
 }
 
 @media only screen and (max-width: 440px) {

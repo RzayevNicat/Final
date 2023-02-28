@@ -14,7 +14,7 @@ function Footer() {
 		() => {
 			let userId = JSON.parse(localStorage.getItem('user'));
 			setUser(userId);
-			axios.get(`http://localhost:3000/users/${user?._id}`).then((res) => setDataUser(res.data.data));
+			axios.get(`https://finalldaaqaqa.herokuapp.com/users/${user?._id}`).then((res) => setDataUser(res.data.data));
 			const userlogin = JSON.parse(sessionStorage.getItem('userLogin'));
 			setActive(userlogin);
 		},
@@ -58,7 +58,7 @@ function Footer() {
 					theme: 'dark'
 				});
 			} else {
-				axios.put(`http://localhost:3000/users/${user?._id}`, {
+				axios.put(`https://finalldaaqaqa.herokuapp.com/users/${user?._id}`, {
 					subscribe: true
 				});
 				toast.success('You are subscribed', {

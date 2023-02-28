@@ -58,7 +58,7 @@ function Category() {
 				if (i <= numberOfItems) newArray.push(data[i]);
 			}
 			setVisibleData(newArray);
-			axios.get('http://localhost:3000/filters').then((res) => setFilter(res.data.data));
+			axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
 
 			if (status === 'idle') {
 				dispatch(fetchProducts());

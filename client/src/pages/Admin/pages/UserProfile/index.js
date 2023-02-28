@@ -28,16 +28,16 @@ function UserProfile() {
 	const navigate = useNavigate();
 	useEffect(
 		() => {
-			axios.get(`http://localhost:3000/users/${id}`).then((res) => {
+			axios.get(`https://finalldaaqaqa.herokuapp.com/users/${id}`).then((res) => {
 				setDetails(res.data.data);
 				setUserAdmin(res.data.data.role);
 			});
 		},
-		[ id, render ]
+		[ id,render ]
 	);
 	const handleDelete = (id) => {
-		axios.delete(`http://localhost:3000/users/${id}`);
-		navigate('/users');
+		axios.delete(`https://finalldaaqaqa.herokuapp.com/users/${id}`);
+		navigate('/admin/users');
 		window.location.reload();
 	};
 	const handleEdit = () => {
@@ -45,10 +45,15 @@ function UserProfile() {
 	};
 	const handleUpdate = () => {
 		setEdit(false);
-		axios.put(`http://localhost:3000/users/${id}`, {
+		axios.put(`https://finalldaaqaqa.herokuapp.com/users/${id}`, {
 			role: userAdmin
-		});
-		setRender(Math.random());
+		}).then(res=>{
+			setRender(Math.random());
+		})
+		
+		
+		
+		
 	};
 	return (
 		<div className="user-profile">

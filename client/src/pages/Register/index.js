@@ -65,7 +65,7 @@ function Register() {
 								userCard: []
 							};
 							axios
-								.post('http://localhost:3000/auth', user)
+								.post('https://finalldaaqaqa.herokuapp.com/auth', user)
 								.then((res) => {
 									if (res.status === 200) {
 										sessionStorage.setItem('userLogin', JSON.stringify(false));
@@ -88,7 +88,7 @@ function Register() {
 										});
 									}
 								});
-							axios.get('http://localhost:3000/users').then((res) => {
+							axios.get('https://finalldaaqaqa.herokuapp.com/users').then((res) => {
 								res.data.data.forEach((element) => {
 									if (element.email === values.email) {
 										localStorage.setItem('user', JSON.stringify(element));

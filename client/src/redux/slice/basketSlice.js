@@ -312,7 +312,7 @@ const basketSlice = createSlice({
 						cardNumber: dataas.cardNumber,
 						phoneNumber: dataas.phoneNumber
 					};
-					toast.info('🦄 Remove Basket!', {
+					toast.info('Remove Basket!', {
 						position: 'bottom-right',
 						autoClose: 3000,
 						hideProgressBar: false,

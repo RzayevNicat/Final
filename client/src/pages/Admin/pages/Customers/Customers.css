@@ -34,7 +34,7 @@
 
 .customer-form input {
     padding: 10px;
-    width: 80%;
+
     border: none;
     border: 1px solid #e7e7e7;
     margin: 10px;
@@ -80,6 +80,65 @@
     border: 1px solid #e7e7e7;
 }
 
+.btn-none {
+    display: none;
+}
+
 .customer-form textarea:focus {
     outline: none;
+}
+
+@media only screen and (max-width: 1270px) {
+    .customer-form {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .btnn-none {
+        display: none;
+    }
+
+    .btn-none {
+        display: block;
+        margin-bottom: 50px;
+    }
+
+    .customer-form textarea {
+        padding: 10px;
+        width: 66%;
+        height: 400px;
+        margin-top: 20px;
+        border: 1px solid #e7e7e7;
+    }
+
+}
+
+@media only screen and (max-width: 900px) {
+    .customer-form .customer-form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .customer-form {
+        height: 120vh;
+        margin-top: 70px;
+    }
+
+}
+
+@media only screen and (max-width: 425px) {
+    .customer-form input {
+        width: 250px;
+    }
+
+    .gender-customer {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .gender-customer input {
+        width: 20px;
+    }
+
 }

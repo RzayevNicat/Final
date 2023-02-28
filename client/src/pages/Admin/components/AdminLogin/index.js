@@ -27,7 +27,7 @@ function AdminLogin() {
 					}}
 					onSubmit={(values) => {
 						axios
-							.post('http://localhost:3000/login', {
+							.post('https://finalldaaqaqa.herokuapp.com/login', {
 								email: values.email,
 								password: values.password
 							})
@@ -89,7 +89,7 @@ function AdminLogin() {
 							validationSchema={forgotValidation}
 							onSubmit={(values) => {
 								axios
-									.post('http://localhost:3000/forgatpassword', {
+									.post('https://finalldaaqaqa.herokuapp.com/forgatpassword', {
 										email: values.forgotEmail
 									})
 									.then((res) => {
