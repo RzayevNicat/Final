@@ -9,16 +9,15 @@ const postProduct = AsyncErrorHandler(async (req, res, next) => {
 		img_url,
 		sale,
 		brand,
-		productRatings,
 		productInfo,
 		productSize,
 		productColor,
 		type,
 		gender,
-		productImages
+		productImages,
+		productReview
 	} = req.body;
 
-	console.log(req.body);
 	const product = await Products.create({
 		productName,
 		prodcutPrice,
@@ -33,7 +32,8 @@ const postProduct = AsyncErrorHandler(async (req, res, next) => {
 		productColor,
 		type,
 		gender,
-		productImages
+		productImages,
+		productReview
 	});
 
 	res.status(200).json({
