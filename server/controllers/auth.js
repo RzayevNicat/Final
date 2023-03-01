@@ -83,7 +83,7 @@ const forgatPassword = AsyncErrorHandler(async (req, res, next) => {
 	const resetPasswordToken = user.getResetPasswordTokenFromUser();
 	await user.save();
 
-	const resetPassvordURL = `http://localhost:3000/resetPassword/${resetPasswordToken}`;
+	const resetPassvordURL = `https://final-o3m3.vercel.app/resetPassword/${resetPasswordToken}`;
 
 	const emailTemplate = `
 		<h3>Reset Your Password</h3>
