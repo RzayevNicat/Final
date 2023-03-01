@@ -21,12 +21,13 @@ import QuickView from '../../components/quickView';
 import { ToastContainer, toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 function Category() {
-	const data = useSelector((state) => state.data.items);
+
 	const status = useSelector((state) => state.data.status);
 	const [ filter, setFilter ] = useState([]);
 	const { details, setDetails } = useQuick();
 	const [ black, setBlack ] = useState('black');
 	const [ visibleData, setVisibleData ] = useState([]);
+	const [data,setData] = useState([])
 	const [ index, setIndex ] = useState(0);
 	const { all, setAll } = useFilter();
 	const [ puma, setPuma ] = useState(false);
@@ -61,7 +62,9 @@ function Category() {
 			axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
 
 			if (status === 'idle') {
-				dispatch(fetchProducts());
+				axios.get('https://finalldaaqaqa.herokuapp.com/products').then(res=>{
+					setData(res.data.data)
+				})
 			}
 
 			window.addEventListener('scroll', listenScrollEvent);
@@ -614,7 +617,7 @@ function Category() {
 						<div className="categories-products">
 							{status === 'loading' && <Loading className="loading" />}
 							{dataa === false ? (
-								filtered(dataas).map((ele, index) => {
+								filtered(dataas)?.map((ele, index) => {
 									if (ele.sale !== true && ele.type !== 'featured') {
 										return (
 											<div className="card" key={index}>
