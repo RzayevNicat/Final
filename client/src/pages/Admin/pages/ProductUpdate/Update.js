@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import './ProductUpdate.css';
 import { RxCross2 } from 'react-icons/rx';
 import { Helmet } from 'react-helmet';
+import { toast } from 'react-toastify';
 function Update() {
 	const [ products, setProducts ] = useState({});
 	const [ productNamee, setProductName ] = useState('');
@@ -110,7 +111,7 @@ function Update() {
 					productColor: []
 				}}
 				onSubmit={(values, { resetform }) => {
-					axios.put(`https://finalldaaqaqa.herokuapp.com/products/${id}`, {
+					let updateProduct = {
 						productName: productNamee,
 						prodcutPrice: productPricee,
 						productStock: productStockk,
@@ -124,7 +125,20 @@ function Update() {
 						productColor: productColor,
 						type: type,
 						gender: gender
+					};
+					axios.put(`https://finalldaaqaqa.herokuapp.com/products/${id}`, updateProduct);
+					toast.success('Product Update', {
+						position: 'bottom-right',
+						autoClose: 3000,
+						hideProgressBar: false,
+						closeOnClick: true,
+						pauseOnHover: true,
+						draggable: true,
+						progress: undefined,
+						theme: 'dark'
 					});
+					// navigate('/admin/products');
+					// window.location.reload();
 				}}
 			>
 				{({ isSubmitting }) => (
@@ -298,7 +312,9 @@ function Update() {
 						</div>
 
 						<button type="submit">Submit</button>
-						<button onClick={() => navigate(-1)}>Back</button>
+						<button onClick={() => navigate(-1)} type="button">
+							Back
+						</button>
 					</Form>
 				)}
 			</Formik>

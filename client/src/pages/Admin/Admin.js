@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import { UserProvider } from './context/userInfoContext';
 import { ToastContainer } from 'react-toastify';
 import { Helmet } from 'react-helmet';
+
 const activee = JSON.parse(sessionStorage.getItem('adminLogin'));
 function Admin() {
 	useEffect(() => {

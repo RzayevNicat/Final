@@ -3,6 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import { RxCross2 } from 'react-icons/rx';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import { toast } from 'react-toastify';
 function Added() {
 	const [ productColor, setProductColor ] = useState([]);
 	const [ filter, setFilter ] = useState([]);
@@ -75,20 +76,33 @@ function Added() {
 					productColor: productColor
 				}}
 				onSubmit={(values, { resetForm }) => {
-					axios.post('https://finalldaaqaqa.herokuapp.com/products', {
-						productName: values.productName,
-						type: values.type,
-						gender: values.gender,
-						prodcutPrice: values.prodcutPrice,
-						productStock: values.productStock,
-						img_url: values.img_url,
-						sale: values.sale,
-						brand: values.brand,
-						productRatings: values.productRatings,
-						productInfo: values.productInfo,
-						productSize: productSize,
-						productColor: productColor
-					});
+					axios
+						.post('https://finalldaaqaqa.herokuapp.com/products', {
+							productName: values.productName,
+							type: values.type,
+							gender: values.gender,
+							prodcutPrice: values.prodcutPrice,
+							productStock: values.productStock,
+							img_url: values.img_url,
+							sale: values.sale,
+							brand: values.brand,
+							productRatings: values.productRatings,
+							productInfo: values.productInfo,
+							productSize: productSize,
+							productColor: productColor
+						})
+						.catch((error) => {
+							toast.error(`${error.response.data.message}`, {
+								position: 'bottom-right',
+								autoClose: 5000,
+								hideProgressBar: false,
+								closeOnClick: true,
+								pauseOnHover: true,
+								draggable: true,
+								progress: undefined,
+								theme: 'dark'
+							});
+						});
 					resetForm({ values: '' });
 				}}
 			>

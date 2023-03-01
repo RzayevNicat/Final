@@ -60,6 +60,9 @@ function Products() {
 							<Button size="small" onClick={() => handleDetails(ele._id)}>
 								Learn More
 							</Button>
+							<Button size="samll" onClick={() => handleDelete(ele._id)}>
+								Delete
+							</Button>
 						</CardActions>
 					</Card>
 				))}

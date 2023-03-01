@@ -24,10 +24,10 @@ function ProductDetails() {
 	// 	star = starr / review?.length;
 	// });
 	const handlDelete = (elem) => {
-		let copy = (data.productReview || []).filter((x) => x.nickName !== elem.nickName);
+		let copy = (review || []).filter((x) => x.nickName !== elem.nickName);
 		setReview(copy);
 		axios.put(`https://finalldaaqaqa.herokuapp.com/products/${id}`, {
-			productReview: copy
+			productReview: [ ...copy ]
 		});
 	};
 	return (

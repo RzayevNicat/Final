@@ -36,15 +36,8 @@ function Review() {
 				}}
 				validationSchema={validateSchemaa}
 				onSubmit={(values, { resetForm }) => {
-					if (saleProduct.productReview.length === 0) {
-						values.star = star;
-
-						axios.put(`https://finalldaaqaqa.herokuapp.com/products/${saleProduct._id}`, {
-							productReview: [ ...saleProduct.productReview, values ]
-						});
-						window.location.reload();
-					} else {
-						saleProduct.productReview.forEach((element) => {
+					if (saleProduct?.productReview.some((x) => x.nickName === values.nickName)) {
+						saleProduct?.productReview.forEach((element) => {
 							if (element.nickName === values.nickName) {
 								toast.error('Already NickName!', {
 									position: 'bottom-right',
@@ -56,19 +49,18 @@ function Review() {
 									progress: undefined,
 									theme: 'dark'
 								});
-							} else {
-								values.star = star;
-
-								axios
-									.put(`https://finalldaaqaqa.herokuapp.com/products/${saleProduct._id}`, {
-										productReview: [ ...saleProduct.productReview, values ]
-									})
-									.then((res) => {
-										window.location.reload();
-									});
-							}
+							} 
 						});
+					} else {
+						
+						values.star = star;
+
+						axios.put(`https://finalldaaqaqa.herokuapp.com/products/${saleProduct._id}`, {
+							productReview: [ ...saleProduct.productReview, values ]
+						});
+						window.location.reload();
 					}
+					
 				}}
 			>
 				{({ errors, touched, values }) => (
