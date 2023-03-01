@@ -9,7 +9,7 @@ function Update() {
 	const [ products, setProducts ] = useState({});
 	const [ productNamee, setProductName ] = useState('');
 	const [ productPricee, setProductPricee ] = useState(0);
-	const [ productStock, setProductStock ] = useState(0);
+	const [ productStockk, setProductStock ] = useState(0);
 	const [ img_url, setImg_url ] = useState('');
 	const [ productSale, setSale ] = useState(false);
 	const [ brand, setBrand ] = useState('');
@@ -23,25 +23,28 @@ function Update() {
 	const [ gender, setGender ] = useState('');
 	let { id } = useParams();
 	const navigate = useNavigate();
-	useEffect(() => {
-		axios.get(`http://localhost:3000/products/${id}`).then((res) => {
-			setProducts(res.data.data);
-			setProductName(res.data.data.productName);
-			setProductPricee(res.data.data.prodcutPrice);
-			setProductStock(res.data.data.productStock);
-			setImg_url(res.data.data.img_url);
-			setSale(res.data.data.sale);
-			setDiscontinued(res.data.data.discontinued);
-			setBrand(res.data.data.brand);
-			setProductRatings(res.data.data.productRatings);
-			setProductInfo(res.data.data.productInfo);
-			setProductSize(res.data.data.productSize);
-			setProductColor(res.data.data.productColor);
-			setType(res.data.data.type);
-			setGender(res.data.data.gender);
-		});
-		axios.get('http://localhost:3000/filters').then((res) => setFilter(res.data.data));
-	}, []);
+	useEffect(
+		() => {
+			axios.get(`https://finalldaaqaqa.herokuapp.com/products/${id}`).then((res) => {
+				setProducts(res.data.data);
+				setProductName(res.data.data.productName);
+				setProductPricee(res.data.data.prodcutPrice);
+				setProductStock(res.data.data.productStock);
+				setImg_url(res.data.data.img_url);
+				setSale(res.data.data.sale);
+				setDiscontinued(res.data.data.discontinued);
+				setBrand(res.data.data.brand);
+				setProductRatings(res.data.data.productRatings);
+				setProductInfo(res.data.data.productInfo);
+				setProductSize(res.data.data.productSize);
+				setProductColor(res.data.data.productColor);
+				setType(res.data.data.type);
+				setGender(res.data.data.gender);
+			});
+			axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
+		},
+		[ id ]
+	);
 	let colorArr = [];
 	filter.forEach((element) => {
 		element.color.forEach((elem) => {
@@ -107,10 +110,10 @@ function Update() {
 					productColor: []
 				}}
 				onSubmit={(values, { resetform }) => {
-					axios.put(`http://localhost:3000/products/${id}`, {
+					axios.put(`https://finalldaaqaqa.herokuapp.com/products/${id}`, {
 						productName: productNamee,
 						prodcutPrice: productPricee,
-						productStock: productStock,
+						productStock: productStockk,
 						img_url: img_url,
 						discontinued: discontinued,
 						sale: productSale,
@@ -122,7 +125,6 @@ function Update() {
 						type: type,
 						gender: gender
 					});
-					navigate('/admin');
 				}}
 			>
 				{({ isSubmitting }) => (
@@ -157,7 +159,7 @@ function Update() {
 									type="number"
 									name="productStock"
 									placeholder="Product Stock"
-									value={productStock}
+									value={productStockk}
 									onChange={(e) => setProductStock(e.target.value)}
 								/>
 							</div>
@@ -225,6 +227,7 @@ function Update() {
 								<Field
 									type="checkbox"
 									name="discontinued"
+									defaultValue="false"
 									onClick={() =>
 										discontinued === false ? setDiscontinued(true) : setDiscontinued(false)}
 								/>
@@ -235,6 +238,7 @@ function Update() {
 								<Field
 									type="checkbox"
 									name="sale"
+									defaultValue="false"
 									onClick={() => (productSale === false ? setSale(true) : setSale(false))}
 								/>
 							</div>
@@ -294,6 +298,7 @@ function Update() {
 						</div>
 
 						<button type="submit">Submit</button>
+						<button onClick={() => navigate(-1)}>Back</button>
 					</Form>
 				)}
 			</Formik>

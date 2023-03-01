@@ -17,7 +17,7 @@ export default function EmpoleSlider() {
 		cssEase: 'linear'
 	};
 	useEffect(() => {
-		axios.get('http://localhost:3000/customers').then((res) => setEmployers(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/customers').then((res) => setEmployers(res.data.data));
 	}, []);
 	return (
 		<div>

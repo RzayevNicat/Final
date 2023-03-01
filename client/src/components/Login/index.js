@@ -22,7 +22,7 @@ function Login() {
 	const [ user, setUser ] = useState([]);
 	const [ forgot, setForgot ] = useState(false);
 	useEffect(() => {
-		axios.get('http://localhost:3000/users').then((res) => setUser(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/users').then((res) => setUser(res.data.data));
 	}, []);
 	const navigate = useNavigate();
 	const handleCreate = () => {
@@ -47,7 +47,7 @@ function Login() {
 						validationSchema={loginSchema}
 						onSubmit={(values, { resetForm }) => {
 							axios
-								.post('http://localhost:3000/login', {
+								.post('https://finalldaaqaqa.herokuapp.com/login', {
 									email: values.email,
 									password: values.password
 								})
@@ -125,7 +125,7 @@ function Login() {
 							validationSchema={forgotValidation}
 							onSubmit={(values) => {
 								axios
-									.post('http://localhost:3000/forgatpassword', {
+									.post('https://finalldaaqaqa.herokuapp.com/forgatpassword', {
 										email: values.forgotEmail
 									})
 									.then((res) => {

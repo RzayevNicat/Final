@@ -14,7 +14,7 @@ function About() {
 	};
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		axios.get('http://localhost:3000/customers').then((res) => setCustomers(res.data.data));
+		axios.get('https://finalldaaqaqa.herokuapp.com/customers').then((res) => setCustomers(res.data.data));
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);

@@ -4,8 +4,6 @@ import { FiChevronRight } from 'react-icons/fi';
 import { useQuick } from '../../context/QuickView';
 import './Product.css';
 import axios from 'axios';
-import { Formik, Form, Field } from 'formik';
-import * as Yup from 'yup';
 import { CiHeart } from 'react-icons/ci';
 import { BsHandbag, BsFillCheckCircleFill } from 'react-icons/bs';
 import { Gallery } from '../../components/ProductImage/index';
@@ -18,22 +16,17 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Star from '../../components/RatingStar';
 import CarouselForType from '../../components/CarouselForType';
 import { addWish } from '../../redux/slice/wishListSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import '../../../node_modules/react-toastify/dist/ReactToastify.css';
 import { Helmet } from 'react-helmet';
-const validateSchemaa = Yup.object().shape({
-	nickName: Yup.string().min(3, 'very small').max(10, 'very long').required('fill input'),
-	summary: Yup.string().required('fill input'),
-	review: Yup.string().min(5, 'very small').max(100, 'very long').required('fill input')
-});
+import Review from '../../components/Review';
 function Product() {
 	const [ black, setBlack ] = useState('black');
 	const { saleProduct, setSaleProduct } = useQuick();
-	const [ details, setDetails ] = useState(true);
-	const [ review, setReview ] = useState(false);
+	const [ details, setDetails ] = useState(false);
+	const [ review, setReview ] = useState(true);
 	const [ custom, setCustom ] = useState(false);
 	const [ count, setCount ] = useState(1);
 	const { id } = useParams();
@@ -43,7 +36,9 @@ function Product() {
 
 	useEffect(
 		() => {
-			axios.get(`http://localhost:3000/products/${id}`).then((res) => setSaleProduct(res.data.data));
+			axios
+				.get(`https://finalldaaqaqa.herokuapp.com/products/${id}`)
+				.then((res) => setSaleProduct(res.data.data));
 			window.scrollTo(0, 0);
 			window.addEventListener('scroll', listenScrollEvent);
 			return () => {
@@ -84,7 +79,7 @@ function Product() {
 		if (activee === false) {
 			navigate('/profile');
 		} else if (elem.discontinued === false) {
-			toast.error('🦄 No Stock!', {
+			toast.error(' No Stock!', {
 				position: 'bottom-right',
 				autoClose: 3000,
 				hideProgressBar: false,
@@ -261,70 +256,7 @@ function Product() {
 						</p>
 					</div>
 				) : null}
-				{review ? (
-					<div className="reviews">
-						<p className="youRe">YOU'RE REVIEWING:</p>
-						<p className="product-named">{saleProduct.productName}</p>
-						<p className="your-rating">
-							Your Rating <span>*</span>
-						</p>
-						<p className="ratingg">Rating</p>
-
-						<Formik
-							initialValues={{
-								nickName: '',
-								summary: '',
-								review: '',
-								star: 0
-							}}
-							validationSchema={validateSchemaa}
-							onSubmit={(values, { resetForm }) => {
-								resetForm({ values: '' });
-							}}
-						>
-							{({ errors, touched, values }) => (
-								<Form className="form" onSubmit={() => window.location.reload()}>
-									<Star name="star" />
-									<div className="form-group">
-										<label>
-											Nick Name <span>*</span>
-										</label>
-										<Field name="nickName" />
-										{errors.nickName && touched.nickName ? (
-											<div className="err">{errors.nickName}</div>
-										) : null}
-									</div>
-									<div className="form-group">
-										<label>
-											Summary <span>*</span>
-										</label>
-										<Field name="summary" />
-										{errors.summary && touched.summary ? (
-											<div className="err">{errors.summary}</div>
-										) : null}
-									</div>
-									<div className="form-group">
-										<label>
-											Review <span>*</span>
-										</label>
-										<Field name="review" />
-										{errors.review && touched.review ? (
-											<div className="err">{errors.review}</div>
-										) : null}
-									</div>
-									<button
-										disabled={
-											values.nickName && values.summary && values.review !== '' ? false : true
-										}
-										type="submit"
-									>
-										SUBMIT REVIEW
-									</button>
-								</Form>
-							)}
-						</Formik>
-					</div>
-				) : null}
+				{review ? <Review /> : null}
 				{custom ? (
 					<div className="custom-tab">
 						<h4>Clothing - Single Size Conversion (Continued)</h4>

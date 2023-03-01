@@ -45,7 +45,7 @@ function CustomerCreate() {
 				}}
 				onSubmit={(values) => {
 					axios
-						.post('http://localhost:3000/customers', values)
+						.post('https://finalldaaqaqa.herokuapp.com/customers', values)
 						.then((res) => {
 							navigate(-1);
 						})
@@ -97,10 +97,15 @@ function CustomerCreate() {
 								<Field name="customerCV" type="file" className="cv-customer" />
 								<Field name="customerSRC" />
 							</div>
-							<button type="submit">Submit</button>
+							<button type="submit" className="btnn-none">
+								Submit
+							</button>
 						</div>
 
 						<Field name="customerInfo" as="textarea" placeholder="About" />
+						<button type="submit" className="btn-none">
+							Submit
+						</button>
 					</Form>
 				)}
 			</Formik>

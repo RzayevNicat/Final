@@ -11,7 +11,7 @@ export function Gallery() {
 
 	const { id } = useParams();
 	useEffect(() => {
-		axios.get(`http://localhost:3000/products/${id}`).then((res) => setPreview(res.data.data));
+		axios.get(`https://finalldaaqaqa.herokuapp.com/products/${id}`).then((res) => setPreview(res.data.data));
 	}, []);
 
 	return (

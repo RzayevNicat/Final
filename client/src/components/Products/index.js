@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { BsSquare, BsSquareFill } from 'react-icons/bs';
 import { useFilter } from '../../context/FilterContext';
 import { CiHeart } from 'react-icons/ci';
-import { AiFillHeart } from 'react-icons/ai';
 import { BsHandbag } from 'react-icons/bs';
 import { useQuick } from '../../context/QuickView';
 import QuickView from '../quickView';

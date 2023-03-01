@@ -39,7 +39,7 @@ function UserCreate() {
 				}}
 				onSubmit={(values) => {
 					axios
-						.post('http://localhost:3000/auth', values)
+						.post('https://finalldaaqaqa.herokuapp.com/auth', values)
 						.then((res) => {
 							if (res.data.success === true) {
 								toast.success('Added User!', {
