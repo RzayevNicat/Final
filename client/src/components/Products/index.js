@@ -33,6 +33,7 @@ function Products() {
 		() => {
 			if (activee !== true) {
 				sessionStorage.setItem('userLogin', JSON.stringify(false));
+				localStorage.removeItem('user')
 			}
 
 			const newArray = [];
