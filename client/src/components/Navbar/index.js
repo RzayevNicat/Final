@@ -65,6 +65,11 @@ function Navbar() {
 		navigate(`/product/${id}`);
 		window.location.reload();
 	};
+	const handleClick=()=>{
+		navigate('/categories')
+		window.location.reload()
+		window.scrollTo(0, 0)
+	}
 	return (
 		<div
 			className="nav"
@@ -84,7 +89,7 @@ function Navbar() {
 					<Link to={'/'}>Home</Link>
 				</li>
 				<li>
-					<Link to={'categories'} onClick={()=> window.scrollTo(0, 0)}>Categroies</Link>
+					<a  onClick={handleClick}>Categroies</a>
 				</li>
 				<li>
 					<Link to={'/aboutus'}>About Us</Link>

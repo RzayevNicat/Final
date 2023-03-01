@@ -219,7 +219,7 @@ function Products() {
 			<hr className="shop-by-line" />
 			<div className="products">
 				<div className="cards">
-					{filter(dataas).map((ele, index) => {
+					{filter(dataas)?.map((ele, index) => {
 						if (ele.sale !== true && ele.type !== 'featured') {
 							return (
 								<div className="card" key={index}>
