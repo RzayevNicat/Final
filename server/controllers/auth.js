@@ -83,7 +83,7 @@ const forgatPassword = AsyncErrorHandler(async (req, res, next) => {
 	const resetPasswordToken = user.getResetPasswordTokenFromUser();
 	await user.save();
 
-	const resetPassvordURL = `http://localhost:3001/resetPassword/${resetPasswordToken}`;
+	const resetPassvordURL = `http://localhost:3000/resetPassword/${resetPasswordToken}`;
 
 	const emailTemplate = `
 		<h3>Reset Your Password</h3>
