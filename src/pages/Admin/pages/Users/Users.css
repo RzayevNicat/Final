@@ -1,0 +1,33 @@
+.btn-user {
+    text-decoration: none;
+}
+
+.table-users {
+    width: 100% !important;
+}
+
+.users-tables {
+    width: 100%;
+    padding: 5%;
+    margin-top: 2%;
+}
+
+.titlee {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titlee a {
+    background: #212122;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+
+.select-admin:focus {
+    outline: none;
+}

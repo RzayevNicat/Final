@@ -1,0 +1,212 @@
+.logining {
+    background-color: #f4f4f4;
+}
+
+.login {
+    padding-top: 00px;
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 90px;
+}
+
+.login h1 {
+    padding-bottom: 80px;
+}
+
+.login-section-2 {
+    text-align: start;
+}
+
+.login-section-2 h2 {
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.login-section-2 p {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: rgba(119, 119, 119);
+}
+
+.form .login-form-group {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.first-input {
+    margin-bottom: 30px;
+}
+
+.login-form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: rgba(119, 119, 119);
+}
+
+.login-form-group label span {
+    color: red;
+}
+
+.login-form-group input {
+    width: 700px;
+    padding: 20px;
+    box-shadow: 0.2px 0.2px 2px #e7e7e7;
+    border: none;
+
+}
+
+.login-form-group input:focus {
+    outline: none;
+}
+
+.signIn {
+    width: 100%;
+}
+
+
+.create-account {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #111111;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 12px 0px;
+}
+
+.login button {
+    cursor: pointer;
+}
+
+.errors {
+    color: red;
+    text-align: center;
+    margin-top: 8px;
+}
+
+.forgotPassword {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #111111 !important;
+    cursor: pointer;
+}
+
+.forgot-card-bg {
+    position: fixed;
+    top: 0px;
+    z-index: 887;
+    display: flex;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(119, 119, 119, 0.2);
+}
+
+.forgot-card {
+    background-color: white;
+    height: 30vh;
+    width: 700px;
+    margin: 10% 30%;
+    padding: 30px;
+}
+
+.forgot-title {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.forgot-form-group {
+    display: flex;
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+.forgot-form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: rgba(119, 119, 119);
+}
+
+.forgot-form-group label span {
+    color: red;
+}
+
+.forgot-form-group input {
+    width: 70%;
+    padding: 7px;
+    border: none;
+    border: 1px solid #e7e7e7;
+}
+
+.forgot-form-group input:focus {
+    outline: none;
+}
+
+.forgot-form-group .err {
+    margin-bottom: -6px;
+}
+
+.reset-link {
+    padding: 4px 8px;
+    background-color: #111111;
+    color: #f4f4f4;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 770px) {
+    .login-form-group input {
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0.2px 0.2px 2px #e7e7e7;
+        border: none;
+
+    }
+
+    .login-section-2 {
+        padding: 3%;
+    }
+
+    .forgot-card {
+        width: 70%;
+        margin: 20% 20%;
+        height: 23vh;
+    }
+
+    .forgot-card input {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .login-form-group input {
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0.2px 0.2px 2px #e7e7e7;
+        border: none;
+
+    }
+
+    .login-section-2 {
+        padding: 3%;
+    }
+
+    .forgot-card {
+        width: 100%;
+        margin: 20% 5%;
+    }
+
+    .forgot-card input {
+        width: 90%;
+    }
+}

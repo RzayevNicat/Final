@@ -1,0 +1,192 @@
+.carousel {
+    width: 100%;
+    padding: 0px;
+}
+
+.carousel button {
+    display: none !important;
+}
+
+.carousel h3 {
+    color: white;
+}
+
+.header {
+    background-image: url(https://www.portotheme.com/magento2/porto/pub/media/wysiwyg/smartwave/porto/homepage/18/01n.jpg);
+    min-height: 100vh;
+    display: flex !important;
+    align-items: center !important;
+    position: relative;
+    padding: 0px 3%;
+    justify-content: center !important;
+    flex-direction: row;
+    color: white;
+
+}
+
+.header-info h1 {
+    font-size: 42px;
+    font-weight: 200;
+}
+
+.header-img img {
+    width: 600px !important;
+    height: 600px;
+
+
+}
+
+.spans {
+    display: flex;
+    align-items: center;
+
+}
+
+.spans .up {
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.spans .sale {
+    font-size: 50px;
+    font-weight: 700;
+    margin-left: 20px;
+}
+
+.starting h1 {
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+}
+
+.starting h1 .payment {
+    font-size: 33.6px;
+    font-weight: 700;
+    margin-top: -7px;
+    color: rgba(210, 110, 75);
+}
+
+.starting h1 .dollor {
+    color: rgba(210, 110, 75);
+    margin-left: 10px;
+    font-size: 18.144px;
+}
+
+.starting {
+    display: flex;
+}
+
+.starting button {
+    background-color: white;
+    display: block !important;
+    color: black;
+    margin-left: 50px;
+    padding: 20px 50px;
+    font-weight: 700;
+    font-size: 16.8px;
+    letter-spacing: 3.36px;
+    transition: 1s;
+}
+
+.starting button:hover {
+    background-color: #111111;
+    color: white;
+    border: none;
+}
+
+@media only screen and (max-width: 1175px) {
+    .header {
+        padding: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 50vh;
+        position: relative;
+    }
+
+    .header-info h1 {
+        font-size: 40px;
+        font-weight: 200;
+    }
+
+    .header-info {
+        z-index: 849284923932432;
+    }
+
+    .header img {
+        width: 300px !important;
+        height: 300px !important;
+        position: absolute;
+        top: 20%;
+        right: 10%;
+        z-index: 1;
+    }
+
+    .spans .up {
+        font-size: 26px !important;
+        font-weight: 700;
+    }
+
+    .spans .sale {
+        font-size: 26px !important;
+    }
+
+    .starting h1 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .starting button {
+        width: 150px;
+        padding: 0px;
+        margin-left: 10px;
+        font-size: 14px;
+        letter-spacing: 0px;
+        font-weight: 500;
+    }
+}
+
+@media only screen and (max-width: 490px) {
+
+
+    .header-info h1 {
+        font-size: 28px;
+        font-weight: 200;
+    }
+
+
+
+    .header img {
+        width: 300px !important;
+        height: 300px !important;
+        position: absolute;
+        top: 20%;
+        right: 0;
+        z-index: 1;
+    }
+
+    .spans .up {
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .spans .sale {
+        font-size: 50px;
+    }
+
+    .starting h1 {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .starting button {
+        width: 150px;
+        padding: 0px;
+        margin-left: 10px;
+        font-size: 14px;
+        letter-spacing: 0px;
+        font-weight: 500;
+    }
+
+}
