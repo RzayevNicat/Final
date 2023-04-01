@@ -49,6 +49,10 @@
     flex-wrap: wrap;
 }
 
+.categories-products .card img {
+    width: 180px;
+}
+
 .card {
     margin-right: 25px;
     margin-bottom: 30px;

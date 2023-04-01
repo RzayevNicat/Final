@@ -21,13 +21,13 @@ import QuickView from '../../components/quickView';
 import { ToastContainer, toast } from 'react-toastify';
 import { Helmet } from 'react-helmet';
 function Category() {
-
+	const data = useSelector((state) => state.data.items);
 	const status = useSelector((state) => state.data.status);
 	const [ filter, setFilter ] = useState([]);
 	const { details, setDetails } = useQuick();
 	const [ black, setBlack ] = useState('black');
 	const [ visibleData, setVisibleData ] = useState([]);
-	const [data,setData] = useState([])
+	// const [data,setData] = useState([])
 	const [ index, setIndex ] = useState(0);
 	const { all, setAll } = useFilter();
 	const [ puma, setPuma ] = useState(false);
@@ -62,9 +62,10 @@ function Category() {
 			axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
 
 			if (status === 'idle') {
-				axios.get('https://finalldaaqaqa.herokuapp.com/products').then(res=>{
-					setData(res.data.data)
-				})
+				// axios.get('https://finalldaaqaqa.herokuapp.com/products').then(res=>{
+				// 	setData(res.data.data)
+				// })
+				dispatch(fetchProducts());
 			}
 
 			window.addEventListener('scroll', listenScrollEvent);

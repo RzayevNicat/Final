@@ -9,20 +9,6 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import {Helmet} from 'react-helmet'
-// const paymentSchema = Yup.object().shape({
-//     name : Yup.string().min(2,'Short Name').max(12,'Long Name').required('Please provide Name'),
-//     surname: Yup.string().min(2,'Short Surname').max(20,'Long Surname').required('Please provide Surname'),
-//     cardNumber: Yup.string().max(16,'Warning').matches(/^([0-9]{4}[- ]?){3}[0-9]{4}$/,'Please provide valid debit card number').required('Please provide Card Number'),
-//     phone : Yup.string().matches(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,'Invalid phone Number').required('Please provide Phone Number'),
-//     email: Yup.string()
-//     .matches(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please provide valid email')
-//     .required('Please provide Email'),
-//     postalCode:Yup.string().matches(/(^\d{5}$)|(^\d{5}-\d{4}$)/,'Invalid Postal Code').required('Please provide postal code'),
-//     my:Yup.string().matches(/^(1[0-2]|0[1-9]|\d)\/(20\d{2}|19\d{2}|0(?!0)\d|[1-9]\d)$/,"Invalid Date").required('Please provide date'),
-//     cvv:Yup.string().matches(/^[0-9]{3,4}$/,'Invalid CVV').required('Please provide CVV'),
-//     country:Yup.string().required('Please choose country')
-
-// })
 function CheckOut() {
 	const [ black, setBlack ] = useState('black');
 	const count = useSelector((state) => state.baskett.count);
@@ -178,7 +164,7 @@ function CheckOut() {
 									options:usr.options,
 									src:usr.src,
 									userCheckOut:[],
-									userWishlist: [...usr.userWishlist ],
+									userWishlist: usr.userWishlist,
 									userCard: [...usr.userCard , ...usr.userCheckOut ],
 									country:countryy,
 									mmyy:mmyy,

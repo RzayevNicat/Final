@@ -15,6 +15,7 @@ const basketSlice = createSlice({
 	initialState,
 	reducers: {
 		addBasket: (state, actions) => {
+			const data = JSON.parse(localStorage.getItem('user'));
 			if (state.value.some((x) => x.elem._id === actions.payload._id)) {
 				state.value.forEach((element) => {
 					if (element.elem._id === actions.payload._id) {
@@ -30,25 +31,26 @@ const basketSlice = createSlice({
 								theme: 'dark'
 							});
 						} else {
+				
 							element.count = element.count + 1;
 							let user = {
-								_id: dataas._id,
-								name: dataas.name,
-								surname: dataas.surname,
-								email: dataas.email,
-								gender: dataas.gender,
-								src: dataas.src,
-								options: dataas.options,
-								password: dataas.password,
-								userCard: dataas.userCard,
+								_id: data._id,
+								name: data.name,
+								surname: data.surname,
+								email: data.email,
+								gender: data.gender,
+								src: data.src,
+								options: data.options,
+								password: data.password,
+								userCard: data.userCard,
 								userCheckOut: state.value,
-								userWishlist: dataas.userWishlist,
-								country: dataas.country,
-								mmyy: dataas.mmyy,
-								cvv: dataas.cvv,
-								postalCode: dataas.postalCode,
-								cardNumber: dataas.cardNumber,
-								phoneNumber: dataas.phoneNumber
+								userWishlist: [...data.userWishlist],
+								country: data.country,
+								mmyy: data.mmyy,
+								cvv: data.cvv,
+								postalCode: data.postalCode,
+								cardNumber: data.cardNumber,
+								phoneNumber: data.phoneNumber
 							};
 							toast.success(' Added Basket!', {
 								position: 'bottom-right',
@@ -67,23 +69,23 @@ const basketSlice = createSlice({
 				});
 			} else {
 				let user = {
-					_id: dataas._id,
-					name: dataas.name,
-					surname: dataas.surname,
-					email: dataas.email,
-					gender: dataas.gender,
-					src: dataas.src,
-					options: dataas.options,
-					password: dataas.password,
-					userCard: dataas.userCard,
+					_id: data._id,
+					name: data.name,
+					surname: data.surname,
+					email: data.email,
+					gender: data.gender,
+					src: data.src,
+					options: data.options,
+					password: data.password,
+					userCard: data.userCard,
 					userCheckOut: state.value,
-					userWishlist: dataas.userWishlist,
-					country: dataas.country,
-					mmyy: dataas.mmyy,
-					cvv: dataas.cvv,
-					postalCode: dataas.postalCode,
-					cardNumber: dataas.cardNumber,
-					phoneNumber: dataas.phoneNumber
+					userWishlist: [...data.userWishlist],
+					country: data.country,
+					mmyy: data.mmyy,
+					cvv: data.cvv,
+					postalCode: data.postalCode,
+					cardNumber: data.cardNumber,
+					phoneNumber: data.phoneNumber
 				};
 				state.value.push({ count: 1, elem: actions.payload });
 				localStorage.setItem('user', JSON.stringify(user));
@@ -101,26 +103,27 @@ const basketSlice = createSlice({
 			}
 		},
 		removeBasket: (state, actions) => {
+			const data = JSON.parse(localStorage.getItem('user'));
 			state.value = state.value.filter((x) => x.elem._id !== actions.payload.elem._id);
 			state.count -= actions.payload.count;
 			let userCopy = {
-				_id: dataas._id,
-				name: dataas.name,
-				surname: dataas.surname,
-				email: dataas.email,
-				gender: dataas.gender,
-				src: dataas.src,
-				options: dataas.options,
-				password: dataas.password,
-				userCard: dataas.userCard,
+				_id: data._id,
+				name: data.name,
+				surname: data.surname,
+				email: data.email,
+				gender: data.gender,
+				src: data.src,
+				options: data.options,
+				password: data.password,
+				userCard: data.userCard,
 				userCheckOut: state.value,
-				userWishlist: dataas.userWishlist,
-				country: dataas.country,
-				mmyy: dataas.mmyy,
-				cvv: dataas.cvv,
-				postalCode: dataas.postalCode,
-				cardNumber: dataas.cardNumber,
-				phoneNumber: dataas.phoneNumber
+				userWishlist: data.userWishlist,
+				country: data.country,
+				mmyy: data.mmyy,
+				cvv: data.cvv,
+				postalCode: data.postalCode,
+				cardNumber: data.cardNumber,
+				phoneNumber: data.phoneNumber
 			};
 			toast.info(' Removed Basket!', {
 				position: 'bottom-right',
@@ -135,6 +138,7 @@ const basketSlice = createSlice({
 			localStorage.setItem('user', JSON.stringify(userCopy));
 		},
 		productAdd: (state, actions) => {
+			const data = JSON.parse(localStorage.getItem('user'));
 			if (state.value.some((x) => x.elem._id === actions.payload.elem._id)) {
 				state.value.forEach((element) => {
 					if (element.elem._id === actions.payload.elem._id) {
@@ -153,23 +157,23 @@ const basketSlice = createSlice({
 							});
 						} else {
 							let user = {
-								_id: dataas._id,
-								name: dataas.name,
-								surname: dataas.surname,
-								email: dataas.email,
-								gender: dataas.gender,
-								src: dataas.src,
-								options: dataas.options,
-								password: dataas.password,
-								userCard: dataas.userCard,
+								_id: data._id,
+								name: data.name,
+								surname: data.surname,
+								email: data.email,
+								gender: data.gender,
+								src: data.src,
+								options: data.options,
+								password: data.password,
+								userCard: data.userCard,
 								userCheckOut: state.value,
-								userWishlist: dataas.userWishlist,
-								country: dataas.country,
-								mmyy: dataas.mmyy,
-								cvv: dataas.cvv,
-								postalCode: dataas.postalCode,
-								cardNumber: dataas.cardNumber,
-								phoneNumber: dataas.phoneNumber
+								userWishlist: data.userWishlist,
+								country: data.country,
+								mmyy: data.mmyy,
+								cvv: data.cvv,
+								postalCode: data.postalCode,
+								cardNumber: data.cardNumber,
+								phoneNumber: data.phoneNumber
 							};
 							element.count += actions.payload.count;
 							localStorage.setItem('user', JSON.stringify(user));
@@ -202,23 +206,23 @@ const basketSlice = createSlice({
 					});
 				} else {
 					let user = {
-						_id: dataas._id,
-						name: dataas.name,
-						surname: dataas.surname,
-						email: dataas.email,
-						gender: dataas.gender,
-						src: dataas.src,
-						options: dataas.options,
-						password: dataas.password,
-						userCard: dataas.userCard,
+						_id: data._id,
+						name: data.name,
+						surname: data.surname,
+						email: data.email,
+						gender: data.gender,
+						src: data.src,
+						options: data.options,
+						password: data.password,
+						userCard: data.userCard,
 						userCheckOut: state.value,
-						userWishlist: dataas.userWishlist,
-						country: dataas.country,
-						mmyy: dataas.mmyy,
-						cvv: dataas.cvv,
-						postalCode: dataas.postalCode,
-						cardNumber: dataas.cardNumber,
-						phoneNumber: dataas.phoneNumber
+						userWishlist: data.userWishlist,
+						country: data.country,
+						mmyy: data.mmyy,
+						cvv: data.cvv,
+						postalCode: data.postalCode,
+						cardNumber: data.cardNumber,
+						phoneNumber: data.phoneNumber
 					};
 					state.value.push({ count: actions.payload.count, elem: actions.payload.elem });
 					localStorage.setItem('user', JSON.stringify(user));
@@ -237,6 +241,7 @@ const basketSlice = createSlice({
 			}
 		},
 		viewAdd: (state, actions) => {
+			const data = JSON.parse(localStorage.getItem('user'));
 			let newArr = []
 			state.value.forEach((ele) => {
 				actions.payload.forEach((element) => {
@@ -260,23 +265,23 @@ const basketSlice = createSlice({
 							state.value = [ ...newArr ];
 							console.log(state.value);
 							let user = {
-								_id: dataas._id,
-								name: dataas.name,
-								surname: dataas.surname,
-								email: dataas.email,
-								gender: dataas.gender,
-								src: dataas.src,
-								options: dataas.options,
-								password: dataas.password,
-								userCard: dataas.userCard,
+								_id: data._id,
+								name: data.name,
+								surname: data.surname,
+								email: data.email,
+								gender: data.gender,
+								src: data.src,
+								options: data.options,
+								password: data.password,
+								userCard: data.userCard,
 								userCheckOut: state.value,
-								userWishlist: dataas.userWishlist,
-								country: dataas.country,
-								mmyy: dataas.mmyy,
-								cvv: dataas.cvv,
-								postalCode: dataas.postalCode,
-								cardNumber: dataas.cardNumber,
-								phoneNumber: dataas.phoneNumber
+								userWishlist: data.userWishlist,
+								country: data.country,
+								mmyy: data.mmyy,
+								cvv: data.cvv,
+								postalCode: data.postalCode,
+								cardNumber: data.cardNumber,
+								phoneNumber: data.phoneNumber
 							};
 
 							localStorage.setItem('user', JSON.stringify(user));
@@ -287,6 +292,7 @@ const basketSlice = createSlice({
 			});
 		},
 		deleteBasket: (state, actions) => {
+			const data = JSON.parse(localStorage.getItem('user'));
 			state.value.forEach((element) => {
 				if (element.elem._id === actions.payload._id) {
 					element.count = element.count - 1;
@@ -294,23 +300,23 @@ const basketSlice = createSlice({
 						state.value = state.value.filter((x) => x.elem._id !== actions.payload._id);
 					}
 					let user = {
-						_id: dataas._id,
-						name: dataas.name,
-						surname: dataas.surname,
-						email: dataas.email,
-						gender: dataas.gender,
-						src: dataas.src,
-						options: dataas.options,
-						password: dataas.password,
-						userCard: dataas.userCard,
+						_id: data._id,
+						name: data.name,
+						surname: data.surname,
+						email: data.email,
+						gender: data.gender,
+						src: data.src,
+						options: data.options,
+						password: data.password,
+						userCard: data.userCard,
 						userCheckOut: state.value,
-						userWishlist: dataas.userWishlist,
-						country: dataas.country,
-						mmyy: dataas.mmyy,
-						cvv: dataas.cvv,
-						postalCode: dataas.postalCode,
-						cardNumber: dataas.cardNumber,
-						phoneNumber: dataas.phoneNumber
+						userWishlist: data.userWishlist,
+						country: data.country,
+						mmyy: data.mmyy,
+						cvv: data.cvv,
+						postalCode: data.postalCode,
+						cardNumber: data.cardNumber,
+						phoneNumber: data.phoneNumber
 					};
 					toast.info('Remove Basket!', {
 						position: 'bottom-right',

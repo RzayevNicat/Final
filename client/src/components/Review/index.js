@@ -39,7 +39,7 @@ function Review() {
 					if (saleProduct?.productReview.some((x) => x.nickName === values.nickName)) {
 						saleProduct?.productReview.forEach((element) => {
 							if (element.nickName === values.nickName) {
-								toast.error('Already NickName!', {
+								toast.error('Same NickName!', {
 									position: 'bottom-right',
 									autoClose: 3000,
 									hideProgressBar: false,
@@ -56,9 +56,11 @@ function Review() {
 						values.star = star;
 
 						axios.put(`https://finalldaaqaqa.herokuapp.com/products/${saleProduct._id}`, {
-							productReview: [ ...saleProduct.productReview, values ]
-						});
-						window.location.reload();
+							productReview: [ ...saleProduct?.productReview, values ]
+						}).then(res=>{
+							window.location.reload();
+						})
+						
 					}
 					
 				}}

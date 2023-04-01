@@ -87,7 +87,7 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: '/admin',
-				element: <AdminHome />
+				element: <Users />
 			},
 			{
 				path: '/admin/products',
@@ -101,12 +101,12 @@ const router = createBrowserRouter([
 				path: '/admin/products/added',
 				element: <Added />
 			},
+			// {
+			// 	path: '/admin/users',
+			// 	element: <Users />
+			// },
 			{
-				path: '/admin/users',
-				element: <Users />
-			},
-			{
-				path: '/admin/users/userProfile/:id',
+				path: '/admin/userProfile/:id',
 				element: <UserProfile />
 			},
 			{

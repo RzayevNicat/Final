@@ -26,13 +26,14 @@
     align-items: center;
 }
 
-.nav ul li a {
+.nav ul a {
     display: flex;
     align-items: center;
     margin-right: 30px;
     margin-left: 30px;
     font-weight: 700;
     font-size: 12px;
+    cursor: pointer;
     color: white;
     text-decoration: none;
 }
