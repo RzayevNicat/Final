@@ -8,7 +8,7 @@ const productShecma = new Schema({
 	productStock: { type: Number, required: true },
 	img_url: { type: String, required: true },
 	discontinued: { type: Boolean, required: true },
-	productRatings: { type: Number, required: false },
+	productRatings: { type: Number, required: true },
 	sale: { type: Boolean, required: true },
 	brand: { type: String, required: true },
 	type: { type: String, required: true },
