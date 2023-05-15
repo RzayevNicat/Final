@@ -13,10 +13,12 @@ function Products() {
 	const navigate = useNavigate();
 	const [ data, setData ] = useState([]);
 	useEffect(() => {
-		axios.get('https://finalldaaqaqa.herokuapp.com/products').then((res) => setData(res.data.data));
+		axios
+			.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products')
+			.then((res) => setData(res.data.data));
 	}, []);
 	const handleDelete = (id) => {
-		axios.delete(`https://finalldaaqaqa.herokuapp.com/products/${id}`);
+		axios.delete(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${id}`);
 		const copy = data.filter((x) => x._id !== id);
 		setData(copy);
 	};

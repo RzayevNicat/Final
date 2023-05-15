@@ -14,7 +14,9 @@ function About() {
 	};
 	useEffect(() => {
 		window.scrollTo(0, 0);
-		axios.get('https://finalldaaqaqa.herokuapp.com/customers').then((res) => setCustomers(res.data.data));
+		axios
+			.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers')
+			.then((res) => setCustomers(res.data.data));
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);

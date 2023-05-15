@@ -9,7 +9,7 @@ function ProductDetails() {
 
 	useEffect(
 		() => {
-			axios.get(`https://finalldaaqaqa.herokuapp.com/products/${id}`).then((res) => {
+			axios.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${id}`).then((res) => {
 				setData(res.data.data);
 				setReview(res.data.data.productReview);
 			});
@@ -26,7 +26,7 @@ function ProductDetails() {
 	const handlDelete = (elem) => {
 		let copy = (review || []).filter((x) => x.nickName !== elem.nickName);
 		setReview(copy);
-		axios.put(`https://finalldaaqaqa.herokuapp.com/products/${id}`, {
+		axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${id}`, {
 			productReview: [ ...copy ]
 		});
 	};

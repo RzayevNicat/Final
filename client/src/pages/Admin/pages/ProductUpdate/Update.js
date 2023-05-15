@@ -26,7 +26,7 @@ function Update() {
 	const navigate = useNavigate();
 	useEffect(
 		() => {
-			axios.get(`https://finalldaaqaqa.herokuapp.com/products/${id}`).then((res) => {
+			axios.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${id}`).then((res) => {
 				setProducts(res.data.data);
 				setProductName(res.data.data.productName);
 				setProductPricee(res.data.data.prodcutPrice);
@@ -42,7 +42,9 @@ function Update() {
 				setType(res.data.data.type);
 				setGender(res.data.data.gender);
 			});
-			axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
+			axios
+				.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/filters')
+				.then((res) => setFilter(res.data.data));
 		},
 		[ id ]
 	);
@@ -126,7 +128,7 @@ function Update() {
 						type: type,
 						gender: gender
 					};
-					axios.put(`https://finalldaaqaqa.herokuapp.com/products/${id}`, updateProduct);
+					axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${id}`, updateProduct);
 					toast.success('Product Update', {
 						position: 'bottom-right',
 						autoClose: 3000,

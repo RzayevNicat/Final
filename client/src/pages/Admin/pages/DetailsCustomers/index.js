@@ -13,17 +13,19 @@ function DetailsCustomers() {
 	const navigate = useNavigate();
 	useEffect(
 		() => {
-			axios.get(`https://finalldaaqaqa.herokuapp.com/customers/${id}`).then((res) => setDetails(res.data.data));
+			axios
+				.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers/${id}`)
+				.then((res) => setDetails(res.data.data));
 		},
 		[ id, details ]
 	);
 	const handleDelete = (id) => {
-		axios.delete(`https://finalldaaqaqa.herokuapp.com/customers/${id}`);
+		axios.delete(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers/${id}`);
 
 		navigate('/admin/customer');
 	};
 	const handleCheck = (id) => {
-		axios.put(`https://finalldaaqaqa.herokuapp.com/customers/${id}`, {
+		axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers/${id}`, {
 			isActive: true,
 			workStarted: y
 		});

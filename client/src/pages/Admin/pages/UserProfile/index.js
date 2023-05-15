@@ -28,7 +28,7 @@ function UserProfile() {
 	const navigate = useNavigate();
 	useEffect(
 		() => {
-			axios.get(`https://finalldaaqaqa.herokuapp.com/users/${id}`).then((res) => {
+			axios.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${id}`).then((res) => {
 				setDetails(res.data.data);
 				setUserAdmin(res.data.data.role);
 			});
@@ -36,7 +36,7 @@ function UserProfile() {
 		[ id,render ]
 	);
 	const handleDelete = (id) => {
-		axios.delete(`https://finalldaaqaqa.herokuapp.com/users/${id}`);
+		axios.delete(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${id}`);
 		navigate('/admin/users');
 		window.location.reload();
 	};
@@ -45,7 +45,7 @@ function UserProfile() {
 	};
 	const handleUpdate = () => {
 		setEdit(false);
-		axios.put(`https://finalldaaqaqa.herokuapp.com/users/${id}`, {
+		axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${id}`, {
 			role: userAdmin
 		}).then(res=>{
 			setRender(Math.random());

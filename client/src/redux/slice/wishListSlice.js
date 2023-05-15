@@ -51,7 +51,7 @@ const wishListSlice = createSlice({
 									phoneNumber:dataas.phoneNumber
 					};
 					localStorage.setItem('user',JSON.stringify(user))
-					axios.put(`https://finalldaaqaqa.herokuapp.com/users/${dataas._id}`,user)
+					axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${dataas._id}`,user)
 					toast.success('Added Wishlist!', {
 						position: 'bottom-right',
 						autoClose: 3000,
@@ -99,7 +99,7 @@ const wishListSlice = createSlice({
 								phoneNumber:dataas.phoneNumber
 			};
 			localStorage.setItem('user',JSON.stringify(user))
-			axios.put(`https://finalldaaqaqa.herokuapp.com/users/${dataas._id}`,user)
+			axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${dataas._id}`,user)
 			
 		}
 	}

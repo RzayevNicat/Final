@@ -55,7 +55,7 @@ function Review() {
 						
 						values.star = star;
 
-						axios.put(`https://finalldaaqaqa.herokuapp.com/products/${saleProduct._id}`, {
+						axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${saleProduct._id}`, {
 							productReview: [ ...saleProduct?.productReview, values ]
 						}).then(res=>{
 							window.location.reload();

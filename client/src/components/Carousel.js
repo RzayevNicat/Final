@@ -5,7 +5,9 @@ import Slider from 'react-slick';
 function SimpleSlider() {
 	const [ datas, setData ] = useState([]);
 	useEffect(() => {
-		axios.get('http://localhost:3000/products').then((res) => setData(res.data.data));
+		axios
+			.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products')
+			.then((res) => setData(res.data.data));
 	}, []);
 
 	const settings = {

@@ -9,7 +9,9 @@ function Search() {
 	const [ visible, setVisible ] = useState(false);
 	const navigate = useNavigate();
 	useEffect(() => {
-		axios.get('https://finalldaaqaqa.herokuapp.com/products').then((res) => setProduct(res.data.data));
+		axios
+			.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products')
+			.then((res) => setProduct(res.data.data));
 	}, []);
 	const datas = Object.values(product);
 	function search(params) {

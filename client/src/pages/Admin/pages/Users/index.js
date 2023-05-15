@@ -76,10 +76,12 @@ export default function StickyHeadTable() {
 		setPage(0);
 	};
 	useEffect(() => {
-		axios.get('https://finalldaaqaqa.herokuapp.com/users').then((res) => setData(res.data.data));
+		axios
+			.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users')
+			.then((res) => setData(res.data.data));
 	}, []);
 	const handleDelete = (id) => {
-		axios.delete(`https://finalldaaqaqa.herokuapp.com/users/${id}`);
+		axios.delete(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${id}`);
 		let copy = data.filter((x) => x._id !== id);
 		setData(copy);
 	};

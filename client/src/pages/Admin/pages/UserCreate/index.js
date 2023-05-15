@@ -39,7 +39,7 @@ function UserCreate() {
 				}}
 				onSubmit={(values) => {
 					axios
-						.post('https://finalldaaqaqa.herokuapp.com/auth', values)
+						.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/auth', values)
 						.then((res) => {
 							if (res.data.success === true) {
 								toast.success('Added User!', {

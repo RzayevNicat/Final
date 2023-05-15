@@ -14,7 +14,7 @@ function Footer() {
 		() => {
 			let userId = JSON.parse(localStorage.getItem('user'));
 			setUser(userId);
-			axios.get(`https://finalldaaqaqa.herokuapp.com/users/${user?._id}`).then((res) => setDataUser(res.data.data));
+			axios.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${user?._id}`).then((res) => setDataUser(res.data.data));
 			const userlogin = JSON.parse(sessionStorage.getItem('userLogin'));
 			setActive(userlogin);
 		},

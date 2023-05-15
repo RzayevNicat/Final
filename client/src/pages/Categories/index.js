@@ -59,7 +59,7 @@ function Category() {
 				if (i <= numberOfItems) newArray.push(data[i]);
 			}
 			setVisibleData(newArray);
-			axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
+			axios.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/filters').then((res) => setFilter(res.data.data));
 
 			if (status === 'idle') {
 				// axios.get('https://finalldaaqaqa.herokuapp.com/products').then(res=>{

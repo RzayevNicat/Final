@@ -37,7 +37,7 @@ function Product() {
 	useEffect(
 		() => {
 			axios
-				.get(`https://finalldaaqaqa.herokuapp.com/products/${id}`)
+				.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${id}`)
 				.then((res) => setSaleProduct(res.data.data));
 			window.scrollTo(0, 0);
 			window.addEventListener('scroll', listenScrollEvent);

@@ -11,7 +11,9 @@ export function Gallery() {
 
 	const { id } = useParams();
 	useEffect(() => {
-		axios.get(`https://finalldaaqaqa.herokuapp.com/products/${id}`).then((res) => setPreview(res.data.data));
+		axios
+			.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${id}`)
+			.then((res) => setPreview(res.data.data));
 	}, []);
 
 	return (

@@ -56,7 +56,7 @@ function ResetPassword() {
 							} else {
 								axios
 									.put(
-										`https://finalldaaqaqa.herokuapp.com/resetpassword?resetPasswordToken=${token}`,
+										`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/resetpassword?resetPasswordToken=${token}`,
 										{
 											password: values.password
 										}

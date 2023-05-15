@@ -45,7 +45,7 @@ function CustomerCreate() {
 				}}
 				onSubmit={(values) => {
 					axios
-						.post('https://finalldaaqaqa.herokuapp.com/customers', values)
+						.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers', values)
 						.then((res) => {
 							navigate(-1);
 						})

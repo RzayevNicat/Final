@@ -65,7 +65,7 @@ function Register() {
 								userCard: []
 							};
 							axios
-								.post('https://finalldaaqaqa.herokuapp.com/auth', user)
+								.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/auth', user)
 								.then((res) => {
 									if (res.status === 200) {
 										sessionStorage.setItem('userLogin', JSON.stringify(false));
@@ -88,7 +88,7 @@ function Register() {
 										});
 									}
 								});
-							axios.get('https://finalldaaqaqa.herokuapp.com/users').then((res) => {
+							axios.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users').then((res) => {
 								res.data.data.forEach((element) => {
 									if (element.email === values.email) {
 										localStorage.setItem('user', JSON.stringify(element));

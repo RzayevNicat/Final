@@ -49,7 +49,7 @@ function CheckOut() {
 		setCvv(user?.cvv || '')
 		setPostalCode(user?.postalCode || '')
 		setCountry(user?.country || '')
-        axios.get('https://finalldaaqaqa.herokuapp.com/products').then(res=> setProduct(res.data.data))
+        axios.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products').then(res=> setProduct(res.data.data))
 		window.addEventListener('scroll', listenScrollEvent);
 		return () => {
 			window.removeEventListener('scroll', listenScrollEvent);
@@ -66,7 +66,7 @@ function CheckOut() {
                        element.productStock  = element.productStock - ele.count
 						
 					
-                        axios.put(`https://finalldaaqaqa.herokuapp.com/products/${element._id}`,{
+                        axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products/${element._id}`,{
                             productImages:element.productImages,
                             productName: element.productName,
                             prodcutPrice: element.prodcutPrice,
@@ -173,7 +173,7 @@ function CheckOut() {
 									cardNumber:cardNumber,
 									phoneNumber:phoneNumber
 								}
-								axios.put(`https://finalldaaqaqa.herokuapp.com/users/${usr._id}`,userrr).then(res=> {
+								axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${usr._id}`,userrr).then(res=> {
 									
 									localStorage.setItem('user', JSON.stringify(userrr))
 								navigate('/profile')

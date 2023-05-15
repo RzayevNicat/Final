@@ -9,7 +9,9 @@ function Added() {
 	const [ filter, setFilter ] = useState([]);
 	const [ productSize, setProductSize ] = useState([]);
 	useEffect(() => {
-		axios.get('https://finalldaaqaqa.herokuapp.com/filters').then((res) => setFilter(res.data.data));
+		axios
+			.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/filters')
+			.then((res) => setFilter(res.data.data));
 	}, []);
 	let colorArr = [];
 	filter.forEach((element) => {
@@ -77,7 +79,7 @@ function Added() {
 				}}
 				onSubmit={(values, { resetForm }) => {
 					axios
-						.post('https://finalldaaqaqa.herokuapp.com/products', {
+						.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/products', {
 							productName: values.productName,
 							type: values.type,
 							gender: values.gender,

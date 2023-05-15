@@ -22,7 +22,9 @@ function Login() {
 	const [ user, setUser ] = useState([]);
 	const [ forgot, setForgot ] = useState(false);
 	useEffect(() => {
-		axios.get('https://finalldaaqaqa.herokuapp.com/users').then((res) => setUser(res.data.data));
+		axios
+			.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users')
+			.then((res) => setUser(res.data.data));
 	}, []);
 	const navigate = useNavigate();
 	const handleCreate = () => {
@@ -47,7 +49,7 @@ function Login() {
 						validationSchema={loginSchema}
 						onSubmit={(values, { resetForm }) => {
 							axios
-								.post('https://finalldaaqaqa.herokuapp.com/login', {
+								.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/login', {
 									email: values.email,
 									password: values.password
 								})
@@ -125,7 +127,7 @@ function Login() {
 							validationSchema={forgotValidation}
 							onSubmit={(values) => {
 								axios
-									.post('https://finalldaaqaqa.herokuapp.com/forgatpassword', {
+									.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/forgatpassword', {
 										email: values.forgotEmail
 									})
 									.then((res) => {

@@ -77,12 +77,14 @@ function Customers() {
 	};
 	useEffect(
 		() => {
-			axios.get('https://finalldaaqaqa.herokuapp.com/customers').then((res) => setData(res.data.data));
+			axios
+				.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers')
+				.then((res) => setData(res.data.data));
 		},
 		[ data ]
 	);
 	const handleDelete = (id) => {
-		axios.delete(`https://finalldaaqaqa.herokuapp.com/customers/${id}`);
+		axios.delete(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers/${id}`);
 		let copy = data.filter((x) => x._id !== id);
 		setData(copy);
 	};
@@ -90,7 +92,7 @@ function Customers() {
 		navigate(`/admin/detailsCustomer/${id}`);
 	};
 	const handleCheck = (id) => {
-		axios.put(`https://finalldaaqaqa.herokuapp.com/customers/${id}`, {
+		axios.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/customers/${id}`, {
 			isActive: true
 		});
 	};

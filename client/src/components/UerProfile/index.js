@@ -51,7 +51,7 @@ function UserProfile() {
 	const dispatch = useDispatch();
 	const status = useSelector((state) => state.data.status);
 	const handleLogOut = () => {
-		axios.get('https://finalldaaqaqa.herokuapp.com/logout');
+		axios.get('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/logout');
 		sessionStorage.setItem('userLogin', JSON.stringify(false));
 		localStorage.removeItem('user');
 		navigate('/');
@@ -62,7 +62,7 @@ function UserProfile() {
 		() => {
 			
 			if (edit!==true) {
-				axios.get(`https://finalldaaqaqa.herokuapp.com/users/${user?._id}`).then((res) => {
+				axios.get(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${user?._id}`).then((res) => {
 					setUser(res.data.data);
 					setName(res.data.data.name);
 					setSurname(res.data.data.surname);
@@ -100,7 +100,7 @@ function UserProfile() {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		axios
-			.put(`https://finalldaaqaqa.herokuapp.com/users/${userr._id}`, {
+			.put(`https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/users/${userr._id}`, {
 				name: namee,
 				surname: surnamee,
 				email: emaill,

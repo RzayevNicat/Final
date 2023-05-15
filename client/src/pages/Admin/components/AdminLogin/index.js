@@ -27,7 +27,7 @@ function AdminLogin() {
 					}}
 					onSubmit={(values) => {
 						axios
-							.post('https://finalldaaqaqa.herokuapp.com/login', {
+							.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/login', {
 								email: values.email,
 								password: values.password
 							})
@@ -89,7 +89,7 @@ function AdminLogin() {
 							validationSchema={forgotValidation}
 							onSubmit={(values) => {
 								axios
-									.post('https://finalldaaqaqa.herokuapp.com/forgatpassword', {
+									.post('https://final-back-nb64-67i2b0g9y-rzayevnicat.vercel.app/forgatpassword', {
 										email: values.forgotEmail
 									})
 									.then((res) => {
